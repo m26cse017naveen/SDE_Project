@@ -1,0 +1,2337 @@
+(base) [om@DHANDEPATIL ~]$ hostname
+DHANDEPATIL
+(base) [om@DHANDEPATIL ~]$ whoami
+om
+(base) [om@DHANDEPATIL ~]$ ip -4 addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+2: wlp1s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    altname wlx24fe9a007e1d
+    inet 172.31.111.173/18 brd 172.31.127.255 scope global dynamic noprefixroute wlp1s0
+       valid_lft 86359sec preferred_lft 86359sec
+    inet 172.31.87.3/18 metric 600 brd 172.31.127.255 scope global secondary dynamic wlp1s0
+       valid_lft 10760sec preferred_lft 10760sec
+(base) [om@DHANDEPATIL ~]$ ip route get 1.1.1.1
+1.1.1.1 via 172.31.64.1 dev wlp1s0 src 172.31.87.3 uid 1000 
+    cache 
+(base) [om@DHANDEPATIL ~]$ sudo hostnamectl set -hostname om
+[sudo] password for om: 
+> hostnamectl [OPTION…] COMMAND …
+
+Query or change system hostname.
+
+Commands:
+  [status]               Show current hostname settings
+  hostname [NAME]        Get/set system hostname
+  icon-name [NAME]       Get/set icon name for host
+  chassis [NAME]         Get/set chassis type for host
+  deployment [NAME]      Get/set deployment environment for host
+  location [NAME]        Get/set location for host
+  tags [TAG…]            Get/set machine tags for host
+
+Options:
+  -h --help              Show this help
+     --version           Show package version
+     --no-ask-password   Do not prompt for password
+  -H --host=[USER@]HOST  Operate on remote host
+  -M --machine=CONTAINER Operate on local container
+     --transient         Only set transient hostname
+     --static            Only set static hostname
+     --pretty            Only set pretty hostname
+     --json=FORMAT       Generate JSON output (pretty, short, or off)
+  -j                     Equivalent to --json=pretty (on TTY) or --json=short (otherwise)
+
+See the hostnamectl(1) man page for details.
+(base) [om@DHANDEPATIL ~]$ hostname
+DHANDEPATIL
+(base) [om@DHANDEPATIL ~]$ sudo hostnamectl set -hostname om
+> hostnamectl [OPTION…] COMMAND …
+
+Query or change system hostname.
+
+Commands:
+  [status]               Show current hostname settings
+  hostname [NAME]        Get/set system hostname
+  icon-name [NAME]       Get/set icon name for host
+  chassis [NAME]         Get/set chassis type for host
+  deployment [NAME]      Get/set deployment environment for host
+  location [NAME]        Get/set location for host
+  tags [TAG…]            Get/set machine tags for host
+
+Options:
+  -h --help              Show this help
+     --version           Show package version
+     --no-ask-password   Do not prompt for password
+  -H --host=[USER@]HOST  Operate on remote host
+  -M --machine=CONTAINER Operate on local container
+     --transient         Only set transient hostname
+     --static            Only set static hostname
+     --pretty            Only set pretty hostname
+     --json=FORMAT       Generate JSON output (pretty, short, or off)
+  -j                     Equivalent to --json=pretty (on TTY) or --json=short (otherwise)
+
+See the hostnamectl(1) man page for details.
+(base) [om@DHANDEPATIL ~]$ hostname
+DHANDEPATIL
+(base) [om@DHANDEPATIL ~]$ sudo pacman -S --needed openssh
+[sudo] password for om: 
+warning: openssh-10.6p1-3 is up to date -- skipping
+ there is nothing to do
+(base) [om@DHANDEPATIL ~]$ sudo systemctl enable --now sshd
+(base) [om@DHANDEPATIL ~]$ sudo systemctl status sshd
+● sshd.service - OpenSSH Daemon
+     Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; preset: disabled)
+     Active: active (running) since Fri 2026-11-13 15:40:28 IST; 24h ago
+ Invocation: 2e15ecb7a0614b2ba061066b8e2fd52c
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+   Main PID: 670 (sshd)
+      Tasks: 1 (limit: 6847)
+     Memory: 1.7M (peak: 2.2M)
+        CPU: 23ms
+     CGroup: /system.slice/sshd.service
+             └─670 "sshd: /usr/bin/sshd -D [listener] 0 of 10-100 startups"
+
+Nov 13 15:40:28 DHANDEPATIL systemd[1]: Starting OpenSSH Daemon...
+Nov 13 15:40:28 DHANDEPATIL sshd[670]: Server listening on 0.0.0.0 port 22.
+Nov 13 15:40:28 DHANDEPATIL sshd[670]: Server listening on :: port 22.
+Nov 13 15:40:28 DHANDEPATIL systemd[1]: Started OpenSSH Daemon.
+(base) [om@DHANDEPATIL ~]$ sudo sshd -t
+(base) [om@DHANDEPATIL ~]$ hostname
+DHANDEPATIL
+(base) [om@DHANDEPATIL ~]$ whoami
+om
+(base) [om@DHANDEPATIL ~]$ ip -4 -br addr
+lo               UNKNOWN        127.0.0.1/8 
+wlp1s0           UP             172.31.111.173/18 172.31.87.3/18 metric 600 
+(base) [om@DHANDEPATIL ~]$ ip route get 1.1.1.1
+1.1.1.1 via 172.31.64.1 dev wlp1s0 src 172.31.111.173 uid 1000 
+    cache 
+(base) [om@DHANDEPATIL ~]$ sudo nano /etc/hosts
+(base) [om@DHANDEPATIL ~]$ ping -c 4 naveen
+PING naveen (10.87.234.16) 56(84) bytes of data.
+From 172.17.0.15 icmp_seq=1 Time to live exceeded
+From 172.17.0.15 icmp_seq=2 Time to live exceeded
+From 172.17.0.15 icmp_seq=3 Time to live exceeded
+From 172.17.0.15 icmp_seq=4 Time to live exceeded
+
+--- naveen ping statistics ---
+4 packets transmitted, 0 received, +4 errors, 100% packet loss, time 3003ms
+
+(base) [om@DHANDEPATIL ~]$ ip show addr
+Object "show" is unknown, try "ip help".
+(base) [om@DHANDEPATIL ~]$ hostname
+DHANDEPATIL
+(base) [om@DHANDEPATIL ~]$ whoami
+hostname
+hostname -I
+ip route get 8.8.8.8
+java -version
+hadoop version
+echo $HADOOP_HOME
+echo $JAVA_HOME
+om
+DHANDEPATIL
+hostname: invalid option -- 'I'
+Try 'hostname --help' or 'hostname --usage' for more information.
+8.8.8.8 via 10.132.11.254 dev enp3s0f3u1 src 10.132.11.245 uid 1000 
+    cache 
+java version "1.8.0_202"
+Java(TM) SE Runtime Environment (build 1.8.0_202-b08)
+Java HotSpot(TM) 64-Bit Server VM (build 25.202-b08, mixed mode)
+Hadoop 2.9.1
+Subversion https://github.com/apache/hadoop.git -r e30710aea4e6e55e69372929106cf119af06fd0e
+Compiled by root on 2018-04-16T09:33Z
+Compiled with protoc 2.5.0
+From source with checksum 7d6d2b655115c6cc336d662cc2b919bd
+This command was run using /home/om/hadoop-2.9.1/share/hadoop/common/hadoop-common-2.9.1.jar
+/home/om/hadoop-2.9.1
+/home/om/jdk-8u202-linux-x64/jdk1.8.0_202
+(base) [om@DHANDEPATIL ~]$ ping -c 10.87.234.198
+ping: invalid argument: '10.87.234.198'
+(base) [om@DHANDEPATIL ~]$ ping -c 4 10.132.11.245
+PING 10.132.11.245 (10.132.11.245) 56(84) bytes of data.
+64 bytes from 10.132.11.245: icmp_seq=1 ttl=64 time=0.058 ms
+64 bytes from 10.132.11.245: icmp_seq=2 ttl=64 time=0.063 ms
+64 bytes from 10.132.11.245: icmp_seq=3 ttl=64 time=0.056 ms
+64 bytes from 10.132.11.245: icmp_seq=4 ttl=64 time=0.061 ms
+
+--- 10.132.11.245 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3051ms
+rtt min/avg/max/mdev = 0.056/0.059/0.063/0.002 ms
+(base) [om@DHANDEPATIL ~]$ sudo systemctl enable --now sshd
+[sudo] password for om: 
+(base) [om@DHANDEPATIL ~]$ sudo systemctl status sshd
+● sshd.service - OpenSSH Daemon
+     Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; preset: disabled)
+     Active: active (running) since Fri 2026-11-13 15:40:28 IST; 1 day 2h ago
+ Invocation: 2e15ecb7a0614b2ba061066b8e2fd52c
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+   Main PID: 670 (sshd)
+      Tasks: 1 (limit: 6847)
+     Memory: 1.6M (peak: 2.2M)
+        CPU: 23ms
+     CGroup: /system.slice/sshd.service
+             └─670 "sshd: /usr/bin/sshd -D [listener] 0 of 10-100 startups"
+
+Nov 13 15:40:28 DHANDEPATIL systemd[1]: Starting OpenSSH Daemon...
+Nov 13 15:40:28 DHANDEPATIL sshd[670]: Server listening on 0.0.0.0 port 22.
+Nov 13 15:40:28 DHANDEPATIL sshd[670]: Server listening on :: port 22.
+Nov 13 15:40:28 DHANDEPATIL systemd[1]: Started OpenSSH Daemon.
+(base) [om@DHANDEPATIL ~]$ ssh naveen@10.87.234.198
+ssh: connect to host 10.87.234.198 port 22: No route to host
+(base) [om@DHANDEPATIL ~]$ ssh naveen@10.132.11.245
+The authenticity of host '10.132.11.245 (10.132.11.245)' can't be established.
+ED25519 key fingerprint is: SHA256:lTEs5ZQ3qB2WdVYwENCsWfqiJ475S/FNTGvsjbH/u1A
+This host key is known by the following other names/addresses:
+    ~/.ssh/known_hosts:1: localhost
+    ~/.ssh/known_hosts:5: 0.0.0.0
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '10.132.11.245' (ED25519) to the list of known hosts.
+naveen@10.132.11.245's password: 
+Permission denied, please try again.
+naveen@10.132.11.245's password: 
+Permission denied, please try again.
+naveen@10.132.11.245's password: 
+naveen@10.132.11.245: Permission denied (publickey,password).
+(base) [om@DHANDEPATIL ~]$ ssh naveen@10.87.234.198
+ssh: connect to host 10.87.234.198 port 22: No route to host
+(base) [om@DHANDEPATIL ~]$ ping -c 4 10.87.234.198
+PING 10.87.234.198 (10.87.234.198) 56(84) bytes of data.
+From 172.17.0.10 icmp_seq=1 Time to live exceeded
+From 172.17.0.10 icmp_seq=2 Time to live exceeded
+From 172.17.0.10 icmp_seq=3 Time to live exceeded
+From 172.17.0.10 icmp_seq=4 Time to live exceeded
+
+--- 10.87.234.198 ping statistics ---
+4 packets transmitted, 0 received, +4 errors, 100% packet loss, time 3005ms
+
+(base) [om@DHANDEPATIL ~]$ ssh naveen@10.87.234.198
+ssh: connect to host 10.87.234.198 port 22: No route to host
+(base) [om@DHANDEPATIL ~]$ ip route
+default via 10.132.11.254 dev enp3s0f3u1 proto dhcp src 10.132.11.245 metric 100 
+default via 10.132.11.254 dev enp3s0f3u1 proto dhcp src 10.132.11.246 metric 100 
+10.132.11.0/24 dev enp3s0f3u1 proto kernel scope link src 10.132.11.245 metric 100 
+10.132.11.0/24 dev enp3s0f3u1 proto kernel scope link src 10.132.11.246 metric 100 
+10.132.11.254 dev enp3s0f3u1 proto dhcp scope link src 10.132.11.245 metric 100 
+(base) [om@DHANDEPATIL ~]$ ip route get 10.87.234.198
+10.87.234.198 via 10.132.11.254 dev enp3s0f3u1 src 10.132.11.245 uid 1000 
+    cache 
+(base) [om@DHANDEPATIL ~]$ ip neigh show
+10.132.11.254 dev enp3s0f3u1 lladdr 6e:81:81:17:ae:cf REACHABLE 
+(base) [om@DHANDEPATIL ~]$ ip -4 addr show
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+2: wlp1s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    altname wlx24fe9a007e1d
+    inet 172.31.87.3/18 metric 600 brd 172.31.127.255 scope global dynamic wlp1s0
+       valid_lft 10729sec preferred_lft 10729sec
+    inet 172.31.111.173/18 brd 172.31.127.255 scope global secondary dynamic noprefixroute wlp1s0
+       valid_lft 86330sec preferred_lft 86330sec
+(base) [om@DHANDEPATIL ~]$ ip route
+default via 172.31.64.1 dev wlp1s0 proto dhcp src 172.31.87.3 metric 600 
+default via 172.31.64.1 dev wlp1s0 proto dhcp src 172.31.111.173 metric 600 
+8.8.8.8 via 172.31.64.1 dev wlp1s0 proto dhcp src 172.31.87.3 metric 600 
+172.16.100.3 via 172.31.64.1 dev wlp1s0 proto dhcp src 172.31.87.3 metric 600 
+172.16.100.4 via 172.31.64.1 dev wlp1s0 proto dhcp src 172.31.87.3 metric 600 
+172.16.100.141 via 172.31.64.1 dev wlp1s0 proto dhcp src 172.31.87.3 metric 600 
+172.16.100.206 via 172.31.64.1 dev wlp1s0 proto dhcp src 172.31.87.3 metric 600 
+172.31.64.0/18 dev wlp1s0 proto kernel scope link src 172.31.87.3 metric 600 
+172.31.64.0/18 dev wlp1s0 proto kernel scope link src 172.31.111.173 metric 600 
+172.31.64.1 dev wlp1s0 proto dhcp scope link src 172.31.87.3 metric 600 
+(base) [om@DHANDEPATIL ~]$ ping -c 4 192.168.43.101
+PING 192.168.43.101 (192.168.43.101) 56(84) bytes of data.
+
+--- 192.168.43.101 ping statistics ---
+4 packets transmitted, 0 received, 100% packet loss, time 3097ms
+
+(base) [om@DHANDEPATIL ~]$ mkdir -p ~/cluster-reset-backup
+
+sudo cp -a /etc/hosts ~/cluster-reset-backup/hosts.backup
+sudo cp -a /etc/hostname ~/cluster-reset-backup/hostname.backup 2>/dev/null || true
+
+cp -a ~/.ssh ~/cluster-reset-backup/ssh.backup 2>/dev/null || true
+
+hostnamectl status
+[sudo] password for om: 
+  Static hostname: DHANDEPATIL
+        Icon name: computer-laptop
+          Chassis: laptop 💻
+Chassis Asset Tag: No Asset Tag
+       Machine ID: db572d2c4b4d4e62acd0d8f4462b598b
+          Boot ID: 7bf62520d4494a55a38c55e1f033f756
+ Operating System: Arch Linux                 
+           Kernel: Linux 7.2.15-arch1-1
+     Architecture: x86-64
+  Hardware Vendor: Lenovo
+   Hardware Model: IdeaPad 3 15ALC6 Ub
+     Hardware SKU: LENOVO_MT_82KU_BU_idea_FM_IdeaPad 3 15ALC6 Ub
+ Firmware Version: GLCN68WW
+    Firmware Date: Wed 2025-03-19
+     Firmware Age: 1y 7month 3w 6d
+(base) [om@DHANDEPATIL ~]$ sudo nano /etc/hosts
+(base) [om@DHANDEPATIL ~]$ sudo hostnamectl set -hostname DHANDEPATIL
+> hostnamectl [OPTION…] COMMAND …
+
+Query or change system hostname.
+
+Commands:
+  [status]               Show current hostname settings
+  hostname [NAME]        Get/set system hostname
+  icon-name [NAME]       Get/set icon name for host
+  chassis [NAME]         Get/set chassis type for host
+  deployment [NAME]      Get/set deployment environment for host
+  location [NAME]        Get/set location for host
+  tags [TAG…]            Get/set machine tags for host
+
+Options:
+  -h --help              Show this help
+     --version           Show package version
+     --no-ask-password   Do not prompt for password
+  -H --host=[USER@]HOST  Operate on remote host
+  -M --machine=CONTAINER Operate on local container
+     --transient         Only set transient hostname
+     --static            Only set static hostname
+     --pretty            Only set pretty hostname
+     --json=FORMAT       Generate JSON output (pretty, short, or off)
+  -j                     Equivalent to --json=pretty (on TTY) or --json=short
+                         (otherwise)
+
+See the hostnamectl(1) man page for details.
+(base) [om@DHANDEPATIL ~]$ hostnamectl status
+  Static hostname: DHANDEPATIL
+        Icon name: computer-laptop
+          Chassis: laptop 💻
+Chassis Asset Tag: No Asset Tag
+       Machine ID: db572d2c4b4d4e62acd0d8f4462b598b
+          Boot ID: 7bf62520d4494a55a38c55e1f033f756
+ Operating System: Arch Linux                 
+           Kernel: Linux 7.2.15-arch1-1
+     Architecture: x86-64
+  Hardware Vendor: Lenovo
+   Hardware Model: IdeaPad 3 15ALC6 Ub
+     Hardware SKU: LENOVO_MT_82KU_BU_idea_FM_IdeaPad 3 15ALC6 Ub
+ Firmware Version: GLCN68WW
+    Firmware Date: Wed 2025-03-19
+     Firmware Age: 1y 7month 3w 6d
+(base) [om@DHANDEPATIL ~]$ ls -la ~/.ssh
+total 40
+drwx------  2 om om 4096 Nov 11 23:40 .
+drwx------ 58 om om 4096 Nov 14 18:09 ..
+-rw-r--r--  1 om om 1330 Nov 11 23:53 authorized_keys
+-rw-------  1 om om  411 Nov 11 23:15 id_ed25519
+-rw-r--r--  1 om om   96 Nov 11 23:15 id_ed25519.pub
+-rw-------  1 om om 2602 Oct 25 20:59 id_rsa
+-rw-r--r--  1 om om  568 Oct 25 20:59 id_rsa.pub
+-rw-------  1 om om 5572 Nov 14 17:57 known_hosts
+-rw-------  1 om om 2869 Nov 11 23:40 known_hosts.old
+(base) [om@DHANDEPATIL ~]$ cat ~/.ssh/config 2>/dev/null
+(base) [om@DHANDEPATIL ~]$ ssh-keygen -lf ~/.ssh/authorized_keys
+3072 SHA256:NNk/b0NckUB78cBKHVNnncPxAnQf79/gp8zTXSunBko om@DHANDEPATIL (RSA)
+3072 SHA256:NNk/b0NckUB78cBKHVNnncPxAnQf79/gp8zTXSunBko om@DHANDEPATIL (RSA)
+256 SHA256:kESIrU7+TJqlA0CAEiIDYrViurKlWHCzVSlYQMjJfAw om@DHANDEPATIL (ED25519)
+256 SHA256:ZyHqyGtgvtXOwM3H8nH7dE3lTJQntBRd6Q6aSK5phH4 naveen@archlinux (ED25519)
+(base) [om@DHANDEPATIL ~]$ cat /etc/hosts
+# Static table lookup for hostnames.
+# See hosts(5) for details.
+127.0.0.1        localhost
+::1              localhost
+172.31.118.145 archlinux
+172.31.76.25 DHANDEPATIL
+172.31.111.173 DHANDEPATIL
+(base) [om@DHANDEPATIL ~]$ sudo systemctl status sshd
+● sshd.service - OpenSSH Daemon
+     Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; preset: disabled)
+     Active: active (running) since Fri 2026-11-13 15:40:28 IST; 1 day 2h ago
+ Invocation: 2e15ecb7a0614b2ba061066b8e2fd52c
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+   Main PID: 670 (sshd)
+      Tasks: 1 (limit: 6847)
+     Memory: 3.4M (peak: 7.9M)
+        CPU: 81ms
+     CGroup: /system.slice/sshd.service
+             └─670 "sshd: /usr/bin/sshd -D [listener] 0 of 10-100 startups"
+
+Nov 14 17:58:48 DHANDEPATIL sshd-session[26428]: pam_faillock(sshd:auth): User unknown
+Nov 14 17:58:48 DHANDEPATIL sshd-session[26428]: pam_unix(sshd:auth): check pass; user unknown
+Nov 14 17:58:48 DHANDEPATIL sshd-session[26428]: pam_faillock(sshd:auth): User unknown
+Nov 14 17:58:49 DHANDEPATIL sshd-session[26428]: Failed password for invalid user naveen from 10.132.11.245 port 33038 ssh2
+Nov 14 17:58:59 DHANDEPATIL sshd-session[26428]: pam_faillock(sshd:auth): User unknown
+Nov 14 17:58:59 DHANDEPATIL sshd-session[26428]: pam_unix(sshd:auth): check pass; user unknown
+Nov 14 17:58:59 DHANDEPATIL sshd-session[26428]: pam_faillock(sshd:auth): User unknown
+Nov 14 17:59:01 DHANDEPATIL sshd-session[26428]: Failed password for invalid user naveen from 10.132.11.245 port 33038 ssh2
+Nov 14 17:59:03 DHANDEPATIL sshd-session[26428]: Connection closed by invalid user naveen 10.132.11.245 port 33038 [preauth]
+Nov 14 17:59:03 DHANDEPATIL sshd-session[26428]: PAM 2 more authentication failures; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.132.11.245
+(base) [om@DHANDEPATIL ~]$ sudo cp ~/cluster-reset-backup/hosts.backup /etc/hosts
+(base) [om@DHANDEPATIL ~]$ cat /etc/hosts
+# Static table lookup for hostnames.
+# See hosts(5) for details.
+127.0.0.1        localhost
+::1              localhost
+172.31.118.145 archlinux
+172.31.76.25 DHANDEPATIL
+172.31.111.173 DHANDEPATIL
+10.87.234.16 naveen
+172.31.64.1 om
+(base) [om@DHANDEPATIL ~]$ grep -n 'naveen@archlinux' ~/.ssh/authorized_keys
+4:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPrIuirGZEC1O0lJHBIkasUf6skXoB91MS5UFfHJV6ny naveen@archlinux
+(base) [om@DHANDEPATIL ~]$ cp ~/.ssh/authorized_keys ~/.ssh/authorized_keys.before-cleanup
+(base) [om@DHANDEPATIL ~]$ nano ~/.ssh/authorized_keys
+(base) [om@DHANDEPATIL ~]$ hostname
+whoami
+cat /etc/hosts
+ls -la ~/.ssh
+sudo systemctl is-active sshd
+DHANDEPATIL
+om
+# Static table lookup for hostnames.
+# See hosts(5) for details.
+127.0.0.1        localhost
+::1              localhost
+172.31.118.145 archlinux
+172.31.76.25 DHANDEPATIL
+172.31.111.173 DHANDEPATIL
+10.87.234.16 naveen
+172.31.64.1 om
+total 44
+drwx------  2 om om 4096 Nov 14 18:16 .
+drwx------ 58 om om 4096 Nov 14 18:09 ..
+-rw-r--r--  1 om om 1233 Nov 14 18:17 authorized_keys
+-rw-r--r--  1 om om 1330 Nov 14 18:16 authorized_keys.before-cleanup
+-rw-------  1 om om  411 Nov 11 23:15 id_ed25519
+-rw-r--r--  1 om om   96 Nov 11 23:15 id_ed25519.pub
+-rw-------  1 om om 2602 Oct 25 20:59 id_rsa
+-rw-r--r--  1 om om  568 Oct 25 20:59 id_rsa.pub
+-rw-------  1 om om 5572 Nov 14 17:57 known_hosts
+-rw-------  1 om om 2869 Nov 11 23:40 known_hosts.old
+active
+(base) [om@DHANDEPATIL ~]$ sudo cp ~/cluster-reset-backup/hosts.backup /etc/hosts
+(base) [om@DHANDEPATIL ~]$ cat /etc/hosts
+# Static table lookup for hostnames.
+# See hosts(5) for details.
+127.0.0.1        localhost
+::1              localhost
+172.31.118.145 archlinux
+172.31.76.25 DHANDEPATIL
+172.31.111.173 DHANDEPATIL
+10.87.234.16 naveen
+172.31.64.1 om
+(base) [om@DHANDEPATIL ~]$ sudo nano /etc/hosts
+(base) [om@DHANDEPATIL ~]$ cat /etc/hosts
+# Static table lookup for hostnames.
+# See hosts(5) for details.
+127.0.0.1        localhost
+::1              localhost
+172.31.118.145 archlinux
+172.31.76.25 DHANDEPATIL
+172.31.111.173 DHANDEPATIL
+(base) [om@DHANDEPATIL ~]$ chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+(base) [om@DHANDEPATIL ~]$ ssh-keygen -lf ~/.ssh/authorized_keys
+3072 SHA256:NNk/b0NckUB78cBKHVNnncPxAnQf79/gp8zTXSunBko om@DHANDEPATIL (RSA)
+3072 SHA256:NNk/b0NckUB78cBKHVNnncPxAnQf79/gp8zTXSunBko om@DHANDEPATIL (RSA)
+256 SHA256:kESIrU7+TJqlA0CAEiIDYrViurKlWHCzVSlYQMjJfAw om@DHANDEPATIL (ED25519)
+(base) [om@DHANDEPATIL ~]$ hostname
+whoami
+ip -4 -br addr
+ip route get 1.1.1.1
+DHANDEPATIL
+om
+lo               UNKNOWN        127.0.0.1/8 
+wlp1s0           UP             172.31.87.3/18 metric 600 172.31.111.173/18 
+1.1.1.1 via 172.31.64.1 dev wlp1s0 src 172.31.87.3 uid 1000 
+    cache 
+(base) [om@DHANDEPATIL ~]$ sudo pacman -S --needed openssh
+warning: openssh-10.6p1-3 is up to date -- skipping
+ there is nothing to do
+(base) [om@DHANDEPATIL ~]$ sudo systemctl enable --now sshd
+(base) [om@DHANDEPATIL ~]$ sudo systemctl is-active sshd
+active
+(base) [om@DHANDEPATIL ~]$ pin -c 4 10.87.234.198
+bash: pin: command not found
+(base) [om@DHANDEPATIL ~]$ ping -c 4 10.87.234.198
+PING 10.87.234.198 (10.87.234.198) 56(84) bytes of data.
+From 172.17.0.15 icmp_seq=1 Time to live exceeded
+From 172.17.0.15 icmp_seq=2 Time to live exceeded
+From 172.17.0.15 icmp_seq=3 Time to live exceeded
+From 172.17.0.15 icmp_seq=4 Time to live exceeded
+
+--- 10.87.234.198 ping statistics ---
+4 packets transmitted, 0 received, +4 errors, 100% packet loss, time 3006ms
+
+(base) [om@DHANDEPATIL ~]$ ip -4 -br addr
+lo               UNKNOWN        127.0.0.1/8 
+wlp1s0           UP             172.31.87.3/18 metric 600 172.31.111.173/18 
+(base) [om@DHANDEPATIL ~]$ ip route
+default via 172.31.64.1 dev wlp1s0 proto dhcp src 172.31.87.3 metric 600 
+default via 172.31.64.1 dev wlp1s0 proto dhcp src 172.31.111.173 metric 600 
+8.8.8.8 via 172.31.64.1 dev wlp1s0 proto dhcp src 172.31.87.3 metric 600 
+172.16.100.3 via 172.31.64.1 dev wlp1s0 proto dhcp src 172.31.87.3 metric 600 
+172.16.100.4 via 172.31.64.1 dev wlp1s0 proto dhcp src 172.31.87.3 metric 600 
+172.16.100.141 via 172.31.64.1 dev wlp1s0 proto dhcp src 172.31.87.3 metric 600 
+172.16.100.206 via 172.31.64.1 dev wlp1s0 proto dhcp src 172.31.87.3 metric 600 
+172.31.64.0/18 dev wlp1s0 proto kernel scope link src 172.31.87.3 metric 600 
+172.31.64.0/18 dev wlp1s0 proto kernel scope link src 172.31.111.173 metric 600 
+172.31.64.1 dev wlp1s0 proto dhcp scope link src 172.31.87.3 metric 600 
+(base) [om@DHANDEPATIL ~]$ ip route get 10.87.234.198
+10.87.234.198 via 172.31.64.1 dev wlp1s0 src 172.31.87.3 uid 1000 
+    cache 
+(base) [om@DHANDEPATIL ~]$ nmcli connection show --active
+NAME       UUID                                  TYPE      DEVICE 
+IITJ_WLAN  80810cc0-f0bf-40ab-8bc4-8094ef01694c  wifi      
+wlp1s0 
+lo         71f980dc-5adf-4400-b1f5-9e3bccf8db54  loopback
+  lo     
+(base) [om@DHANDEPATIL ~]$ ip link show
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: wlp1s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DORMANT group default qlen 1000
+    link/ether 24:fe:9a:00:7e:1d brd ff:ff:ff:ff:ff:ff
+    altname wlx24fe9a007e1d
+(base) [om@DHANDEPATIL ~]$ ip -4 -br addr
+lo               UNKNOWN        127.0.0.1/8 
+wlp1s0           UP             10.87.234.87/24 metric 600 10.87.234.88/24 
+(base) [om@DHANDEPATIL ~]$ ip route
+default via 10.87.234.16 dev wlp1s0 proto dhcp src 10.87.234.87 metric 600 
+default via 10.87.234.16 dev wlp1s0 proto dhcp src 10.87.234.88 metric 600 
+10.87.234.0/24 dev wlp1s0 proto kernel scope link src 10.87.234.87 metric 600 
+10.87.234.0/24 dev wlp1s0 proto kernel scope link src 10.87.234.88 metric 600 
+10.87.234.16 dev wlp1s0 proto dhcp scope link src 10.87.234.87 metric 600 
+(base) [om@DHANDEPATIL ~]$ ping -c 4 10.87.234.198
+PING 10.87.234.198 (10.87.234.198) 56(84) bytes of data.
+64 bytes from 10.87.234.198: icmp_seq=1 ttl=64 time=20.9 ms
+64 bytes from 10.87.234.198: icmp_seq=2 ttl=64 time=113 ms
+64 bytes from 10.87.234.198: icmp_seq=3 ttl=64 time=153 ms
+64 bytes from 10.87.234.198: icmp_seq=4 ttl=64 time=24.7 ms
+
+--- 10.87.234.198 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3005ms
+rtt min/avg/max/mdev = 20.893/77.891/152.753/56.854 ms
+(base) [om@DHANDEPATIL ~]$ sudo systemctl is-active sshd
+[sudo] password for om: 
+active
+(base) [om@DHANDEPATIL ~]$ sudo systemctl status sshd
+● sshd.service - OpenSSH Daemon
+     Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; preset: disabled)
+     Active: active (running) since Fri 2026-11-13 15:40:28 IST; 1 day 2h ago
+ Invocation: 2e15ecb7a0614b2ba061066b8e2fd52c
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+   Main PID: 670 (sshd)
+      Tasks: 1 (limit: 6847)
+     Memory: 3.4M (peak: 7.9M)
+        CPU: 81ms
+     CGroup: /system.slice/sshd.service
+             └─670 "sshd: /usr/bin/sshd -D [listener] 0 of 10-100 startups"
+
+Nov 14 17:58:48 DHANDEPATIL sshd-session[26428]: pam_faillock(sshd:auth): User unknown
+Nov 14 17:58:48 DHANDEPATIL sshd-session[26428]: pam_unix(sshd:auth): check pass; user unknown
+Nov 14 17:58:48 DHANDEPATIL sshd-session[26428]: pam_faillock(sshd:auth): User unknown
+Nov 14 17:58:49 DHANDEPATIL sshd-session[26428]: Failed password for invalid user naveen from 10.132.11.245 port 33038 ssh2
+Nov 14 17:58:59 DHANDEPATIL sshd-session[26428]: pam_faillock(sshd:auth): User unknown
+Nov 14 17:58:59 DHANDEPATIL sshd-session[26428]: pam_unix(sshd:auth): check pass; user unknown
+Nov 14 17:58:59 DHANDEPATIL sshd-session[26428]: pam_faillock(sshd:auth): User unknown
+Nov 14 17:59:01 DHANDEPATIL sshd-session[26428]: Failed password for invalid user naveen from 10.132.11.245 port 33038 ssh2
+Nov 14 17:59:03 DHANDEPATIL sshd-session[26428]: Connection closed by invalid user naveen 10.132.11.245 port 33038 [preauth]
+Nov 14 17:59:03 DHANDEPATIL sshd-session[26428]: PAM 2 more authentication failures; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.132.11.245
+(base) [om@DHANDEPATIL ~]$ sudo ss -ltnp | grep ':22'
+LISTEN 0      128          0.0.0.0:22        0.0.0.0:*    users:(("sshd",pid=670,fd=6))
+LISTEN 0      128             [::]:22           [::]:*    users:(("sshd",pid=670,fd=7))
+(base) [om@DHANDEPATIL ~]$ sudo sshd -t
+(base) [om@DHANDEPATIL ~]$ sudo nft list ruleset
+# Warning: table ip filter is managed by iptables-nft, do not touch!
+table ip filter {
+	chain ufw-before-logging-input {
+	}
+
+	chain ufw-before-logging-output {
+	}
+
+	chain ufw-before-logging-forward {
+	}
+
+	chain ufw-before-input {
+		iifname "lo" counter packets 1229 bytes 184049 accept
+		xt match "conntrack" counter packets 181192 bytes 597125339 accept
+		xt match "conntrack" counter packets 0 bytes 0 jump ufw-logging-deny
+		xt match "conntrack" counter packets 0 bytes 0 drop
+		ip protocol icmp xt match "icmp" counter packets 0 bytes 0 accept
+		ip protocol icmp xt match "icmp" counter packets 0 bytes 0 accept
+		ip protocol icmp xt match "icmp" counter packets 0 bytes 0 accept
+		ip protocol icmp xt match "icmp" counter packets 1 bytes 84 accept
+		udp sport 67 udp dport 68 counter packets 17 bytes 5610 accept
+		counter packets 9669 bytes 1173205 jump ufw-not-local
+		ip daddr 224.0.0.251 udp dport 5353 counter packets 884 bytes 104970 accept
+		ip daddr 239.255.255.250 udp dport 1900 counter packets 225 bytes 35562 accept
+		counter packets 8560 bytes 1032673 jump ufw-user-input
+	}
+
+	chain ufw-before-output {
+		oifname "lo" counter packets 1229 bytes 184049 accept
+		xt match "conntrack" counter packets 93316 bytes 30321445 accept
+		counter packets 5778 bytes 2670167 jump ufw-user-output
+	}
+
+	chain ufw-before-forward {
+		xt match "conntrack" counter packets 0 bytes 0 accept
+		ip protocol icmp xt match "icmp" counter packets 0 bytes 0 accept
+		ip protocol icmp xt match "icmp" counter packets 0 bytes 0 accept
+		ip protocol icmp xt match "icmp" counter packets 0 bytes 0 accept
+		ip protocol icmp xt match "icmp" counter packets 0 bytes 0 accept
+		counter packets 0 bytes 0 jump ufw-user-forward
+	}
+
+	chain ufw-after-input {
+		udp dport 137 counter packets 2091 bytes 174960 jump ufw-skip-to-policy-input
+		udp dport 138 counter packets 602 bytes 127745 jump ufw-skip-to-policy-input
+		tcp dport 139 counter packets 0 bytes 0 jump ufw-skip-to-policy-input
+		tcp dport 445 counter packets 0 bytes 0 jump ufw-skip-to-policy-input
+		udp dport 67 counter packets 43 bytes 14502 jump ufw-skip-to-policy-input
+		udp dport 68 counter packets 0 bytes 0 jump ufw-skip-to-policy-input
+		xt match "addrtype" counter packets 4966 bytes 605358 jump ufw-skip-to-policy-input
+	}
+
+	chain ufw-after-output {
+	}
+
+	chain ufw-after-forward {
+	}
+
+	chain ufw-after-logging-input {
+		limit rate 3/minute burst 10 packets counter packets 537 bytes 42944 xt target "LOG"
+	}
+
+	chain ufw-after-logging-output {
+	}
+
+	chain ufw-after-logging-forward {
+		limit rate 3/minute burst 10 packets counter packets 0 bytes 0 xt target "LOG"
+	}
+
+	chain ufw-reject-input {
+	}
+
+	chain ufw-reject-output {
+	}
+
+	chain ufw-reject-forward {
+	}
+
+	chain ufw-track-input {
+	}
+
+	chain ufw-track-output {
+		ip protocol tcp xt match "conntrack" counter packets 1026 bytes 61560 accept
+		ip protocol udp xt match "conntrack" counter packets 4657 bytes 2603307 accept
+	}
+
+	chain ufw-track-forward {
+	}
+
+	chain INPUT {
+		type filter hook input priority filter; policy drop;
+		counter packets 192108 bytes 598488287 jump ufw-before-logging-input
+		counter packets 192108 bytes 598488287 jump ufw-before-input
+		counter packets 8560 bytes 1032673 jump ufw-after-input
+		counter packets 858 bytes 110108 jump ufw-after-logging-input
+		counter packets 858 bytes 110108 jump ufw-reject-input
+		counter packets 858 bytes 110108 jump ufw-track-input
+	}
+
+	chain OUTPUT {
+		type filter hook output priority filter; policy accept;
+		counter packets 100323 bytes 33175661 jump ufw-before-logging-output
+		counter packets 100323 bytes 33175661 jump ufw-before-output
+		counter packets 5778 bytes 2670167 jump ufw-after-output
+		counter packets 5778 bytes 2670167 jump ufw-after-logging-output
+		counter packets 5778 bytes 2670167 jump ufw-reject-output
+		counter packets 5778 bytes 2670167 jump ufw-track-output
+	}
+
+	chain FORWARD {
+		type filter hook forward priority filter; policy drop;
+		counter packets 0 bytes 0 jump ufw-before-logging-forward
+		counter packets 0 bytes 0 jump ufw-before-forward
+		counter packets 0 bytes 0 jump ufw-after-forward
+		counter packets 0 bytes 0 jump ufw-after-logging-forward
+		counter packets 0 bytes 0 jump ufw-reject-forward
+		counter packets 0 bytes 0 jump ufw-track-forward
+	}
+
+	chain ufw-logging-deny {
+		xt match "conntrack" limit rate 3/minute burst 10 packets counter packets 0 bytes 0 return
+		limit rate 3/minute burst 10 packets counter packets 0 bytes 0 xt target "LOG"
+	}
+
+	chain ufw-logging-allow {
+		limit rate 3/minute burst 10 packets counter packets 0 bytes 0 xt target "LOG"
+	}
+
+	chain ufw-skip-to-policy-input {
+		counter packets 7702 bytes 922565 drop
+	}
+
+	chain ufw-skip-to-policy-output {
+		counter packets 0 bytes 0 accept
+	}
+
+	chain ufw-skip-to-policy-forward {
+		counter packets 0 bytes 0 drop
+	}
+
+	chain ufw-not-local {
+		xt match "addrtype" counter packets 26 bytes 1884 return
+		xt match "addrtype" counter packets 1941 bytes 248756 return
+		xt match "addrtype" counter packets 7702 bytes 922565 return
+		limit rate 3/minute burst 10 packets counter packets 0 bytes 0 jump ufw-logging-deny
+		counter packets 0 bytes 0 drop
+	}
+
+	chain ufw-user-input {
+		ip saddr 172.31.118.145 tcp dport 22 counter packets 0 bytes 0 accept
+	}
+
+	chain ufw-user-output {
+	}
+
+	chain ufw-user-forward {
+	}
+
+	chain ufw-user-logging-input {
+	}
+
+	chain ufw-user-logging-output {
+	}
+
+	chain ufw-user-logging-forward {
+	}
+
+	chain ufw-user-limit {
+	}
+
+	chain ufw-user-limit-accept {
+	}
+}
+# Warning: table ip6 filter is managed by iptables-nft, do not touch!
+table ip6 filter {
+	chain ufw6-before-logging-input {
+	}
+
+	chain ufw6-before-logging-output {
+	}
+
+	chain ufw6-before-logging-forward {
+	}
+
+	chain ufw6-before-input {
+		iifname "lo" counter packets 0 bytes 0 accept
+		xt match "rt" counter packets 0 bytes 0 drop
+		xt match "conntrack" counter packets 881 bytes 265080 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		xt match "conntrack" counter packets 0 bytes 0 jump ufw6-logging-deny
+		xt match "conntrack" counter packets 0 bytes 0 drop
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 3 bytes 384 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 11 bytes 792 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 3 bytes 216 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 ip6 daddr fe80::/10 udp sport 547 udp dport 546 counter packets 0 bytes 0 accept
+		ip6 daddr ff02::fb udp dport 5353 counter packets 865 bytes 119861 accept
+		ip6 daddr ff02::f udp dport 1900 counter packets 0 bytes 0 accept
+		counter packets 94 bytes 11679 jump ufw6-user-input
+	}
+
+	chain ufw6-before-output {
+		oifname "lo" counter packets 0 bytes 0 accept
+		xt match "rt" counter packets 0 bytes 0 drop
+		xt match "conntrack" counter packets 799 bytes 260345 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 106 bytes 5416 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 11 bytes 720 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 11 bytes 792 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 meta l4proto ipv6-icmp xt match "icmp6" counter packets 113 bytes 11828 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		counter packets 321 bytes 125318 jump ufw6-user-output
+	}
+
+	chain ufw6-before-forward {
+		xt match "rt" counter packets 0 bytes 0 drop
+		xt match "conntrack" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		counter packets 0 bytes 0 jump ufw6-user-forward
+	}
+
+	chain ufw6-after-input {
+		udp dport 137 counter packets 0 bytes 0 jump ufw6-skip-to-policy-input
+		udp dport 138 counter packets 0 bytes 0 jump ufw6-skip-to-policy-input
+		tcp dport 139 counter packets 0 bytes 0 jump ufw6-skip-to-policy-input
+		tcp dport 445 counter packets 0 bytes 0 jump ufw6-skip-to-policy-input
+		udp dport 546 counter packets 0 bytes 0 jump ufw6-skip-to-policy-input
+		udp dport 547 counter packets 0 bytes 0 jump ufw6-skip-to-policy-input
+	}
+
+	chain ufw6-after-output {
+	}
+
+	chain ufw6-after-forward {
+	}
+
+	chain ufw6-after-logging-input {
+	}
+
+	chain ufw6-after-logging-output {
+	}
+
+	chain ufw6-after-logging-forward {
+	}
+
+	chain ufw6-reject-input {
+	}
+
+	chain ufw6-reject-output {
+	}
+
+	chain ufw6-reject-forward {
+	}
+
+	chain ufw6-track-input {
+	}
+
+	chain ufw6-track-output {
+		meta l4proto tcp xt match "conntrack" counter packets 45 bytes 3600 accept
+		meta l4proto udp xt match "conntrack" counter packets 250 bytes 118942 accept
+	}
+
+	chain ufw6-track-forward {
+	}
+
+	chain INPUT {
+		type filter hook input priority filter; policy drop;
+		counter packets 1857 bytes 398012 jump ufw6-before-logging-input
+		counter packets 1857 bytes 398012 jump ufw6-before-input
+		counter packets 94 bytes 11679 jump ufw6-after-input
+		counter packets 94 bytes 11679 jump ufw6-after-logging-input
+		counter packets 94 bytes 11679 jump ufw6-reject-input
+		counter packets 94 bytes 11679 jump ufw6-track-input
+	}
+
+	chain OUTPUT {
+		type filter hook output priority filter; policy accept;
+		counter packets 1361 bytes 404419 jump ufw6-before-logging-output
+		counter packets 1361 bytes 404419 jump ufw6-before-output
+		counter packets 321 bytes 125318 jump ufw6-after-output
+		counter packets 321 bytes 125318 jump ufw6-after-logging-output
+		counter packets 321 bytes 125318 jump ufw6-reject-output
+		counter packets 321 bytes 125318 jump ufw6-track-output
+	}
+
+	chain FORWARD {
+		type filter hook forward priority filter; policy drop;
+		counter packets 0 bytes 0 jump ufw6-before-logging-forward
+		counter packets 0 bytes 0 jump ufw6-before-forward
+		counter packets 0 bytes 0 jump ufw6-after-forward
+		counter packets 0 bytes 0 jump ufw6-after-logging-forward
+		counter packets 0 bytes 0 jump ufw6-reject-forward
+		counter packets 0 bytes 0 jump ufw6-track-forward
+	}
+
+	chain ufw6-logging-deny {
+	}
+
+	chain ufw6-logging-allow {
+	}
+
+	chain ufw6-skip-to-policy-input {
+		counter packets 0 bytes 0 drop
+	}
+
+	chain ufw6-skip-to-policy-output {
+		counter packets 0 bytes 0 accept
+	}
+
+	chain ufw6-skip-to-policy-forward {
+		counter packets 0 bytes 0 drop
+	}
+
+	chain ufw6-user-input {
+	}
+
+	chain ufw6-user-output {
+	}
+
+	chain ufw6-user-forward {
+	}
+
+	chain ufw6-user-logging-input {
+	}
+
+	chain ufw6-user-logging-output {
+	}
+
+	chain ufw6-user-logging-forward {
+	}
+
+	chain ufw6-user-limit {
+	}
+
+	chain ufw6-user-limit-accept {
+	}
+}
+(base) [om@DHANDEPATIL ~]$ sudo iptables -S
+-P INPUT DROP
+-P FORWARD DROP
+-P OUTPUT ACCEPT
+-N ufw-after-forward
+-N ufw-after-input
+-N ufw-after-logging-forward
+-N ufw-after-logging-input
+-N ufw-after-logging-output
+-N ufw-after-output
+-N ufw-before-forward
+-N ufw-before-input
+-N ufw-before-logging-forward
+-N ufw-before-logging-input
+-N ufw-before-logging-output
+-N ufw-before-output
+-N ufw-logging-allow
+-N ufw-logging-deny
+-N ufw-not-local
+-N ufw-reject-forward
+-N ufw-reject-input
+-N ufw-reject-output
+-N ufw-skip-to-policy-forward
+-N ufw-skip-to-policy-input
+-N ufw-skip-to-policy-output
+-N ufw-track-forward
+-N ufw-track-input
+-N ufw-track-output
+-N ufw-user-forward
+-N ufw-user-input
+-N ufw-user-limit
+-N ufw-user-limit-accept
+-N ufw-user-logging-forward
+-N ufw-user-logging-input
+-N ufw-user-logging-output
+-N ufw-user-output
+-A INPUT -j ufw-before-logging-input
+-A INPUT -j ufw-before-input
+-A INPUT -j ufw-after-input
+-A INPUT -j ufw-after-logging-input
+-A INPUT -j ufw-reject-input
+-A INPUT -j ufw-track-input
+-A FORWARD -j ufw-before-logging-forward
+-A FORWARD -j ufw-before-forward
+-A FORWARD -j ufw-after-forward
+-A FORWARD -j ufw-after-logging-forward
+-A FORWARD -j ufw-reject-forward
+-A FORWARD -j ufw-track-forward
+-A OUTPUT -j ufw-before-logging-output
+-A OUTPUT -j ufw-before-output
+-A OUTPUT -j ufw-after-output
+-A OUTPUT -j ufw-after-logging-output
+-A OUTPUT -j ufw-reject-output
+-A OUTPUT -j ufw-track-output
+-A ufw-after-input -p udp -m udp --dport 137 -j ufw-skip-to-policy-input
+-A ufw-after-input -p udp -m udp --dport 138 -j ufw-skip-to-policy-input
+-A ufw-after-input -p tcp -m tcp --dport 139 -j ufw-skip-to-policy-input
+-A ufw-after-input -p tcp -m tcp --dport 445 -j ufw-skip-to-policy-input
+-A ufw-after-input -p udp -m udp --dport 67 -j ufw-skip-to-policy-input
+-A ufw-after-input -p udp -m udp --dport 68 -j ufw-skip-to-policy-input
+-A ufw-after-input -m addrtype --dst-type BROADCAST -j ufw-skip-to-policy-input
+-A ufw-after-logging-forward -m limit --limit 3/min --limit-burst 10 -j LOG --log-prefix "[UFW BLOCK] "
+-A ufw-after-logging-input -m limit --limit 3/min --limit-burst 10 -j LOG --log-prefix "[UFW BLOCK] "
+-A ufw-before-forward -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A ufw-before-forward -p icmp -m icmp --icmp-type 3 -j ACCEPT
+-A ufw-before-forward -p icmp -m icmp --icmp-type 11 -j ACCEPT
+-A ufw-before-forward -p icmp -m icmp --icmp-type 12 -j ACCEPT
+-A ufw-before-forward -p icmp -m icmp --icmp-type 8 -j ACCEPT
+-A ufw-before-forward -j ufw-user-forward
+-A ufw-before-input -i lo -j ACCEPT
+-A ufw-before-input -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A ufw-before-input -m conntrack --ctstate INVALID -j ufw-logging-deny
+-A ufw-before-input -m conntrack --ctstate INVALID -j DROP
+-A ufw-before-input -p icmp -m icmp --icmp-type 3 -j ACCEPT
+-A ufw-before-input -p icmp -m icmp --icmp-type 11 -j ACCEPT
+-A ufw-before-input -p icmp -m icmp --icmp-type 12 -j ACCEPT
+-A ufw-before-input -p icmp -m icmp --icmp-type 8 -j ACCEPT
+-A ufw-before-input -p udp -m udp --sport 67 --dport 68 -j ACCEPT
+-A ufw-before-input -j ufw-not-local
+-A ufw-before-input -d 224.0.0.251/32 -p udp -m udp --dport 5353 -j ACCEPT
+-A ufw-before-input -d 239.255.255.250/32 -p udp -m udp --dport 1900 -j ACCEPT
+-A ufw-before-input -j ufw-user-input
+-A ufw-before-output -o lo -j ACCEPT
+-A ufw-before-output -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A ufw-before-output -j ufw-user-output
+-A ufw-logging-allow -m limit --limit 3/min --limit-burst 10 -j LOG --log-prefix "[UFW ALLOW] "
+-A ufw-logging-deny -m conntrack --ctstate INVALID -m limit --limit 3/min --limit-burst 10 -j RETURN
+-A ufw-logging-deny -m limit --limit 3/min --limit-burst 10 -j LOG --log-prefix "[UFW BLOCK] "
+-A ufw-not-local -m addrtype --dst-type LOCAL -j RETURN
+-A ufw-not-local -m addrtype --dst-type MULTICAST -j RETURN
+-A ufw-not-local -m addrtype --dst-type BROADCAST -j RETURN
+-A ufw-not-local -m limit --limit 3/min --limit-burst 10 -j ufw-logging-deny
+-A ufw-not-local -j DROP
+-A ufw-skip-to-policy-forward -j DROP
+-A ufw-skip-to-policy-input -j DROP
+-A ufw-skip-to-policy-output -j ACCEPT
+-A ufw-track-output -p tcp -m conntrack --ctstate NEW -j ACCEPT
+-A ufw-track-output -p udp -m conntrack --ctstate NEW -j ACCEPT
+-A ufw-user-input -s 172.31.118.145/32 -p tcp -m tcp --dport 22 -j ACCEPT
+(base) [om@DHANDEPATIL ~]$ ip -4  -br addr
+lo               UNKNOWN        127.0.0.1/8 
+wlp1s0           UP             10.87.234.87/24 metric 600 10.87.234.88/24 
+(base) [om@DHANDEPATIL ~]$ sudo ufw allow from 10.87.234.198 to any port 22 proto tcp
+[sudo] password for om: 
+Rule added
+(base) [om@DHANDEPATIL ~]$ sudo ufw status numbered
+Status: active
+
+     To                         Action      From
+     --                         ------      ----
+[ 1] 22/tcp                     ALLOW IN    172.31.118.145            
+[ 2] 22/tcp                     ALLOW IN    10.87.234.198             
+
+(base) [om@DHANDEPATIL ~]$ hostname
+DHANDEPATIL
+(base) [om@DHANDEPATIL ~]$ hostname
+DHANDEPATIL
+(base) [om@DHANDEPATIL ~]$ whoami
+om
+(base) [om@DHANDEPATIL ~]$ ip -4 -br addr
+lo               UNKNOWN        127.0.0.1/8 
+wlp1s0           UP             10.87.234.88/24 10.87.234.87/24 metric 600 
+(base) [om@DHANDEPATIL ~]$ ip route 
+default via 10.87.234.16 dev wlp1s0 proto dhcp src 10.87.234.88 metric 600 
+default via 10.87.234.16 dev wlp1s0 proto dhcp src 10.87.234.87 metric 600 
+10.87.234.0/24 dev wlp1s0 proto kernel scope link src 10.87.234.88 metric 600 
+10.87.234.16 dev wlp1s0 proto dhcp scope link src 10.87.234.87 metric 600 
+(base) [om@DHANDEPATIL ~]$ ipo route get 1.1.1.1
+bash: ipo: command not found
+(base) [om@DHANDEPATIL ~]$ ip route get 1.1.1.1
+1.1.1.1 via 10.87.234.16 dev wlp1s0 src 10.87.234.88 uid 1000 
+    cache 
+(base) [om@DHANDEPATIL ~]$ sudo systemctl status sshd
+[sudo] password for om: 
+● sshd.service - OpenSSH Daemon
+     Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; preset: disabled)
+     Active: active (running) since Fri 2026-11-13 15:40:28 IST; 1 day 3h ago
+ Invocation: 2e15ecb7a0614b2ba061066b8e2fd52c
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+   Main PID: 670 (sshd)
+      Tasks: 1 (limit: 6847)
+     Memory: 3.5M (peak: 23.9M)
+        CPU: 215ms
+     CGroup: /system.slice/sshd.service
+             └─670 "sshd: /usr/bin/sshd -D [listener] 0 of 10-100 startups"
+
+Nov 14 17:58:49 DHANDEPATIL sshd-session[26428]: Failed password for invalid user naveen from 10.132.11.245 port 33038 ssh2
+Nov 14 17:58:59 DHANDEPATIL sshd-session[26428]: pam_faillock(sshd:auth): User unknown
+Nov 14 17:58:59 DHANDEPATIL sshd-session[26428]: pam_unix(sshd:auth): check pass; user unknown
+Nov 14 17:58:59 DHANDEPATIL sshd-session[26428]: pam_faillock(sshd:auth): User unknown
+Nov 14 17:59:01 DHANDEPATIL sshd-session[26428]: Failed password for invalid user naveen from 10.132.11.245 port 33038 ssh2
+Nov 14 17:59:03 DHANDEPATIL sshd-session[26428]: Connection closed by invalid user naveen 10.132.11.245 port 33038 [preauth]
+Nov 14 17:59:03 DHANDEPATIL sshd-session[26428]: PAM 2 more authentication failures; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.132.11.245
+Nov 14 18:41:57 DHANDEPATIL sshd-session[28746]: Connection closed by 10.87.234.198 port 57326 [preauth]
+Nov 14 18:42:13 DHANDEPATIL sshd-session[28748]: Accepted password for om from 10.87.234.198 port 37144 ssh2
+Nov 14 18:42:13 DHANDEPATIL sshd-session[28748]: pam_unix(sshd:session): session opened for user om(uid=1000) by om(uid=0)
+(base) [om@DHANDEPATIL ~]$ sudo ss -lntp | grep ':22'
+LISTEN 0      128          0.0.0.0:22        0.0.0.0:*    users:(("sshd",pid=670,fd=6))
+LISTEN 0      128             [::]:22           [::]:*    users:(("sshd",pid=670,fd=7))
+(base) [om@DHANDEPATIL ~]$ java -version
+java version "1.8.0_202"
+Java(TM) SE Runtime Environment (build 1.8.0_202-b08)
+Java HotSpot(TM) 64-Bit Server VM (build 25.202-b08, mixed mode)
+(base) [om@DHANDEPATIL ~]$ readlink -f"$(which java)"
+readlink: invalid option -- '/'
+Try 'readlink --help' for more information.
+(base) [om@DHANDEPATIL ~]$ ip -4 -show addr
+Option "-show" is unknown, try "ip -help".
+(base) [om@DHANDEPATIL ~]$ ip -4 -br addr
+lo               UNKNOWN        127.0.0.1/8 
+wlp1s0           UP             10.87.234.88/24 10.87.234.87/24 metric 600 
+(base) [om@DHANDEPATIL ~]$ cd ~/hadoop-2.9.1
+
+echo "===== HOSTNAME ====="
+hostname
+
+echo "===== JAVA VERSION ====="
+java -version
+
+echo "===== HADOOP VERSION ====="
+bin/hadoop version
+
+echo "===== HADOOP CONFIGURATION ====="
+for f in core-site.xml hdfs-site.xml mapred-site.xml yarn-site.xml hadoop-env.sh workers slaves; do
+    if [ -f "etc/hadoop/$f" ]; then
+        echo "===== $f ====="
+        cat "etc/hadoop/$f"
+    fi
+done
+
+echo "===== HDFS DATA DIRECTORIES ====="
+find ~/hadoop-2.9.1 -maxdepth 5 -type d \( -name current -o -name name -o -name data \) 2>/dev/null
+
+echo "===== HDFS CONFIGURED ADDRESS ====="
+bin/hdfs getconf -confKey fs.defaultFS
+===== HOSTNAME =====
+DHANDEPATIL
+===== JAVA VERSION =====
+java version "1.8.0_202"
+Java(TM) SE Runtime Environment (build 1.8.0_202-b08)
+Java HotSpot(TM) 64-Bit Server VM (build 25.202-b08, mixed mode)
+===== HADOOP VERSION =====
+Hadoop 2.9.1
+Subversion https://github.com/apache/hadoop.git -r e30710aea4e6e55e69372929106cf119af06fd0e
+Compiled by root on 2018-04-16T09:33Z
+Compiled with protoc 2.5.0
+From source with checksum 7d6d2b655115c6cc336d662cc2b919bd
+This command was run using /home/om/hadoop-2.9.1/share/hadoop/common/hadoop-common-2.9.1.jar
+===== HADOOP CONFIGURATION =====
+===== core-site.xml =====
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+<property>
+<name>fs.default.name</name>
+<value>hdfs://localhost:50000</value>
+</property>
+</configuration>
+===== hdfs-site.xml =====
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+
+<!-- Put site-specific property overrides in this file. -->
+
+
+<configuration>
+<property>
+<name>dfs.namenode.name.dir</name>
+<value>/home/om/hadoop2-dir/namenode-dir</value>
+</property>
+<property>
+<name>dfs.datanode.data.dir</name>
+<value>/home/om/hadoop2-dir/datanode-dir</value>
+</property>
+</configuration>
+
+===== yarn-site.xml =====
+<?xml version="1.0"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+<configuration>
+
+    <property>
+        <name>yarn.nodemanager.aux-services</name>
+        <value>mapreduce_shuffle</value>
+    </property>
+
+    <property>
+        <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+        <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+    </property>
+
+    <property>
+        <name>yarn.resourcemanager.hostname</name>
+        <value>localhost</value>
+    </property>
+
+    <property>
+        <name>yarn.resourcemanager.address</name>
+        <value>localhost:8032</value>
+    </property>
+
+    <property>
+        <name>yarn.resourcemanager.webapp.address</name>
+        <value>localhost:8088</value>
+    </property>
+
+</configuration>
+===== hadoop-env.sh =====
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Set Hadoop-specific environment variables here.
+
+# The only required environment variable is JAVA_HOME.  All others are
+# optional.  When running a distributed configuration it is best to
+# set JAVA_HOME in this file, so that it is correctly defined on
+# remote nodes.
+
+# The java implementation to use.
+export JAVA_HOME=/home/om/jdk-8u202-linux-x64/jdk1.8.0_202
+
+# The jsvc implementation to use. Jsvc is required to run secure datanodes
+# that bind to privileged ports to provide authentication of data transfer
+# protocol.  Jsvc is not required if SASL is configured for authentication of
+# data transfer protocol using non-privileged ports.
+#export JSVC_HOME=${JSVC_HOME}
+
+export HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-"/etc/hadoop"}
+
+# Extra Java CLASSPATH elements.  Automatically insert capacity-scheduler.
+for f in $HADOOP_HOME/contrib/capacity-scheduler/*.jar; do
+  if [ "$HADOOP_CLASSPATH" ]; then
+    export HADOOP_CLASSPATH=$HADOOP_CLASSPATH:$f
+  else
+    export HADOOP_CLASSPATH=$f
+  fi
+done
+
+# The maximum amount of heap to use, in MB. Default is 1000.
+#export HADOOP_HEAPSIZE=
+#export HADOOP_NAMENODE_INIT_HEAPSIZE=""
+
+# Enable extra debugging of Hadoop's JAAS binding, used to set up
+# Kerberos security.
+# export HADOOP_JAAS_DEBUG=true
+
+# Extra Java runtime options.  Empty by default.
+# For Kerberos debugging, an extended option set logs more invormation
+# export HADOOP_OPTS="-Djava.net.preferIPv4Stack=true -Dsun.security.krb5.debug=true -Dsun.security.spnego.debug"
+export HADOOP_OPTS="$HADOOP_OPTS -Djava.net.preferIPv4Stack=true"
+
+# Command specific options appended to HADOOP_OPTS when specified
+export HADOOP_NAMENODE_OPTS="-Dhadoop.security.logger=${HADOOP_SECURITY_LOGGER:-INFO,RFAS} -Dhdfs.audit.logger=${HDFS_AUDIT_LOGGER:-INFO,NullAppender} $HADOOP_NAMENODE_OPTS"
+export HADOOP_DATANODE_OPTS="-Dhadoop.security.logger=ERROR,RFAS $HADOOP_DATANODE_OPTS"
+
+export HADOOP_SECONDARYNAMENODE_OPTS="-Dhadoop.security.logger=${HADOOP_SECURITY_LOGGER:-INFO,RFAS} -Dhdfs.audit.logger=${HDFS_AUDIT_LOGGER:-INFO,NullAppender} $HADOOP_SECONDARYNAMENODE_OPTS"
+
+export HADOOP_NFS3_OPTS="$HADOOP_NFS3_OPTS"
+export HADOOP_PORTMAP_OPTS="-Xmx512m $HADOOP_PORTMAP_OPTS"
+
+# The following applies to multiple commands (fs, dfs, fsck, distcp etc)
+export HADOOP_CLIENT_OPTS="$HADOOP_CLIENT_OPTS"
+# set heap args when HADOOP_HEAPSIZE is empty
+if [ "$HADOOP_HEAPSIZE" = "" ]; then
+  export HADOOP_CLIENT_OPTS="-Xmx512m $HADOOP_CLIENT_OPTS"
+fi
+#HADOOP_JAVA_PLATFORM_OPTS="-XX:-UsePerfData $HADOOP_JAVA_PLATFORM_OPTS"
+
+# On secure datanodes, user to run the datanode as after dropping privileges.
+# This **MUST** be uncommented to enable secure HDFS if using privileged ports
+# to provide authentication of data transfer protocol.  This **MUST NOT** be
+# defined if SASL is configured for authentication of data transfer protocol
+# using non-privileged ports.
+export HADOOP_SECURE_DN_USER=${HADOOP_SECURE_DN_USER}
+
+# Where log files are stored.  $HADOOP_HOME/logs by default.
+#export HADOOP_LOG_DIR=${HADOOP_LOG_DIR}/$USER
+
+# Where log files are stored in the secure data environment.
+#export HADOOP_SECURE_DN_LOG_DIR=${HADOOP_LOG_DIR}/${HADOOP_HDFS_USER}
+
+###
+# HDFS Mover specific parameters
+###
+# Specify the JVM options to be used when starting the HDFS Mover.
+# These options will be appended to the options specified as HADOOP_OPTS
+# and therefore may override any similar flags set in HADOOP_OPTS
+#
+# export HADOOP_MOVER_OPTS=""
+
+###
+# Router-based HDFS Federation specific parameters
+# Specify the JVM options to be used when starting the RBF Routers.
+# These options will be appended to the options specified as HADOOP_OPTS
+# and therefore may override any similar flags set in HADOOP_OPTS
+#
+# export HADOOP_DFSROUTER_OPTS=""
+###
+
+###
+# Advanced Users Only!
+###
+
+# The directory where pid files are stored. /tmp by default.
+# NOTE: this should be set to a directory that can only be written to by 
+#       the user that will run the hadoop daemons.  Otherwise there is the
+#       potential for a symlink attack.
+export HADOOP_PID_DIR=${HADOOP_PID_DIR}
+export HADOOP_SECURE_DN_PID_DIR=${HADOOP_PID_DIR}
+
+# A string representing this instance of hadoop. $USER by default.
+export HADOOP_IDENT_STRING=$USER
+===== slaves =====
+localhost
+===== HDFS DATA DIRECTORIES =====
+/home/om/hadoop-2.9.1/share/hadoop/tools/resourceestimator/data
+===== HDFS CONFIGURED ADDRESS =====
+hdfs://localhost:50000
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ hostname
+ip -4 -br addr
+
+ls -lah /home/om/hadoop2-dir/namenode-dir
+ls -lah /home/om/hadoop2-dir/datanode-dir
+
+find /home/om/hadoop2-dir/namenode-dir \
+  -name VERSION -o -name 'fsimage_*'
+
+jps
+DHANDEPATIL
+lo               UNKNOWN        127.0.0.1/8 
+wlp1s0           UP             10.87.234.88/24 10.87.234.87/24 metric 600 
+total 12K
+drwxr-xr-x 3 om om 4.0K Nov  8 22:42 .
+drwxr-xr-x 5 om om 4.0K Nov  6 17:24 ..
+drwxr-xr-x 2 om om 4.0K Nov  8 20:37 current
+total 12K
+drwx------ 3 om om 4.0K Nov  8 22:42 .
+drwxr-xr-x 5 om om 4.0K Nov  6 17:24 ..
+drwxr-xr-x 3 om om 4.0K Nov  6 17:24 current
+/home/om/hadoop2-dir/namenode-dir/current/fsimage_0000000000000000636
+/home/om/hadoop2-dir/namenode-dir/current/fsimage_0000000000000000638.md5
+/home/om/hadoop2-dir/namenode-dir/current/fsimage_0000000000000000636.md5
+/home/om/hadoop2-dir/namenode-dir/current/VERSION
+/home/om/hadoop2-dir/namenode-dir/current/fsimage_0000000000000000638
+29635 Jps
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ echo "===== NAMENODE VERSION ====="
+cat /home/om/hadoop2-dir/namenode-dir/current/VERSION
+
+echo "===== DATANODE VERSION ====="
+cat /home/om/hadoop2-dir/datanode-dir/current/VERSION
+===== NAMENODE VERSION =====
+#Fri Nov 06 17:02:34 IST 2026
+namespaceID=1354792329
+clusterID=CID-b74099d5-3701-4e69-aef5-4f7e2cb0266d
+cTime=1793964754774
+storageType=NAME_NODE
+blockpoolID=BP-312697770-172.31.116.162-1793964754774
+layoutVersion=-63
+===== DATANODE VERSION =====
+#Fri Nov 06 17:24:41 IST 2026
+storageID=DS-a4462b10-1a90-42f1-9e42-4ae4bd7dff98
+clusterID=CID-b74099d5-3701-4e69-aef5-4f7e2cb0266d
+cTime=0
+datanodeUuid=6b4cd152-38e4-4456-ac33-0af0975090cb
+storageType=DATA_NODE
+layoutVersion=-57
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ mkdir -p /home/om/hadoop2-dir/datanode-dir-cluster
+
+chmod 700 /home/om/hadoop2-dir/datanode-dir-cluster
+
+ls -ld /home/om/hadoop2-dir/datanode-dir-cluster
+drwx------ 2 om om 4096 Nov 14 19:08 /home/om/hadoop2-dir/datanode-dir-cluster
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ ls -lah /home/om/hadoop2-dir/datanode-dir-cluster
+
+hostname
+total 8.0K
+drwx------ 2 om om 4.0K Nov 14 19:08 .
+drwxr-xr-x 6 om om 4.0K Nov 14 19:08 ..
+DHANDEPATIL
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ cd ~/hadoop-2.9.1
+
+cp -r etc/hadoop etc/hadoop-backup-$(date +%F-%H%M%S)
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ nano etc/hadoop/core-site.xml
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ grep JAVA_HOME etc/hadoop/hadoop-env.sh
+# The only required environment variable is JAVA_HOME.  All others are
+# set JAVA_HOME in this file, so that it is correctly defined on
+export JAVA_HOME=/home/om/jdk-8u202-linux-x64/jdk1.8.0_202
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ echo -e "archlinux\nDHANDEPATIL" > etc/hadoop/slaves
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ cd ~/hadoop-2.9.1
+
+echo "===== CORE SITE ====="
+cat etc/hadoop/core-site.xml
+
+echo "===== HDFS SITE ====="
+cat etc/hadoop/hdfs-site.xml
+
+echo "===== YARN SITE ====="
+cat etc/hadoop/yarn-site.xml
+
+echo "===== WORKERS ====="
+cat etc/hadoop/slaves
+
+echo "===== HADOOP JAVA ====="
+grep JAVA_HOME etc/hadoop/hadoop-env.sh
+===== CORE SITE =====
+<?xml version="1.0"?>
+<configuration>
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://archlinux:9000</value>
+    </property>
+</configuration>
+===== HDFS SITE =====
+<?xml version="1.0"?>
+<configuration>
+    <property>
+        <name>dfs.replication</name>
+        <value>2</value>
+    </property>
+
+    <property>
+        <name>dfs.datanode.data.dir</name>
+        <value>file:///home/om/hadoop2-dir/datanode-dir-cluster</value>
+    </property>
+</configuration>
+
+<!-- Put site-specific property overrides in this file. -->
+
+===== YARN SITE =====
+<?xml version="1.0"?>
+<configuration>
+    <property>
+        <name>yarn.resourcemanager.hostname</name>
+        <value>archlinux</value>
+    </property>
+
+    <property>
+        <name>yarn.nodemanager.aux-services</name>
+        <value>mapreduce_shuffle</value>
+    </property>
+
+    <property>
+        <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+        <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+    </property>
+</configuration>
+===== WORKERS =====
+archlinux
+DHANDEPATIL
+===== HADOOP JAVA =====
+# The only required environment variable is JAVA_HOME.  All others are
+# set JAVA_HOME in this file, so that it is correctly defined on
+export JAVA_HOME=/home/om/jdk-8u202-linux-x64/jdk1.8.0_202
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ sudo cp /etc/hosts /etc/hosts.backup
+sudo nano /etc/hosts
+[sudo] password for om: 
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ getent hosts archlinux
+getent hosts DHANDEPATIL
+172.31.118.145  archlinux
+10.87.234.198   archlinux
+172.31.76.25    DHANDEPATIL
+172.31.111.173  DHANDEPATIL
+10.87.234.88    DHANDEPATIL
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ sudo nano /etc/hosts
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ getent ahostsv4 archlinux
+getent ahostsv4 DHANDEPATIL
+10.87.234.198   STREAM archlinux
+10.87.234.198   DGRAM  
+10.87.234.198   RAW    
+10.87.234.88    STREAM DHANDEPATIL
+10.87.234.88    DGRAM  
+10.87.234.88    RAW    
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ ping -c 3 archlinux
+ping -c 3 DHANDEPATIL
+PING archlinux (10.87.234.198) 56(84) bytes of data.
+64 bytes from archlinux (10.87.234.198): icmp_seq=1 ttl=64 time=16.8 ms
+64 bytes from archlinux (10.87.234.198): icmp_seq=2 ttl=64 time=29.8 ms
+64 bytes from archlinux (10.87.234.198): icmp_seq=3 ttl=64 time=131 ms
+
+--- archlinux ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2004ms
+rtt min/avg/max/mdev = 16.831/59.144/130.844/50.973 ms
+PING DHANDEPATIL (10.87.234.88) 56(84) bytes of data.
+64 bytes from DHANDEPATIL (10.87.234.88): icmp_seq=1 ttl=64 time=0.059 ms
+64 bytes from DHANDEPATIL (10.87.234.88): icmp_seq=2 ttl=64 time=0.063 ms
+64 bytes from DHANDEPATIL (10.87.234.88): icmp_seq=3 ttl=64 time=0.059 ms
+
+--- DHANDEPATIL ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2061ms
+rtt min/avg/max/mdev = 0.059/0.060/0.063/0.002 ms
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ sudo systemctl enable --now sshd
+systemctl status sshd --no-pager
+● sshd.service - OpenSSH Daemon
+     Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; preset: disabled)
+     Active: active (running) since Fri 2026-11-13 15:40:28 IST; 1 day 3h ago
+ Invocation: 2e15ecb7a0614b2ba061066b8e2fd52c
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+   Main PID: 670 (sshd)
+      Tasks: 1 (limit: 6847)
+     Memory: 3.5M (peak: 23.9M)
+        CPU: 316ms
+     CGroup: /system.slice/sshd.service
+             └─670 "sshd: /usr/bin/sshd -D [listener] 0 of 10-100 startups"
+
+Nov 14 17:58:59 DHANDEPATIL sshd-session[26428]: pam_unix(sshd:auth): check pass; user unknown
+Nov 14 17:58:59 DHANDEPATIL sshd-session[26428]: pam_faillock(sshd:auth): User unknown
+Nov 14 17:59:01 DHANDEPATIL sshd-session[26428]: Failed password for invalid user naveen from 10.132.11.245 port 33038 ssh2
+Nov 14 17:59:03 DHANDEPATIL sshd-session[26428]: Connection closed by invalid user naveen 10.132.11.245 port 33038 [preauth]
+Nov 14 17:59:03 DHANDEPATIL sshd-session[26428]: PAM 2 more authentication failures; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.132.11.245
+Nov 14 18:41:57 DHANDEPATIL sshd-session[28746]: Connection closed by 10.87.234.198 port 57326 [preauth]
+Nov 14 18:42:13 DHANDEPATIL sshd-session[28748]: Accepted password for om from 10.87.234.198 port 37144 ssh2
+Nov 14 18:42:13 DHANDEPATIL sshd-session[28748]: pam_unix(sshd:session): session opened for user om(uid=1000) by om(uid=0)
+Nov 14 18:53:09 DHANDEPATIL sshd-session[29173]: Accepted password for om from 10.87.234.198 port 46770 ssh2
+Nov 14 18:53:09 DHANDEPATIL sshd-session[29173]: pam_unix(sshd:session): session opened for user om(uid=1000) by om(uid=0)
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ sudo ufw status verbose
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing), disabled (routed)
+New profiles: skip
+
+To                         Action      From
+--                         ------      ----
+22/tcp                     ALLOW IN    172.31.118.145            
+22/tcp                     ALLOW IN    10.87.234.198             
+
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ sudo ufw allow from 10.87.234.198 to any port 22 proto tcp
+Skipping adding existing rule
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ cd ~/hadoop-2.9.1
+
+echo "JAVA:"
+java -version
+
+echo "HADOOP HOME:"
+echo $HADOOP_HOME
+
+echo "HADOOP CONF:"
+echo $HADOOP_CONF_DIR
+
+echo "HDFS ADDRESS:"
+bin/hdfs getconf -confKey fs.defaultFS
+
+echo "REPLICATION:"
+bin/hdfs getconf -confKey dfs.replication
+
+echo "DATANODE DIRECTORY:"
+bin/hdfs getconf -confKey dfs.datanode.data.dir
+JAVA:
+java version "1.8.0_202"
+Java(TM) SE Runtime Environment (build 1.8.0_202-b08)
+Java HotSpot(TM) 64-Bit Server VM (build 25.202-b08, mixed mode)
+HADOOP HOME:
+/home/om/hadoop-2.9.1
+HADOOP CONF:
+
+HDFS ADDRESS:
+hdfs://archlinux:9000
+REPLICATION:
+2
+DATANODE DIRECTORY:
+file:///home/om/hadoop2-dir/datanode-dir-cluster
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ cat ~/hadoop-2.9.1/etc/hadoop/mapred-site.xml
+cat: /home/om/hadoop-2.9.1/etc/hadoop/mapred-site.xml: No such file or directory
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ cat ~/hadoop-2.9.1/etc/hadoop/mapred-site.xml
+cat: /home/om/hadoop-2.9.1/etc/hadoop/mapred-site.xml: No such file or directory
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ cat ~/hadoop-2.9.1/etc/hadoop/mapred-site.xml
+cat: /home/om/hadoop-2.9.1/etc/hadoop/mapred-site.xml: No such file or directory
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ nano etc/hadoop/mapred-site.xml
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ cat ~/hadoop-2.9.1/etc/hadoop/mapred-site.xml
+<configuration>
+    <property>
+        <name>mapreduce.framework.name</name>
+        <value>yarn</value>
+    </property>
+</configuration>
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ cd ~/hadoop-2.9.1
+
+echo "JAVA_HOME=$JAVA_HOME"
+echo "HADOOP_HOME=$HADOOP_HOME"
+echo "HADOOP_CONF_DIR=$HADOOP_CONF_DIR"
+
+java -version
+bin/hdfs getconf -confKey fs.defaultFS
+JAVA_HOME=/home/om/jdk-8u202-linux-x64/jdk1.8.0_202
+HADOOP_HOME=/home/om/hadoop-2.9.1
+HADOOP_CONF_DIR=
+java version "1.8.0_202"
+Java(TM) SE Runtime Environment (build 1.8.0_202-b08)
+Java HotSpot(TM) 64-Bit Server VM (build 25.202-b08, mixed mode)
+hdfs://archlinux:9000
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ nano ~/hadoop-2.9.1/etc/hadoop/hadoop-env.sh
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ cat >> ~/.bashrc <<'EOF'
+
+export JAVA_HOME=/home/om/jdk-8u202-linux-x64/jdk1.8.0_202
+export HADOOP_HOME=/home/om/hadoop-2.9.1
+export HADOOP_CONF_DIR=/home/om/hadoop-2.9.1/etc/hadoop
+export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
+EOF
+
+source ~/.bashrc
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ echo $HADOOP_CONF_DIR
+hdfs getconf -confKey fs.defaultFS
+hdfs getconf -confKey dfs.replication
+hdfs getconf -confKey dfs.datanode.data.dir
+/home/om/hadoop-2.9.1/etc/hadoop
+hdfs://archlinux:9000
+2
+file:///home/om/hadoop2-dir/datanode-dir-cluster
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ cd ~/hadoop-2.9.1/etc/hadoop
+
+echo "===== CORE SITE ====="
+cat core-site.xml
+
+echo "===== HDFS SITE ====="
+cat hdfs-site.xml
+
+echo "===== YARN SITE ====="
+cat yarn-site.xml
+
+echo "===== MAPRED SITE ====="
+cat mapred-site.xml
+===== CORE SITE =====
+<?xml version="1.0"?>
+<configuration>
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://archlinux:9000</value>
+    </property>
+</configuration>
+===== HDFS SITE =====
+<?xml version="1.0"?>
+<configuration>
+    <property>
+        <name>dfs.replication</name>
+        <value>2</value>
+    </property>
+
+    <property>
+        <name>dfs.datanode.data.dir</name>
+        <value>file:///home/om/hadoop2-dir/datanode-dir-cluster</value>
+    </property>
+</configuration>
+
+<!-- Put site-specific property overrides in this file. -->
+
+===== YARN SITE =====
+<?xml version="1.0"?>
+<configuration>
+    <property>
+        <name>yarn.resourcemanager.hostname</name>
+        <value>archlinux</value>
+    </property>
+
+    <property>
+        <name>yarn.nodemanager.aux-services</name>
+        <value>mapreduce_shuffle</value>
+    </property>
+
+    <property>
+        <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+        <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+    </property>
+</configuration>
+===== MAPRED SITE =====
+<configuration>
+    <property>
+        <name>mapreduce.framework.name</name>
+        <value>yarn</value>
+    </property>
+</configuration>
+(base) [om@DHANDEPATIL hadoop]$ sudo ufw allow from 10.87.234.198 to any port 9000 proto tcp
+sudo ufw allow from 10.87.234.198 to any port 50070 proto tcp
+sudo ufw allow from 10.87.234.198 to any port 50010 proto tcp
+sudo ufw allow from 10.87.234.198 to any port 50020 proto tcp
+sudo ufw allow from 10.87.234.198 to any port 50075 proto tcp
+
+sudo ufw allow from 10.87.234.198 to any port 8030:8033 proto tcp
+sudo ufw allow from 10.87.234.198 to any port 8040:8042 proto tcp
+sudo ufw allow from 10.87.234.198 to any port 8088 proto tcp
+sudo ufw allow from 10.87.234.198 to any port 13562 proto tcp
+[sudo] password for om: 
+Rule added
+Rule added
+Rule added
+Rule added
+Rule added
+Rule added
+Rule added
+Rule added
+Rule added
+(base) [om@DHANDEPATIL hadoop]$ jps
+32021 Jps
+(base) [om@DHANDEPATIL hadoop]$ cat >> ~/.bashrc <<'EOF'
+
+export HADOOP_HOME=/opt/hadoop-2.9.1
+export HADOOP_CONF_DIR=/opt/hadoop-2.9.1/etc/hadoop
+export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
+EOF
+
+source ~/.bashrc
+(base) [om@DHANDEPATIL hadoop]$ nano /opt/hadoop-2.9.1/etc/hadoop/hadoop-env.sh
+(base) [om@DHANDEPATIL hadoop]$ nano /opt/hadoop-2.9.1/etc/hadoop/hadoop-env.sh
+(base) [om@DHANDEPATIL hadoop]$ ls
+capacity-scheduler.xml  core-site.xml   hadoop-metrics2.properties  hdfs-site.xml            httpfs-signature.secret  kms-env.sh            log4j.properties  mapred-queues.xml.template  slaves                  yarn-env.cmd
+configuration.xsl       hadoop-env.cmd  hadoop-metrics.properties   httpfs-env.sh            httpfs-site.xml          kms-log4j.properties  mapred-env.cmd    mapred-site.xml             ssl-client.xml.example  yarn-env.sh
+container-executor.cfg  hadoop-env.sh   hadoop-policy.xml           httpfs-log4j.properties  kms-acls.xml             kms-site.xml          mapred-env.sh     mapred-site.xml.template    ssl-server.xml.example  yarn-site.xml
+(base) [om@DHANDEPATIL hadoop]$ nano hadoop-env.sh
+(base) [om@DHANDEPATIL hadoop]$ echo $HADOOP_HOME
+echo $HADOOP_CONF_DIR
+hdfs getconf -confKey fs.defaultFS
+/opt/hadoop-2.9.1
+/opt/hadoop-2.9.1/etc/hadoop
+file:///
+(base) [om@DHANDEPATIL hadoop]$ echo "===== PATHS ====="
+ls -ld /opt/hadoop-2.9.1
+readlink -f /opt/hadoop-2.9.1
+readlink -f /opt/hadoop-2.9.1/etc/hadoop
+
+echo "===== ENVIRONMENT ====="
+echo "$HADOOP_HOME"
+echo "$HADOOP_CONF_DIR"
+echo "$JAVA_HOME"
+
+echo "===== CORE SITE ====="
+cat /opt/hadoop-2.9.1/etc/hadoop/core-site.xml
+
+echo "===== HADOOP ENV ====="
+grep -nE 'JAVA_HOME|HADOOP_CONF_DIR' /opt/hadoop-2.9.1/etc/hadoop/hadoop-env.sh
+
+echo "===== RESOLVED CONFIG ====="
+ /opt/hadoop-2.9.1/bin/hdfs getconf -confKey fs.defaultFS
+===== PATHS =====
+ls: cannot access '/opt/hadoop-2.9.1': No such file or directory
+/opt/hadoop-2.9.1
+===== ENVIRONMENT =====
+/opt/hadoop-2.9.1
+/opt/hadoop-2.9.1/etc/hadoop
+/home/om/jdk-8u202-linux-x64/jdk1.8.0_202
+===== CORE SITE =====
+cat: /opt/hadoop-2.9.1/etc/hadoop/core-site.xml: No such file or directory
+===== HADOOP ENV =====
+grep: /opt/hadoop-2.9.1/etc/hadoop/hadoop-env.sh: No such file or directory
+===== RESOLVED CONFIG =====
+bash: /opt/hadoop-2.9.1/bin/hdfs: No such file or directory
+(base) [om@DHANDEPATIL hadoop]$ ls -ld /home/om/hadoop-2.9.1
+ls -l /home/om/hadoop-2.9.1/sbin/hadoop-daemon.sh
+ls -l /home/om/hadoop-2.9.1/etc/hadoop/core-site.xml
+drwxr-xr-x 10 om om 4096 Oct 27 11:09 /home/om/hadoop-2.9.1
+-rwxr-xr-x 1 om om 6475 Apr 16  2018 /home/om/hadoop-2.9.1/sbin/hadoop-daemon.sh
+-rw-r--r-- 1 om om 165 Nov 14 19:14 /home/om/hadoop-2.9.1/etc/hadoop/core-site.xml
+(base) [om@DHANDEPATIL hadoop]$ sudo mkdir -p /opt
+sudo ln -s /home/om/hadoop-2.9.1 /opt/hadoop-2.9.1
+[sudo] password for om: 
+(base) [om@DHANDEPATIL hadoop]$ ls -ld /opt/hadoop-2.9.1
+readlink -f /opt/hadoop-2.9.1
+lrwxrwxrwx 1 root root 21 Nov 14 19:48 /opt/hadoop-2.9.1 -> /home/om/hadoop-2.9.1
+/home/om/hadoop-2.9.1
+(base) [om@DHANDEPATIL hadoop]$ cat /opt/hadoop-2.9.1/etc/hadoop/core-site.xml
+<?xml version="1.0"?>
+<configuration>
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://archlinux:9000</value>
+    </property>
+</configuration>
+(base) [om@DHANDEPATIL hadoop]$ hdfs getconf -confKey fs.defaultFS
+hdfs getconf -confKey dfs.replication
+hdfs getconf -confKey dfs.datanode.data.dir
+hdfs://archlinux:9000
+2
+file:///home/om/hadoop2-dir/datanode-dir-cluster
+(base) [om@DHANDEPATIL hadoop]$ export JAVA_HOME=/home/om/jdk-8u202-linux-x64/jdk1.8.0_202
+export HADOOP_HOME=/home/om/hadoop-2.9.1
+export HADOOP_CONF_DIR=/home/om/hadoop-2.9.1/etc/hadoop
+export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
+
+cd "$HADOOP_HOME"
+
+sbin/hadoop-daemon.sh start datanode
+starting datanode, logging to /home/om/hadoop-2.9.1/logs/hadoop-om-datanode-DHANDEPATIL.out
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ jps
+32931 Jps
+32837 DataNode
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ jps
+32837 DataNode
+32966 Jps
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ export JAVA_HOME=/home/om/jdk-8u202-linux-x64/jdk1.8.0_202
+export HADOOP_HOME=/home/om/hadoop-2.9.1
+export HADOOP_CONF_DIR=/home/om/hadoop-2.9.1/etc/hadoop
+export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
+
+cd "$HADOOP_HOME"
+
+sbin/yarn-daemon.sh start nodemanager
+starting nodemanager, logging to /home/om/hadoop-2.9.1/logs/yarn-om-nodemanager-DHANDEPATIL.out
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ jps
+32837 DataNode
+33207 Jps
+33052 NodeManager
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ jps
+33284 Jps
+32837 DataNode
+33052 NodeManager
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ sudo ss -lntp | grep 39501
+[sudo] password for om: 
+LISTEN 0      128                *:39501            *:*    users:(("java",pid=33052,fd=340))
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ sudo ufw status numbered
+Status: active
+
+     To                         Action      From
+     --                         ------      ----
+[ 1] 22/tcp                     ALLOW IN    172.31.118.145            
+[ 2] 22/tcp                     ALLOW IN    10.87.234.198             
+[ 3] 9000/tcp                   ALLOW IN    10.87.234.198             
+[ 4] 50070/tcp                  ALLOW IN    10.87.234.198             
+[ 5] 50010/tcp                  ALLOW IN    10.87.234.198             
+[ 6] 50020/tcp                  ALLOW IN    10.87.234.198             
+[ 7] 50075/tcp                  ALLOW IN    10.87.234.198             
+[ 8] 8030:8033/tcp              ALLOW IN    10.87.234.198             
+[ 9] 8040:8042/tcp              ALLOW IN    10.87.234.198             
+[10] 8088/tcp                   ALLOW IN    10.87.234.198             
+[11] 13562/tcp                  ALLOW IN    10.87.234.198             
+
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ sudo ufw allow from 10.87.234.198 to any port 39501 proto tcp
+Rule added
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ sudo ufw status
+Status: active
+
+To                         Action      From
+--                         ------      ----
+22/tcp                     ALLOW       172.31.118.145            
+22/tcp                     ALLOW       10.87.234.198             
+9000/tcp                   ALLOW       10.87.234.198             
+50070/tcp                  ALLOW       10.87.234.198             
+50010/tcp                  ALLOW       10.87.234.198             
+50020/tcp                  ALLOW       10.87.234.198             
+50075/tcp                  ALLOW       10.87.234.198             
+8030:8033/tcp              ALLOW       10.87.234.198             
+8040:8042/tcp              ALLOW       10.87.234.198             
+8088/tcp                   ALLOW       10.87.234.198             
+13562/tcp                  ALLOW       10.87.234.198             
+39501/tcp                  ALLOW       10.87.234.198             
+
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ java -version
+python --version
+java version "1.8.0_202"
+Java(TM) SE Runtime Environment (build 1.8.0_202-b08)
+Java HotSpot(TM) 64-Bit Server VM (build 25.202-b08, mixed mode)
+Python 3.13.9
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ ls /usr/lib/jvm/
+default  default-runtime  java-17-openjdk  java-27-openjdk
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ sudo pacman -S jdk17-openjdk
+[sudo] password for om: 
+warning: jdk17-openjdk-17.0.21.0.3.u1-1 is up to date -- reinstalling
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) jdk17-openjdk-17.0.21.0.3.u1-1
+
+Total Installed Size:  424.30 MiB
+Net Upgrade Size:        0.00 MiB
+
+:: Proceed with installation? [Y/n] y
+(1/1) checking keys in keyring                                                                                                                 [########################################################################################] 100%
+(1/1) checking package integrity                                                                                                               [########################################################################################] 100%
+(1/1) loading package files                                                                                                                    [########################################################################################] 100%
+(1/1) checking for file conflicts                                                                                                              [########################################################################################] 100%
+(1/1) checking available disk space                                                                                                            [########################################################################################] 100%
+:: Processing package changes...
+(1/1) reinstalling jdk17-openjdk                                                                                                               [########################################################################################] 100%
+:: Running post-transaction hooks...
+(1/3) Arming ConditionNeedsUpdate...
+(2/3) Updating icon theme caches...
+(3/3) Updating the desktop file MIME type cache...
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ /usr/lib/jvm/java-17-openjdk/bin/java -version
+archlinux-java status
+openjdk version "17.0.21.0.3" 2026-10-24
+OpenJDK Runtime Environment (build 17.0.21.0.3+1)
+OpenJDK 64-Bit Server VM (build 17.0.21.0.3+1, mixed mode, sharing)
+Available Java environments:
+  java-17-openjdk
+  java-27-openjdk (default)
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ which conda
+conda info --base
+conda env list
+/home/om/anaconda3/bin/conda
+/home/om/anaconda3
+
+# conda environments:
+#
+# * -> active
+# + -> frozen
+base                 *   /home/om/anaconda3
+profiling                /home/om/anaconda3/envs/profiling
+
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ conda create -n nids python=3.11 -y
+2 channel Terms of Service accepted
+Retrieving notices: done
+Channels:
+ - defaults
+Platform: linux-64
+Collecting package metadata (repodata.json): done
+Solving environment: done
+
+
+==> WARNING: A newer version of conda exists. <==
+    current version: 26.1.1
+    latest version: 26.10.0
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+
+## Package Plan ##
+
+  environment location: /home/om/anaconda3/envs/nids
+
+  added / updated specs:
+    - python=3.11
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    ca-certificates-2026.11.5  |       h59cdc77_0         113 KB
+    libexpat-2.10.0            |       h7354ed3_0         132 KB
+    libnsl-2.0.0               |       h5eee18b_0          31 KB
+    ncurses-6.6                |       hfaaeb4e_0         893 KB
+    openssl-3.5.9              |       h1b28b03_0         5.7 MB
+    packaging-26.3             |  py311h06a4308_0         380 KB
+    pip-26.2.2                 |     pyhc872135_0         1.1 MB
+    python-3.11.18             |       hd9cb797_0        29.7 MB
+    setuptools-84.2.1          |  py311h06a4308_0         1.3 MB
+    sqlite-3.54.1              |       h795bf6d_0         1.3 MB
+    wheel-0.48.0               |  py311h06a4308_0          79 KB
+    xorg-libx11-1.8.14         |       h65de747_0         820 KB
+    xorg-xorgproto-2025.1      |       h47b2149_0         555 KB
+    xz-5.8.4                   |       h140a991_0         652 KB
+    ------------------------------------------------------------
+                                           Total:        42.7 MB
+
+The following NEW packages will be INSTALLED:
+
+  _libgcc_mutex      pkgs/main/linux-64::_libgcc_mutex-0.1-main 
+  _openmp_mutex      pkgs/main/linux-64::_openmp_mutex-5.1-52_gnu 
+  bzip2              pkgs/main/linux-64::bzip2-1.0.8-h5eee18b_6 
+  ca-certificates    pkgs/main/noarch::ca-certificates-2026.11.5-h59cdc77_0 
+  ld_impl_linux-64   pkgs/main/linux-64::ld_impl_linux-64-2.44-h9e0c5a2_3 
+  libexpat           pkgs/main/linux-64::libexpat-2.10.0-h7354ed3_0 
+  libffi             pkgs/main/linux-64::libffi-3.4.8-h06d3fd0_3 
+  libgcc             pkgs/main/linux-64::libgcc-15.2.0-h69a1729_8 
+  libgcc-ng          pkgs/main/linux-64::libgcc-ng-15.2.0-h166f726_8 
+  libnsl             pkgs/main/linux-64::libnsl-2.0.0-h5eee18b_0 
+  libstdcxx          pkgs/main/linux-64::libstdcxx-15.2.0-h39759b7_8 
+  libuuid            pkgs/main/linux-64::libuuid-1.41.5-h5eee18b_0 
+  libxcb             pkgs/main/linux-64::libxcb-1.17.0-h9b100fa_0 
+  libzlib            pkgs/main/linux-64::libzlib-1.3.2-h47b2149_0 
+  ncurses            pkgs/main/linux-64::ncurses-6.6-hfaaeb4e_0 
+  openssl            pkgs/main/linux-64::openssl-3.5.9-h1b28b03_0 
+  packaging          pkgs/main/linux-64::packaging-26.3-py311h06a4308_0 
+  pip                pkgs/main/noarch::pip-26.2.2-pyhc872135_0 
+  pthread-stubs      pkgs/main/linux-64::pthread-stubs-0.3-h47b2149_2 
+  python             pkgs/main/linux-64::python-3.11.18-hd9cb797_0 
+  readline           pkgs/main/linux-64::readline-8.3-hc2a1206_0 
+  setuptools         pkgs/main/linux-64::setuptools-84.2.1-py311h06a4308_0 
+  sqlite             pkgs/main/linux-64::sqlite-3.54.1-h795bf6d_0 
+  tk                 pkgs/main/linux-64::tk-8.6.15-h54e0aa7_0 
+  tzdata             pkgs/main/noarch::tzdata-2026c-he532380_0 
+  wheel              pkgs/main/linux-64::wheel-0.48.0-py311h06a4308_0 
+  xorg-libx11        pkgs/main/linux-64::xorg-libx11-1.8.14-h65de747_0 
+  xorg-libxau        pkgs/main/linux-64::xorg-libxau-1.0.12-h9b100fa_0 
+  xorg-libxdmcp      pkgs/main/linux-64::xorg-libxdmcp-1.1.5-h9b100fa_0 
+  xorg-xorgproto     pkgs/main/linux-64::xorg-xorgproto-2025.1-h47b2149_0 
+  xz                 pkgs/main/linux-64::xz-5.8.4-h140a991_0 
+  zlib               pkgs/main/linux-64::zlib-1.3.2-h47b2149_0 
+
+
+
+Downloading and Extracting Packages:
+                                                                                                                                                                                                                                              
+Preparing transaction: done                                                                                                                                                                                                                   
+Verifying transaction: done                                                                                                                                                                                                                   
+Executing transaction: done                                                                                                                                                                                                                   
+#                                                                                                                                                                                                                                             
+# To activate this environment, use                                                                                                                                                                                                           
+#                                                                                                                                                                                                                                             
+#     $ conda activate nids                                                                                                                                                                                                                   
+#                                                                                                                                                                                                                                             
+# To deactivate an active environment, use                                                                                                                                                                                                    
+#                                                                                                                                                                                                                                             
+#     $ conda deactivate                                                                                                                                                                                                                      
+                                                                                                                                                                                                                                              
+                                                                                                                                                                                                                                              
+Channel "defaults" has the following notices:
+  [warning] -- Wed Sep 30 00:00:00 2026
+  Anaconda will stop building new Python 3.10 packages on the main channel after October 31, 2026. Existing Python 3.10 packages will stay available but will no longer get new builds or security fixes. We recommend upgrading to Python 3.11 or later. Details: https://www.anaconda.com/docs/reference/policies-practices/python-version-support?utm_source=channel_notices
+
+(base) [om@DHANDEPATIL hadoop-2.9.1]$ conda activate nids
+(nids) [om@DHANDEPATIL hadoop-2.9.1]$ python --version
+which python
+Python 3.11.18
+/home/om/anaconda3/envs/nids/bin/python
+(nids) [om@DHANDEPATIL hadoop-2.9.1]$ conda activate nids
+(nids) [om@DHANDEPATIL hadoop-2.9.1]$ export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+export PATH="$JAVA_HOME/bin:$PATH"
+(nids) [om@DHANDEPATIL hadoop-2.9.1]$ cd ~/Downloads
+
+wget https://archive.apache.org/dist/spark/spark-3.5.9/spark-3.5.9-bin-hadoop3.tgz
+
+mkdir -p ~/NIDS
+
+tar -xzf spark-3.5.9-bin-hadoop3.tgz -C ~/NIDS/
+--2026-11-14 20:41:09--  https://archive.apache.org/dist/spark/spark-3.5.9/spark-3.5.9-bin-hadoop3.tgz
+Loaded CA certificate '/etc/ssl/certs/ca-certificates.crt'
+Resolving archive.apache.org (archive.apache.org)... 2a01:4f9:1a:a084::2, 65.108.204.189
+Connecting to archive.apache.org (archive.apache.org)|2a01:4f9:1a:a084::2|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 401379923 (383M) [application/x-gzip]
+Saving to: ‘spark-3.5.9-bin-hadoop3.tgz’
+
+spark-3.5.9-bin-hadoop3.tgz                                 100%[=========================================================================================================================================>] 382.79M  7.81MB/s    in 89s     
+
+2026-11-14 20:42:41 (4.28 MB/s) - ‘spark-3.5.9-bin-hadoop3.tgz’ saved [401379923/401379923]
+
+(nids) [om@DHANDEPATIL Downloads]$ export SPARK_HOME=$HOME/NIDS/spark-3.5.9-bin-hadoop3
+export PATH=$SPARK_HOME/bin:$SPARK_HOME/sbin:$PATH
+(nids) [om@DHANDEPATIL Downloads]$ spark-submit --version
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /___/ .__/\_,_/_/ /_/\_\   version 3.5.9
+      /_/
+                        
+Using Scala version 2.12.18, OpenJDK 64-Bit Server VM, 17.0.21.0.3
+Branch HEAD
+Compiled by user holden on 2026-07-12T18:40:50Z
+Revision 7c14a3c28b141cc97a330c4d0f5d2a6da7267f85
+Url https://github.com/apache/spark
+Type --help for more information.
+(nids) [om@DHANDEPATIL Downloads]$ echo "$HADOOP_HOME"
+echo "$HADOOP_CONF_DIR"
+ls "$HADOOP_CONF_DIR/core-site.xml"
+ls "$HADOOP_CONF_DIR/hdfs-site.xml"
+/home/om/hadoop-2.9.1
+/home/om/hadoop-2.9.1/etc/hadoop
+/home/om/hadoop-2.9.1/etc/hadoop/core-site.xml
+/home/om/hadoop-2.9.1/etc/hadoop/hdfs-site.xml
+(nids) [om@DHANDEPATIL Downloads]$ echo "$HADOOP_HOME"
+echo "$HADOOP_CONF_DIR"
+
+ls $HADOOP_CONF_DIR/core-site.xml
+ls $HADOOP_CONF_DIR/hdfs-site.xml
+/home/om/hadoop-2.9.1
+/home/om/hadoop-2.9.1/etc/hadoop
+/home/om/hadoop-2.9.1/etc/hadoop/core-site.xml
+/home/om/hadoop-2.9.1/etc/hadoop/hdfs-site.xml
+(nids) [om@DHANDEPATIL Downloads]$ conda activate nids
+
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+export SPARK_HOME=$HOME/NIDS/spark-3.5.9-bin-hadoop3
+export HADOOP_HOME=/opt/hadoop-2.9.1
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+
+export PATH=$JAVA_HOME/bin:$SPARK_HOME/bin:$SPARK_HOME/sbin:$PATH
+(nids) [om@DHANDEPATIL Downloads]$ mkdir -p $SPARK_HOME/conf
+
+cp $SPARK_HOME/conf/spark-env.sh.template \
+   $SPARK_HOME/conf/spark-env.sh
+(nids) [om@DHANDEPATIL Downloads]$ cat >> $SPARK_HOME/conf/spark-env.sh <<'EOF'
+
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+export SPARK_WORKER_PORT=7078
+export SPARK_WORKER_WEBUI_PORT=8081
+EOF
+(nids) [om@DHANDEPATIL Downloads]$ hdfs dfs -ls /nids/raw/cicids2017/
+Found 8 items
+-rw-r--r--   2 naveen supergroup   77123859 2026-11-14 20:21 /nids/raw/cicids2017/Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv
+-rw-r--r--   2 naveen supergroup   76906168 2026-11-14 20:23 /nids/raw/cicids2017/Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv
+-rw-r--r--   2 naveen supergroup   58316725 2026-11-14 20:25 /nids/raw/cicids2017/Friday-WorkingHours-Morning.pcap_ISCX.csv
+-rw-r--r--   2 naveen supergroup  176927918 2026-11-14 20:24 /nids/raw/cicids2017/Monday-WorkingHours.pcap_ISCX.csv
+-rw-r--r--   2 naveen supergroup   83102436 2026-11-14 20:26 /nids/raw/cicids2017/Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv
+-rw-r--r--   2 naveen supergroup   52023263 2026-11-14 20:21 /nids/raw/cicids2017/Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv
+-rw-r--r--   2 naveen supergroup  135078995 2026-11-14 20:25 /nids/raw/cicids2017/Tuesday-WorkingHours.pcap_ISCX.csv
+-rw-r--r--   2 naveen supergroup  225166395 2026-11-14 20:22 /nids/raw/cicids2017/Wednesday-workingHours.pcap_ISCX.csv
+(nids) [om@DHANDEPATIL Downloads]$ conda activate nids
+
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+export SPARK_HOME=$HOME/NIDS/spark-3.5.9-bin-hadoop3
+export HADOOP_HOME=/opt/hadoop-2.9.1
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+
+export PATH=$JAVA_HOME/bin:$SPARK_HOME/bin:$SPARK_HOME/sbin:$PATH
+
+hdfs dfs -ls /nids/raw/cicids2017/
+Found 8 items
+-rw-r--r--   2 naveen supergroup   77123859 2026-11-14 20:21 /nids/raw/cicids2017/Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv
+-rw-r--r--   2 naveen supergroup   76906168 2026-11-14 20:23 /nids/raw/cicids2017/Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv
+-rw-r--r--   2 naveen supergroup   58316725 2026-11-14 20:25 /nids/raw/cicids2017/Friday-WorkingHours-Morning.pcap_ISCX.csv
+-rw-r--r--   2 naveen supergroup  176927918 2026-11-14 20:24 /nids/raw/cicids2017/Monday-WorkingHours.pcap_ISCX.csv
+-rw-r--r--   2 naveen supergroup   83102436 2026-11-14 20:26 /nids/raw/cicids2017/Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv
+-rw-r--r--   2 naveen supergroup   52023263 2026-11-14 20:21 /nids/raw/cicids2017/Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv
+-rw-r--r--   2 naveen supergroup  135078995 2026-11-14 20:25 /nids/raw/cicids2017/Tuesday-WorkingHours.pcap_ISCX.csv
+-rw-r--r--   2 naveen supergroup  225166395 2026-11-14 20:22 /nids/raw/cicids2017/Wednesday-workingHours.pcap_ISCX.csv
+(nids) [om@DHANDEPATIL Downloads]$ sudo ufw allow from 10.87.234.198 to any port 7078 proto tcp
+sudo ufw allow from 10.87.234.198 to any port 8081 proto tcp
+[sudo] password for om: 
+Rule added
+Rule added
+(nids) [om@DHANDEPATIL Downloads]$ jps
+32837 DataNode
+33052 NodeManager
+38093 Jps
+(nids) [om@DHANDEPATIL Downloads]$ start-worker.sh spark://10.87.234.198:7077
+starting org.apache.spark.deploy.worker.Worker, logging to /home/om/NIDS/spark-3.5.9-bin-hadoop3/logs/spark-om-org.apache.spark.deploy.worker.Worker-1-DHANDEPATIL.out
+(nids) [om@DHANDEPATIL Downloads]$ sudo ufw allow from 10.87.234.198 to any port 7078 proto tcp
+sudo ufw allow from 10.87.234.198 to any port 8081 proto tcp
+Skipping adding existing rule
+Skipping adding existing rule
+(nids) [om@DHANDEPATIL Downloads]$ start-worker.sh spark://10.87.234.198:7077
+org.apache.spark.deploy.worker.Worker running as process 38164.  Stop it first.
+(nids) [om@DHANDEPATIL Downloads]$ conda activate nids
+
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+export SPARK_HOME=$HOME/NIDS/spark-3.5.9-bin-hadoop3
+export HADOOP_HOME=/opt/hadoop-2.9.1
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+
+export PATH=$JAVA_HOME/bin:$SPARK_HOME/bin:$SPARK_HOME/sbin:$PATH
+(nids) [om@DHANDEPATIL Downloads]$ cat >> $SPARK_HOME/conf/spark-env.sh <<'EOF'
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+export SPARK_LOCAL_IP=10.87.234.88
+export SPARK_WORKER_PORT=7078
+export SPARK_WORKER_WEBUI_PORT=8081
+EOF
+(nids) [om@DHANDEPATIL Downloads]$ export SPARK_LOCAL_IP=10.87.234.88
+(nids) [om@DHANDEPATIL Downloads]$ sudo ufw allow from 10.87.234.198 to any port 7078 proto tcp
+sudo ufw allow from 10.87.234.198 to any port 8081 proto tcp
+Skipping adding existing rule
+Skipping adding existing rule
+(nids) [om@DHANDEPATIL Downloads]$ conda activate nids
+
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+export SPARK_HOME=$HOME/NIDS/spark-3.5.9-bin-hadoop3
+export HADOOP_HOME=/opt/hadoop-2.9.1
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export PATH=$JAVA_HOME/bin:$SPARK_HOME/bin:$SPARK_HOME/sbin:$PATH
+
+export SPARK_LOCAL_IP=10.87.234.88
+(nids) [om@DHANDEPATIL Downloads]$ start-worker.sh spark://10.87.234.198:7077
+org.apache.spark.deploy.worker.Worker running as process 38164.  Stop it first.
+(nids) [om@DHANDEPATIL Downloads]$ jps
+38164 Worker
+32837 DataNode
+38535 Jps
+33052 NodeManager
+(nids) [om@DHANDEPATIL Downloads]$ jps
+38164 Worker
+32837 DataNode
+33052 NodeManager
+39038 Jps
+(nids) [om@DHANDEPATIL Downloads]$ export PYSPARK_PYTHON=/home/om/anaconda3/envs/nids/bin/python
+(nids) [om@DHANDEPATIL Downloads]$ echo 'export PYSPARK_PYTHON=/home/om/anaconda3/envs/nids/bin/python' \
+>> ~/NIDS/spark-3.5.9-bin-hadoop3/conf/spark-env.sh
+(nids) [om@DHANDEPATIL Downloads]$ mkdir -p ~/NIDS
+ln -sfn /home/om/anaconda3/envs/nids ~/NIDS/venv
+(nids) [om@DHANDEPATIL Downloads]$ export PYSPARK_PYTHON=/home/$(whoami)/NIDS/venv/bin/python
+(nids) [om@DHANDEPATIL Downloads]$ conda activate nids
+
+python -c "import numpy; print('NumPy:', numpy.__version__)"
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ModuleNotFoundError: No module named 'numpy'
+(nids) [om@DHANDEPATIL Downloads]$ python -m pip install "numpy==1.26.4"
+Collecting numpy==1.26.4
+  Downloading numpy-1.26.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (61 kB)
+Downloading numpy-1.26.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 18.3/18.3 MB 1.1 MB/s  0:00:17
+Installing collected packages: numpy
+Successfully installed numpy-1.26.4
+(nids) [om@DHANDEPATIL Downloads]$ conda activate nids
+
+python --version
+which python
+
+python -c "import numpy; print('NumPy:', numpy.__version__)"
+Python 3.11.18
+/home/om/anaconda3/envs/nids/bin/python
+NumPy: 1.26.4
+(nids) [om@DHANDEPATIL Downloads]$ python -m pip install "numpy==1.26.4"
+Requirement already satisfied: numpy==1.26.4 in /home/om/anaconda3/envs/nids/lib/python3.11/site-packages (1.26.4)
+(nids) [om@DHANDEPATIL Downloads]$ echo 'export JAVA_HOME=/usr/lib/jvm/java-17-openjdk' >> ~/NIDS/spark-3.5.9-bin-hadoop3/conf/spark-env.sh
+echo 'export SPARK_LOCAL_IP=10.87.234.88' >> ~/NIDS/spark-3.5.9-bin-hadoop3/conf/spark-env.sh
+echo 'export PYSPARK_PYTHON=/home/om/anaconda3/envs/nids/bin/python' >> ~/NIDS/spark-3.5.9-bin-hadoop3/conf/spark-env.sh
+(nids) [om@DHANDEPATIL Downloads]$ tail -n 15 ~/NIDS/spark-3.5.9-bin-hadoop3/conf/spark-env.sh
+# Options for beeline
+# - SPARK_BEELINE_OPTS, to set config properties only for the beeline cli (e.g. "-Dx=y")
+# - SPARK_BEELINE_MEMORY, Memory for beeline (e.g. 1000M, 2G) (Default: 1G)
+
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+export SPARK_WORKER_PORT=7078
+export SPARK_WORKER_WEBUI_PORT=8081
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+export SPARK_LOCAL_IP=10.87.234.88
+export SPARK_WORKER_PORT=7078
+export SPARK_WORKER_WEBUI_PORT=8081
+export PYSPARK_PYTHON=/home/om/anaconda3/envs/nids/bin/python
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+export SPARK_LOCAL_IP=10.87.234.88
+export PYSPARK_PYTHON=/home/om/anaconda3/envs/nids/bin/python
+(nids) [om@DHANDEPATIL Downloads]$ conda activate nids
+
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+export SPARK_HOME=$HOME/NIDS/spark-3.5.9-bin-hadoop3
+export PYSPARK_PYTHON=/home/om/anaconda3/envs/nids/bin/python
+export SPARK_LOCAL_IP=10.87.234.88
+
+export PATH=$JAVA_HOME/bin:$SPARK_HOME/bin:$SPARK_HOME/sbin:$PATH
+
+stop-worker.sh
+start-worker.sh spark://10.87.234.198:7077
+
+jps
+stopping org.apache.spark.deploy.worker.Worker
+starting org.apache.spark.deploy.worker.Worker, logging to /home/om/NIDS/spark-3.5.9-bin-hadoop3/logs/spark-om-org.apache.spark.deploy.worker.Worker-1-DHANDEPATIL.out
+39601 Worker
+32837 DataNode
+33052 NodeManager
+39661 Jps
+(nids) [om@DHANDEPATIL Downloads]$ nproc
+12
+(nids) [om@DHANDEPATIL Downloads]$ lscpu
+Architecture:                x86_64
+  CPU op-mode(s):            32-bit, 64-bit
+  Address sizes:             48 bits physical, 48 bits virtual
+top - 21:26:08 up 1 day,  5:45,  1 user,  load average: 1.01, 0.67, 0.50
+Tasks: 366 total, 2 running, 359 sleep, 0 d-sleep, 0 stopped, 5 zombie
+%Cpu(s):  1.0 us,  1.4 sy,  0.0 ni, 97.5 id,  0.0 wa,  0.0 hi,  0.1 si,  0.0 st 
+MiB Mem :   5759.4 total,    235.1 free,   4333.9 used,   1087.9 buff/cache     
+MiB Swap:   2879.5 total,   1642.7 free,   1236.8 used.   1425.5 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND                                                                                                                                                                
+   5368 om        20   0 1381916 137128  98740 R   7.9   2.3  10:17.88 kgx                                                                                                                                                                    
+   2576 om        20   0 3873184 217572  86144 S   6.6   3.7  29:58.20 gnome-shell                                                                                                                                                            
+  24879 om        20   0 7944132 667340 149360 S   4.0  11.3  14:01.29 Isolated Web Co                                                                                                                                                        
+  25227 om        20   0   17.7g 819628 160528 S   4.0  13.9  18:51.13 Isolated Web Co                                                                                                                                                        
+  24168 om        20   0   12.8g 657204 305276 S   2.6  11.1  21:49.01 firefox                                                                                                                                                                
+   2844 om        20   0  198580  24452   8700 S   2.0   0.4   7:33.21 pipewire-pulse                                                                                                                                                         
+   2838 om        20   0  124000  17608   8204 S   1.3   0.3   4:55.83 pipewire                                                                                                                                                               
+  41339 om        20   0   10532   7848   5568 R   1.3   0.1   0:00.04 top                                                                                                                                                                    
+  24881 om        20   0 3025464 132848  99492 S   0.7   2.3   0:18.62 Isolated Web Co                                                                                                                                                        
+  33052 om        20   0 2818240 354840  20228 S   0.7   6.0   0:54.10 java                                                                                                                                                                   
+  33352 root      20   0       0      0      0 I   0.7   0.0   0:01.72 kworker/u50:0-events_unbound                                                                                                                                           
+  35452 root      20   0       0      0      0 I   0.7   0.0   0:02.89 kworker/u48:1-phy0                                                                                                                                                     
+  39757 om        20   0 3531916 531144  25204 S   0.7   9.0   0:22.69 java                                                                                                                                                                   
+      1 root      20   0   21416  13148   8976 S   0.0   0.2   0:06.63 systemd                                                                                                                                                                
+      2 root      20   0       0      0      0 S   0.0   0.0   0:00.07 kthreadd                                                                                                                                                               
+      3 root      20   0       0      0      0 S   0.0   0.0   0:00.00 pool_workqueue_release                                                                                                                                                 
+      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-rcu_gp                                                                                                                                                       
+      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-sync_wq                                                                                                                                                      
+      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-kvfree_rcu_reclaim                                                                                                                                           
+      7 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-slub_flushwq                                                                                                                                                 
+      8 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-netns                                                                                                                                                        
+     11 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/0:0H-kblockd                                                                                                                                                   
+     14 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-mm_percpu_wq                                                                                                                                                 
+     15 root      20   0       0      0      0 S   0.0   0.0   0:01.16 ksoftirqd/0                                                                                                                                                            
+     16 root      -2   0       0      0      0 I   0.0   0.0   0:33.24 rcu_preempt                                                                                                                                                            
+     17 root      -2   0       0      0      0 S   0.0   0.0   0:00.00 rcub/0                                                                                                                                                                 
+     18 root      20   0       0      0      0 S   0.0   0.0   0:00.00 rcu_exp_par_gp_kthread_worker/0                                                                                                                                        
+     19 root      20   0       0      0      0 S   0.0   0.0   0:00.09 rcu_exp_gp_kthread_worker                                                                                                                                              
+     20 root      rt   0       0      0      0 S   0.0   0.0   0:00.56 migration/0                                                                                                                                                            
+     21 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kprobe-optimizer                                                                                                                                                       
+     22 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/0                                                                                                                                                          
+     23 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/0                                                                                                                                                                
+     24 root      20   0       0      0      0 S   0.0   0.0   0:00.01 cpuhp/2                                                                                                                                                                
+     25 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/2                                                                                                                                                          
+     26 root      rt   0       0      0      0 S   0.0   0.0   0:00.46 migration/2                                                                                                                                                            
+     27 root      20   0       0      0      0 S   0.0   0.0   0:00.29 ksoftirqd/2                                                                                                                                                            
+     29 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/2:0H-kblockd                                                                                                                                                   
+     30 root      20   0       0      0      0 S   0.0   0.0   0:00.01 cpuhp/4                                                                                                                                                                
+     31 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/4                                                                                                                                                          
+     32 root      rt   0       0      0      0 S   0.0   0.0   0:00.45 migration/4                                                                                                                                                            
+     33 root      20   0       0      0      0 S   0.0   0.0   0:00.21 ksoftirqd/4                                                                                                                                                            
+     35 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/4:0H-kblockd                                                                                                                                                   
+     36 root      20   0       0      0      0 S   0.0   0.0   0:00.01 cpuhp/6                                                                                                                                                                
+     37 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/6                                                                                                                                                          
+     38 root      rt   0       0      0      0 S   0.0   0.0   0:00.53 migration/6                                                                                                                                                            
+     39 root      20   0       0      0      0 S   0.0   0.0   0:00.06 ksoftirqd/6                                                                                                                                                            
+     41 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/6:0H-kblockd                                                                                                                                                   
+     42 root      20   0       0      0      0 S   0.0   0.0   0:00.01 cpuhp/8                                                                                                                                                                
+     43 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/8                                                                                                                                                          
+(nids) [om@DHANDEPATIL Downloads]$ jps
+39601 Worker
+32837 DataNode
+63751 Jps
+33052 NodeManager
+(nids) [om@DHANDEPATIL Downloads]$ 
