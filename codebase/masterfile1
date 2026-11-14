@@ -1,0 +1,1995 @@
+[naveen@archlinux ~]$ hostname
+archlinux
+[naveen@archlinux ~]$ whoami
+naveen
+[naveen@archlinux ~]$ ip -4 addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+2: wlp2s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    altname wlx141333054c1b
+    inet 10.87.234.198/24 brd 10.87.234.255 scope global dynamic noprefixroute wlp2s0
+       valid_lft 3316sec preferred_lft 3316sec
+[naveen@archlinux ~]$ ip route get 1.1.1.1
+1.1.1.1 via 10.87.234.16 dev wlp2s0 src 10.87.234.198 uid 1000 
+    cache 
+[naveen@archlinux ~]$ sudo hostnamectl set -hostname naveen
+[sudo] password for naveen: 
+> hostnamectl [OPTION…] COMMAND …
+
+Query or change system hostname.
+
+Commands:
+  [status]               Show current hostname settings
+  hostname [NAME]        Get/set system hostname
+  icon-name [NAME]       Get/set icon name for host
+  chassis [NAME]         Get/set chassis type for host
+  deployment [NAME]      Get/set deployment environment for host
+  location [NAME]        Get/set location for host
+  tags [TAG…]            Get/set machine tags for host
+
+Options:
+  -h --help              Show this help
+     --version           Show package version
+     --no-ask-password   Do not prompt for password
+  -H --host=[USER@]HOST  Operate on remote host
+  -M --machine=CONTAINER Operate on local container
+     --transient         Only set transient hostname
+     --static            Only set static hostname
+     --pretty            Only set pretty hostname
+     --json=FORMAT       Generate JSON output (pretty, short, or off)
+  -j                     Equivalent to --json=pretty (on TTY) or --json=short (otherwise)
+
+See the hostnamectl(1) man page for details.
+[naveen@archlinux ~]$ hostname
+archlinux
+[naveen@archlinux ~]$ hostname
+archlinux
+[naveen@archlinux ~]$ ^[[200~sudo pacman -S --needed openssh~
+bash: $'\E[200~sudo': command not found
+[naveen@archlinux ~]$ sudo pacman -S --needed openssh
+[sudo] password for naveen: 
+warning: openssh-10.6p1-3 is up to date -- skipping
+ there is nothing to do
+[naveen@archlinux ~]$ sudo systemctl enable --now sshd
+[naveen@archlinux ~]$ sudo systemctl status sshd
+● sshd.service - OpenSSH Daemon
+     Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; preset: disabled)
+     Active: active (running) since Sat 2026-11-14 20:52:36 IST; 5h 10min left
+ Invocation: 361cdf5aad5149e49cc765b8f263aba3
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+   Main PID: 731 (sshd)
+      Tasks: 1 (limit: 18285)
+     Memory: 1.8M (peak: 2.4M)
+        CPU: 9ms
+     CGroup: /system.slice/sshd.service
+             └─731 "sshd: /usr/bin/sshd -D [listener] 0 of 10-100 startups"
+
+Nov 14 20:52:35 archlinux systemd[1]: Starting OpenSSH Daemon...
+Nov 14 20:52:36 archlinux sshd[731]: Server listening on 0.0.0.0 port 22.
+Nov 14 20:52:36 archlinux sshd[731]: Server listening on :: port 22.
+Nov 14 20:52:36 archlinux systemd[1]: Started OpenSSH Daemon.
+[naveen@archlinux ~]$ sudo sshd -t
+[naveen@archlinux ~]$ hostname
+archlinux
+[naveen@archlinux ~]$ whoami 
+naveen
+[naveen@archlinux ~]$ ip -4 -br addr
+lo               UNKNOWN        127.0.0.1/8 
+wlp2s0           UP             10.87.234.198/24 
+[naveen@archlinux ~]$ ip route get 1.1.1.1
+1.1.1.1 via 10.87.234.16 dev wlp2s0 src 10.87.234.198 uid 1000 
+    cache 
+[naveen@archlinux ~]$ sudo nano /etc/hosts
+[naveen@archlinux ~]$ sudo nano /etc/hosts
+[naveen@archlinux ~]$ sudo nano /etc/hosts
+[naveen@archlinux ~]$ ping -c 4 om
+PING om (172.31.64.1) 56(84) bytes of data.
+64 bytes from om (172.31.64.1): icmp_seq=1 ttl=253 time=46.2 ms
+64 bytes from om (172.31.64.1): icmp_seq=2 ttl=253 time=29.6 ms
+64 bytes from om (172.31.64.1): icmp_seq=3 ttl=253 time=34.3 ms
+64 bytes from om (172.31.64.1): icmp_seq=4 ttl=253 time=13.8 ms
+
+--- om ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3006ms
+rtt min/avg/max/mdev = 13.767/30.976/46.245/11.641 ms
+[naveen@archlinux ~]$ hostname -I
+hostname: invalid option -- 'I'
+Try 'hostname --help' or 'hostname --usage' for more information.
+[naveen@archlinux ~]$ whoami
+naveen
+[naveen@archlinux ~]$ hostname
+archlinux
+[naveen@archlinux ~]$ hostname -I
+hostname: invalid option -- 'I'
+Try 'hostname --help' or 'hostname --usage' for more information.
+[naveen@archlinux ~]$ hostname -l
+hostname: invalid option -- 'l'
+Try 'hostname --help' or 'hostname --usage' for more information.
+[naveen@archlinux ~]$ whoami
+hostname
+hostname -I
+ip route get 8.8.8.8
+java -version
+hadoop version
+echo $HADOOP_HOME
+echo $JAVA_HOME
+naveen
+archlinux
+hostname: invalid option -- 'I'
+Try 'hostname --help' or 'hostname --usage' for more information.
+8.8.8.8 via 10.87.234.16 dev wlp2s0 src 10.87.234.198 uid 1000 
+    cache 
+java version "1.8.0_45"
+Java(TM) SE Runtime Environment (build 1.8.0_45-b14)
+Java HotSpot(TM) 64-Bit Server VM (build 25.45-b02, mixed mode)
+Hadoop 2.9.1
+Subversion https://github.com/apache/hadoop.git -r e30710aea4e6e55e69372929106cf119af06fd0e
+Compiled by root on 2018-04-16T09:33Z
+Compiled with protoc 2.5.0
+From source with checksum 7d6d2b655115c6cc336d662cc2b919bd
+This command was run using /home/naveen/hadoop-2.9.1/share/hadoop/common/hadoop-common-2.9.1.jar
+/home/naveen/hadoop-2.9.1
+/home/naveen/jdk-8u45-linux-x64/jdk1.8.0_45
+[naveen@archlinux ~]$ ip -4 addr show
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+2: wlp2s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    altname wlx141333054c1b
+    inet 10.87.234.198/24 brd 10.87.234.255 scope global dynamic noprefixroute wlp2s0
+       valid_lft 3444sec preferred_lft 3444sec
+[naveen@archlinux ~]$ ping -c 4 10.87.234.198
+PING 10.87.234.198 (10.87.234.198) 56(84) bytes of data.
+64 bytes from 10.87.234.198: icmp_seq=1 ttl=64 time=0.032 ms
+64 bytes from 10.87.234.198: icmp_seq=2 ttl=64 time=0.081 ms
+64 bytes from 10.87.234.198: icmp_seq=3 ttl=64 time=0.058 ms
+64 bytes from 10.87.234.198: icmp_seq=4 ttl=64 time=0.041 ms
+
+--- 10.87.234.198 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3057ms
+rtt min/avg/max/mdev = 0.032/0.053/0.081/0.018 ms
+[naveen@archlinux ~]$ ip -4 addr show
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+2: wlp2s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    altname wlx141333054c1b
+    inet 10.87.234.198/24 brd 10.87.234.255 scope global dynamic noprefixroute wlp2s0
+       valid_lft 3259sec preferred_lft 3259sec
+[naveen@archlinux ~]$ sudo systemctl enable --now sshd
+[sudo] password for naveen: 
+Sorry, try again.
+[sudo] password for naveen: 
+[naveen@archlinux ~]$ sudo systemctl status sshd
+● sshd.service - OpenSSH Daemon
+     Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; preset: disabled)
+     Active: active (running) since Sat 2026-11-14 20:52:36 IST; 2h 54min left
+ Invocation: 361cdf5aad5149e49cc765b8f263aba3
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+   Main PID: 731 (sshd)
+      Tasks: 1 (limit: 18285)
+     Memory: 1.8M (peak: 2.4M)
+        CPU: 10ms
+     CGroup: /system.slice/sshd.service
+             └─731 "sshd: /usr/bin/sshd -D [listener] 0 of 10-100 startups"
+
+Nov 14 20:52:35 archlinux systemd[1]: Starting OpenSSH Daemon...
+Nov 14 20:52:36 archlinux sshd[731]: Server listening on 0.0.0.0 port 22.
+Nov 14 20:52:36 archlinux sshd[731]: Server listening on :: port 22.
+Nov 14 20:52:36 archlinux systemd[1]: Started OpenSSH Daemon.
+[naveen@archlinux ~]$ ping -c 4 10.132.11.245
+PING 10.132.11.245 (10.132.11.245) 56(84) bytes of data.
+
+--- 10.132.11.245 ping statistics ---
+4 packets transmitted, 0 received, 100% packet loss, time 3078ms
+
+[naveen@archlinux ~]$ ip -4 -br addr
+lo               UNKNOWN        127.0.0.1/8 
+wlp2s0           UP             10.87.234.198/24 
+[naveen@archlinux ~]$ ip -4 addr show
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+2: wlp2s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    altname wlx141333054c1b
+    inet 10.87.234.198/24 brd 10.87.234.255 scope global dynamic noprefixroute wlp2s0
+       valid_lft 3506sec preferred_lft 3506sec
+[naveen@archlinux ~]$ ip route
+default via 10.87.234.16 dev wlp2s0 proto dhcp src 10.87.234.198 metric 600 
+10.87.234.0/24 dev wlp2s0 proto kernel scope link src 10.87.234.198 metric 600 
+[naveen@archlinux ~]$ ping -c 4 192.168.43.100
+PING 192.168.43.100 (192.168.43.100) 56(84) bytes of data.
+
+--- 192.168.43.100 ping statistics ---
+4 packets transmitted, 0 received, 100% packet loss, time 3082ms
+
+[naveen@archlinux ~]$ mkdir -p ~/cluster-reset-backup
+
+sudo cp -a /etc/hosts ~/cluster-reset-backup/hosts.backup
+sudo cp -a /etc/hostname ~/cluster-reset-backup/hostname.backup 2>/dev/null || true
+
+cp -a ~/.ssh ~/cluster-reset-backup/ssh.backup 2>/dev/null || true
+
+hostnamectl status
+[sudo] password for naveen: 
+  Static hostname: archlinux
+        Icon name: computer-laptop
+          Chassis: laptop 💻
+Chassis Asset Tag:  No  Asset  Tag
+       Machine ID: bfabb92a9aac4c38b5599735815dc7a1
+          Boot ID: f7482e852d8e4bcfa95c0c576e1cbe1e
+ Operating System: Arch Linux    
+           Kernel: Linux 7.2.15-arch1-1
+     Architecture: x86-64
+  Hardware Vendor: ASUSTeK COMPUTER INC.
+   Hardware Model: ROG Strix G713IC_G713IC
+ Hardware Version: 1.0
+ Firmware Version: G713IC.312
+    Firmware Date: Fri 2021-11-26
+     Firmware Age: 4y 11month 2w 4d                
+[naveen@archlinux ~]$ sudo nano /etc/hosts
+[naveen@archlinux ~]$ hostnamectl status
+  Static hostname: archlinux
+        Icon name: computer-laptop
+          Chassis: laptop 💻
+Chassis Asset Tag:  No  Asset  Tag
+       Machine ID: bfabb92a9aac4c38b5599735815dc7a1
+          Boot ID: f7482e852d8e4bcfa95c0c576e1cbe1e
+ Operating System: Arch Linux    
+           Kernel: Linux 7.2.15-arch1-1
+     Architecture: x86-64
+  Hardware Vendor: ASUSTeK COMPUTER INC.
+   Hardware Model: ROG Strix G713IC_G713IC
+ Hardware Version: 1.0
+ Firmware Version: G713IC.312
+    Firmware Date: Fri 2021-11-26
+     Firmware Age: 4y 11month 2w 4d                
+[naveen@archlinux ~]$ sudo nano /etc/hosts
+[naveen@archlinux ~]$ ls -la ~/.ssh
+cat ~/.ssh/config 2>/dev/null
+total 40
+drwx------  2 naveen naveen 4096 Nov 11 23:53 .
+drwx------ 21 naveen naveen 4096 Nov 14 18:09 ..
+-rw-------  1 naveen naveen 1140 Nov 11 22:26 authorized_keys
+-rw-------  1 naveen naveen  411 Nov 11 23:52 id_ed25519
+-rw-r--r--  1 naveen naveen   98 Nov 11 23:52 id_ed25519.pub
+-rw-------  1 naveen naveen 2602 Nov 11 22:25 id_rsa
+-rw-r--r--  1 naveen naveen  570 Nov 11 22:25 id_rsa.pub
+-rw-------  1 naveen naveen 5562 Nov 11 23:53 known_hosts
+-rw-------  1 naveen naveen 2867 Nov 11 23:40 known_hosts.old
+[naveen@archlinux ~]$ ls -l ~/.ssh/config
+ls: cannot access '/home/naveen/.ssh/config': No such file or directory
+[naveen@archlinux ~]$ ssh-keygen -lf ~/.ssh/authorized_keys
+3072 SHA256:+Ae4mjs8LQ02sGtemtyKQJZt+wnjq6zVDhJPxrHkM4A naveen@archlinux (RSA)
+3072 SHA256:xyWtCVWAk+KVNoVOhwf1bZByvWfJ+FrgQis4feVA4gA naveen@archlinux (RSA)
+[naveen@archlinux ~]$ ssh-keygen -lf ~/.ssh/id_ed25519.pub
+256 SHA256:ZyHqyGtgvtXOwM3H8nH7dE3lTJQntBRd6Q6aSK5phH4 naveen@archlinux (ED25519)
+[naveen@archlinux ~]$ V
+bash: V: command not found
+[naveen@archlinux ~]$ ssh-keygen -lf ~/.ssh/id_rsa.pub
+3072 SHA256:xyWtCVWAk+KVNoVOhwf1bZByvWfJ+FrgQis4feVA4gA naveen@archlinux (RSA)
+[naveen@archlinux ~]$ cat /etc/hosts
+# Static table lookup for hostnames.
+# See hosts(5) for details.
+127.0.0.1        localhost
+::1              localhost
+172.31.118.145 archlinux
+172.31.76.25 DHANDEPATIL
+172.31.111.173 DHANDEPATIL
+[naveen@archlinux ~]$ sudo systemctl status sshd
+● sshd.service - OpenSSH Daemon
+     Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; preset: disabled)
+     Active: active (running) since Sat 2026-11-14 20:52:36 IST; 2h 38min left
+ Invocation: 361cdf5aad5149e49cc765b8f263aba3
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+   Main PID: 731 (sshd)
+      Tasks: 1 (limit: 18285)
+     Memory: 1.8M (peak: 2.4M)
+        CPU: 10ms
+     CGroup: /system.slice/sshd.service
+             └─731 "sshd: /usr/bin/sshd -D [listener] 0 of 10-100 startups"
+
+Nov 14 20:52:35 archlinux systemd[1]: Starting OpenSSH Daemon...
+Nov 14 20:52:36 archlinux sshd[731]: Server listening on 0.0.0.0 port 22.
+Nov 14 20:52:36 archlinux sshd[731]: Server listening on :: port 22.
+Nov 14 20:52:36 archlinux systemd[1]: Started OpenSSH Daemon.
+[naveen@archlinux ~]$ sudo nano /etc/hosts
+[sudo] password for naveen: 
+[naveen@archlinux ~]$ cat /etc/hosts
+hostname
+# Static table lookup for hostnames.
+# See hosts(5) for details.
+127.0.0.1        localhost
+::1              localhost
+172.31.118.145 archlinux
+172.31.76.25 DHANDEPATIL
+172.31.111.173 DHANDEPATIL
+archlinux
+[naveen@archlinux ~]$ hostname
+whoami
+ip -4 -br addr
+ip route get 1.1.1.1
+archlinux
+naveen
+lo               UNKNOWN        127.0.0.1/8 
+wlp2s0           UP             10.87.234.198/24 
+1.1.1.1 via 10.87.234.16 dev wlp2s0 src 10.87.234.198 uid 1000 
+    cache 
+[naveen@archlinux ~]$ sudo pacman -S --needed openssh
+warning: openssh-10.6p1-3 is up to date -- skipping
+ there is nothing to do
+[naveen@archlinux ~]$ sudo systemctl enable --now sshd
+[naveen@archlinux ~]$ sudo systemctl is-active sshd^C
+[naveen@archlinux ~]$ ^[[200~sudo systemctl is-active sshd~
+bash: $'\E[200~sudo': command not found
+[naveen@archlinux ~]$ sudo systemctl is-active sshd
+active
+[naveen@archlinux ~]$ ping -c 4 172.31.87.3
+PING 172.31.87.3 (172.31.87.3) 56(84) bytes of data.
+
+--- 172.31.87.3 ping statistics ---
+4 packets transmitted, 0 received, 100% packet loss, time 3086ms
+
+[naveen@archlinux ~]$ ip -4 -br addr
+lo               UNKNOWN        127.0.0.1/8 
+wlp2s0           UP             10.87.234.198/24 
+[naveen@archlinux ~]$ ip route
+default via 10.87.234.16 dev wlp2s0 proto dhcp src 10.87.234.198 metric 600 
+10.87.234.0/24 dev wlp2s0 proto kernel scope link src 10.87.234.198 metric 600 
+[naveen@archlinux ~]$ V
+bash: V: command not found
+[naveen@archlinux ~]$ ip route get 10.87.234.198
+local 10.87.234.198 dev lo src 10.87.234.198 uid 1000 
+    cache <local> 
+[naveen@archlinux ~]$ nmcli connection show --active
+NAME                    UUID                                  TYPE      DEVICE 
+Dyson Sphere Tutorial   85adaa5d-6df8-4bf8-9a35-710e15e0ab32  wifi      wlp2s0 
+lo                      1aafe971-7c47-457d-9f76-afb50b893f09  loopback  lo     
+[naveen@archlinux ~]$ ip route
+default via 10.87.234.16 dev wlp2s0 proto dhcp src 10.87.234.198 metric 600 
+10.87.234.0/24 dev wlp2s0 proto kernel scope link src 10.87.234.198 metric 600 
+[naveen@archlinux ~]$ ping -c 4 10.87.234.87
+PING 10.87.234.87 (10.87.234.87) 56(84) bytes of data.
+64 bytes from 10.87.234.87: icmp_seq=1 ttl=64 time=99.8 ms
+64 bytes from 10.87.234.87: icmp_seq=2 ttl=64 time=67.1 ms
+64 bytes from 10.87.234.87: icmp_seq=3 ttl=64 time=27.6 ms
+64 bytes from 10.87.234.87: icmp_seq=4 ttl=64 time=29.1 ms
+
+--- 10.87.234.87 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3007ms
+rtt min/avg/max/mdev = 27.632/55.895/99.819/29.885 ms
+[naveen@archlinux ~]$ sudo systemctl is-active sshd
+[sudo] password for naveen: 
+active
+[naveen@archlinux ~]$ ssh om@10.87.234.87
+
+ssh: connect to host 10.87.234.87 port 22: Connection timed out
+[naveen@archlinux ~]$ 
+[naveen@archlinux ~]$ ssh om@10.87.234.87
+^C
+[naveen@archlinux ~]$ sudo pacman -S --needed openbsd-netcat
+[sudo] password for naveen: 
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) openbsd-netcat-1.239_1-1
+
+Total Download Size:   0.02 MiB
+Total Installed Size:  0.05 MiB
+
+:: Proceed with installation? [Y/n] y
+:: Retrieving packages...
+ openbsd-netcat-1.239_1-1-x86_64                                                                     25.5 KiB  14.9 KiB/s 00:02 [#############################################################################] 100%
+(1/1) checking keys in keyring                                                                                                  [#############################################################################] 100%
+(1/1) checking package integrity                                                                                                [#############################################################################] 100%
+(1/1) loading package files                                                                                                     [#############################################################################] 100%
+(1/1) checking for file conflicts                                                                                               [#############################################################################] 100%
+(1/1) checking available disk space                                                                                             [#############################################################################] 100%
+:: Processing package changes...
+(1/1) installing openbsd-netcat                                                                                                 [#############################################################################] 100%
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+[naveen@archlinux ~]$ nc -vz -w 5 10.87.234.87 22
+nc: connect to 10.87.234.87 port 22 (tcp) timed out: Operation now in progress
+[naveen@archlinux ~]$ nc -vz -w 5 10.87.234.87 22
+Connection to 10.87.234.87 22 port [tcp/ssh] succeeded!
+[naveen@archlinux ~]$ ssh om@10.87.234.87
+The authenticity of host '10.87.234.87 (10.87.234.87)' can't be established.
+ED25519 key fingerprint is: SHA256:lTEs5ZQ3qB2WdVYwENCsWfqiJ475S/FNTGvsjbH/u1A
+This host key is known by the following other names/addresses:
+    ~/.ssh/known_hosts:6: 172.31.76.25
+    ~/.ssh/known_hosts:10: dhandepatil
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '10.87.234.87' (ED25519) to the list of known hosts.
+om@10.87.234.87's password: 
+(base) [om@DHANDEPATIL ~]$ hostname
+DHANDEPATIL
+(base) [om@DHANDEPATIL ~]$ whoami
+om
+(base) [om@DHANDEPATIL ~]$ exit 
+logout
+Connection to 10.87.234.87 closed.
+[naveen@archlinux ~]$ hostname
+whoami
+hostnamectl status
+archlinux
+naveen
+  Static hostname: archlinux
+        Icon name: computer-laptop
+          Chassis: laptop 💻
+Chassis Asset Tag:  No  Asset  Tag
+       Machine ID: bfabb92a9aac4c38b5599735815dc7a1
+          Boot ID: f7482e852d8e4bcfa95c0c576e1cbe1e
+ Operating System: Arch Linux    
+           Kernel: Linux 7.2.15-arch1-1
+     Architecture: x86-64
+  Hardware Vendor: ASUSTeK COMPUTER INC.
+   Hardware Model: ROG Strix G713IC_G713IC
+ Hardware Version: 1.0
+ Firmware Version: G713IC.312
+    Firmware Date: Fri 2021-11-26
+     Firmware Age: 4y 11month 2w 4d                
+[naveen@archlinux ~]$ V
+bash: V: command not found
+[naveen@archlinux ~]$ ip -4 -br addr
+lo               UNKNOWN        127.0.0.1/8 
+wlp2s0           UP             10.87.234.198/24 
+[naveen@archlinux ~]$ ip route
+default via 10.87.234.16 dev wlp2s0 proto dhcp src 10.87.234.198 metric 600 
+10.87.234.0/24 dev wlp2s0 proto kernel scope link src 10.87.234.198 metric 600 
+[naveen@archlinux ~]$ ip route get 1.1.1.1
+1.1.1.1 via 10.87.234.16 dev wlp2s0 src 10.87.234.198 uid 1000 
+    cache 
+[naveen@archlinux ~]$ sudo systemctl status sshd
+[sudo] password for naveen: 
+● sshd.service - OpenSSH Daemon
+     Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; preset: disabled)
+     Active: active (running) since Sat 2026-11-14 20:52:36 IST; 2h 3min left
+ Invocation: 361cdf5aad5149e49cc765b8f263aba3
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+   Main PID: 731 (sshd)
+      Tasks: 1 (limit: 18285)
+     Memory: 1.8M (peak: 2.4M)
+        CPU: 10ms
+     CGroup: /system.slice/sshd.service
+             └─731 "sshd: /usr/bin/sshd -D [listener] 0 of 10-100 startups"
+
+Nov 14 20:52:35 archlinux systemd[1]: Starting OpenSSH Daemon...
+Nov 14 20:52:36 archlinux sshd[731]: Server listening on 0.0.0.0 port 22.
+Nov 14 20:52:36 archlinux sshd[731]: Server listening on :: port 22.
+Nov 14 20:52:36 archlinux systemd[1]: Started OpenSSH Daemon.
+[naveen@archlinux ~]$ sudo ss -ltnp | grep ':22'
+LISTEN 0      128          0.0.0.0:22        0.0.0.0:*    users:(("sshd",pid=731,fd=6))
+LISTEN 0      128             [::]:22           [::]:*    users:(("sshd",pid=731,fd=7))
+[naveen@archlinux ~]$ java -version
+java version "1.8.0_45"
+Java(TM) SE Runtime Environment (build 1.8.0_45-b14)
+Java HotSpot(TM) 64-Bit Server VM (build 25.45-b02, mixed mode)
+[naveen@archlinux ~]$ readlink -f "$(which java)"
+/home/naveen/jdk-8u45-linux-x64/jdk1.8.0_45/bin/java
+[naveen@archlinux ~]$ V
+bash: V: command not found
+[naveen@archlinux ~]$ V
+bash: V: command not found
+[naveen@archlinux ~]$ echo $JAVA_HOME
+/home/naveen/jdk-8u45-linux-x64/jdk1.8.0_45
+[naveen@archlinux ~]$ ls -ld /home/naveen/hadoop-2.9.1
+drwxr-xr-x 10 naveen naveen 4096 Nov 11 22:35 /home/naveen/hadoop-2.9.1
+[naveen@archlinux ~]$ /home/naveen/hadoop-2.9.1/bin/hadoop version
+Hadoop 2.9.1
+Subversion https://github.com/apache/hadoop.git -r e30710aea4e6e55e69372929106cf119af06fd0e
+Compiled by root on 2018-04-16T09:33Z
+Compiled with protoc 2.5.0
+From source with checksum 7d6d2b655115c6cc336d662cc2b919bd
+This command was run using /home/naveen/hadoop-2.9.1/share/hadoop/common/hadoop-common-2.9.1.jar
+[naveen@archlinux ~]$ echo $HADOOP_HOME
+/home/naveen/hadoop-2.9.1
+[naveen@archlinux ~]$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+dev             7.5G     0  7.5G   0% /dev
+run             7.6G  1.6M  7.6G   1% /run
+efivarfs        128K   43K   81K  35% /sys/firmware/efi/efivars
+/dev/nvme0n1p8   59G   17G   40G  30% /
+tmpfs           7.6G     0  7.6G   0% /dev/shm
+none            1.0M     0  1.0M   0% /run/credentials/systemd-journald.service
+tmpfs           7.6G   82M  7.5G   2% /tmp
+/dev/nvme0n1p1  256M  220M   37M  86% /boot
+tmpfs           1.6G  108K  1.6G   1% /run/user/1000
+[naveen@archlinux ~]$ sudo nft list ruleset
+# Warning: table ip filter is managed by iptables-nft, do not touch!
+table ip filter {
+	chain ufw-before-logging-input {
+	}
+
+	chain ufw-before-logging-output {
+	}
+
+	chain ufw-before-logging-forward {
+	}
+
+	chain ufw-before-input {
+		iifname "lo" counter packets 11755 bytes 919669 accept
+		xt match "conntrack" counter packets 159755 bytes 183843494 accept
+		xt match "conntrack" counter packets 3 bytes 168 jump ufw-logging-deny
+		xt match "conntrack" counter packets 3 bytes 168 drop
+		ip protocol icmp xt match "icmp" counter packets 0 bytes 0 accept
+		ip protocol icmp xt match "icmp" counter packets 0 bytes 0 accept
+		ip protocol icmp xt match "icmp" counter packets 0 bytes 0 accept
+		ip protocol icmp xt match "icmp" counter packets 1 bytes 84 accept
+		udp sport 67 udp dport 68 counter packets 1 bytes 348 accept
+		counter packets 303 bytes 83073 jump ufw-not-local
+		ip daddr 224.0.0.251 udp dport 5353 counter packets 62 bytes 5288 accept
+		ip daddr 239.255.255.250 udp dport 1900 counter packets 190 bytes 38000 accept
+		counter packets 51 bytes 39785 jump ufw-user-input
+	}
+
+	chain ufw-before-output {
+		oifname "lo" counter packets 11755 bytes 919669 accept
+		xt match "conntrack" counter packets 49585 bytes 14303078 accept
+		counter packets 3145 bytes 1125218 jump ufw-user-output
+	}
+
+	chain ufw-before-forward {
+		xt match "conntrack" counter packets 0 bytes 0 accept
+		ip protocol icmp xt match "icmp" counter packets 0 bytes 0 accept
+		ip protocol icmp xt match "icmp" counter packets 0 bytes 0 accept
+		ip protocol icmp xt match "icmp" counter packets 0 bytes 0 accept
+		ip protocol icmp xt match "icmp" counter packets 0 bytes 0 accept
+		counter packets 0 bytes 0 jump ufw-user-forward
+	}
+
+	chain ufw-after-input {
+		udp dport 137 counter packets 0 bytes 0 jump ufw-skip-to-policy-input
+		udp dport 138 counter packets 0 bytes 0 jump ufw-skip-to-policy-input
+		tcp dport 139 counter packets 0 bytes 0 jump ufw-skip-to-policy-input
+		tcp dport 445 counter packets 0 bytes 0 jump ufw-skip-to-policy-input
+		udp dport 67 counter packets 6 bytes 1943 jump ufw-skip-to-policy-input
+		udp dport 68 counter packets 0 bytes 0 jump ufw-skip-to-policy-input
+		xt match "addrtype" counter packets 0 bytes 0 jump ufw-skip-to-policy-input
+	}
+
+	chain ufw-after-output {
+	}
+
+	chain ufw-after-forward {
+	}
+
+	chain ufw-after-logging-input {
+		limit rate 3/minute burst 10 packets counter packets 38 bytes 32032 xt target "LOG"
+	}
+
+	chain ufw-after-logging-output {
+	}
+
+	chain ufw-after-logging-forward {
+		limit rate 3/minute burst 10 packets counter packets 0 bytes 0 xt target "LOG"
+	}
+
+	chain ufw-reject-input {
+	}
+
+	chain ufw-reject-output {
+	}
+
+	chain ufw-reject-forward {
+	}
+
+	chain ufw-track-input {
+	}
+
+	chain ufw-track-output {
+		ip protocol tcp xt match "conntrack" counter packets 574 bytes 34960 accept
+		ip protocol udp xt match "conntrack" counter packets 2529 bytes 1087842 accept
+	}
+
+	chain ufw-track-forward {
+	}
+
+	chain INPUT {
+		type filter hook input priority filter; policy drop;
+		counter packets 171818 bytes 184846836 jump ufw-before-logging-input
+		counter packets 171818 bytes 184846836 jump ufw-before-input
+		counter packets 51 bytes 39785 jump ufw-after-input
+		counter packets 45 bytes 37842 jump ufw-after-logging-input
+		counter packets 45 bytes 37842 jump ufw-reject-input
+		counter packets 45 bytes 37842 jump ufw-track-input
+	}
+
+	chain OUTPUT {
+		type filter hook output priority filter; policy accept;
+		counter packets 64485 bytes 16347965 jump ufw-before-logging-output
+		counter packets 64485 bytes 16347965 jump ufw-before-output
+		counter packets 3145 bytes 1125218 jump ufw-after-output
+		counter packets 3145 bytes 1125218 jump ufw-after-logging-output
+		counter packets 3145 bytes 1125218 jump ufw-reject-output
+		counter packets 3145 bytes 1125218 jump ufw-track-output
+	}
+
+	chain FORWARD {
+		type filter hook forward priority filter; policy drop;
+		counter packets 0 bytes 0 jump ufw-before-logging-forward
+		counter packets 0 bytes 0 jump ufw-before-forward
+		counter packets 0 bytes 0 jump ufw-after-forward
+		counter packets 0 bytes 0 jump ufw-after-logging-forward
+		counter packets 0 bytes 0 jump ufw-reject-forward
+		counter packets 0 bytes 0 jump ufw-track-forward
+	}
+
+	chain ufw-logging-deny {
+		xt match "conntrack" limit rate 3/minute burst 10 packets counter packets 3 bytes 168 return
+		limit rate 3/minute burst 10 packets counter packets 0 bytes 0 xt target "LOG"
+	}
+
+	chain ufw-logging-allow {
+		limit rate 3/minute burst 10 packets counter packets 0 bytes 0 xt target "LOG"
+	}
+
+	chain ufw-skip-to-policy-input {
+		counter packets 6 bytes 1943 drop
+	}
+
+	chain ufw-skip-to-policy-output {
+		counter packets 0 bytes 0 accept
+	}
+
+	chain ufw-skip-to-policy-forward {
+		counter packets 0 bytes 0 drop
+	}
+
+	chain ufw-not-local {
+		xt match "addrtype" counter packets 2 bytes 2152 return
+		xt match "addrtype" counter packets 295 bytes 78978 return
+		xt match "addrtype" counter packets 6 bytes 1943 return
+		limit rate 3/minute burst 10 packets counter packets 0 bytes 0 jump ufw-logging-deny
+		counter packets 0 bytes 0 drop
+	}
+
+	chain ufw-user-input {
+		ip saddr 172.31.76.25 tcp dport 22 counter packets 0 bytes 0 accept
+		ip saddr 172.31.111.173 tcp dport 22 counter packets 0 bytes 0 accept
+	}
+
+	chain ufw-user-output {
+	}
+
+	chain ufw-user-forward {
+	}
+
+	chain ufw-user-logging-input {
+	}
+
+	chain ufw-user-logging-output {
+	}
+
+	chain ufw-user-logging-forward {
+	}
+
+	chain ufw-user-limit {
+		limit rate 3/minute burst 5 packets counter packets 0 bytes 0 xt target "LOG"
+		counter packets 0 bytes 0 xt target "REJECT"
+	}
+
+	chain ufw-user-limit-accept {
+		counter packets 0 bytes 0 accept
+	}
+}
+# Warning: table ip6 filter is managed by iptables-nft, do not touch!
+table ip6 filter {
+	chain ufw6-before-logging-input {
+	}
+
+	chain ufw6-before-logging-output {
+	}
+
+	chain ufw6-before-logging-forward {
+	}
+
+	chain ufw6-before-input {
+		iifname "lo" counter packets 20 bytes 1400 accept
+		xt match "rt" counter packets 0 bytes 0 drop
+		xt match "conntrack" counter packets 119070 bytes 155640241 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		xt match "conntrack" counter packets 0 bytes 0 jump ufw6-logging-deny
+		xt match "conntrack" counter packets 0 bytes 0 drop
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 10 bytes 1280 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 51 bytes 3672 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 5 bytes 336 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 ip6 daddr fe80::/10 udp sport 547 udp dport 546 counter packets 0 bytes 0 accept
+		ip6 daddr ff02::fb udp dport 5353 counter packets 0 bytes 0 accept
+		ip6 daddr ff02::f udp dport 1900 counter packets 0 bytes 0 accept
+		counter packets 13 bytes 11050 jump ufw6-user-input
+	}
+
+	chain ufw6-before-output {
+		oifname "lo" counter packets 20 bytes 1400 accept
+		xt match "rt" counter packets 0 bytes 0 drop
+		xt match "conntrack" counter packets 74410 bytes 13437853 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 18 bytes 864 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 51 bytes 3272 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 10 bytes 720 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 meta l4proto ipv6-icmp xt match "icmp6" counter packets 33 bytes 3408 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		ip6 saddr fe80::/10 meta l4proto ipv6-icmp xt match "icmp6" xt match "hl" counter packets 0 bytes 0 accept
+		counter packets 718 bytes 546916 jump ufw6-user-output
+	}
+
+	chain ufw6-before-forward {
+		xt match "rt" counter packets 0 bytes 0 drop
+		xt match "conntrack" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		meta l4proto ipv6-icmp xt match "icmp6" counter packets 0 bytes 0 accept
+		counter packets 0 bytes 0 jump ufw6-user-forward
+	}
+
+	chain ufw6-after-input {
+		udp dport 137 counter packets 0 bytes 0 jump ufw6-skip-to-policy-input
+		udp dport 138 counter packets 0 bytes 0 jump ufw6-skip-to-policy-input
+		tcp dport 139 counter packets 0 bytes 0 jump ufw6-skip-to-policy-input
+		tcp dport 445 counter packets 0 bytes 0 jump ufw6-skip-to-policy-input
+		udp dport 546 counter packets 0 bytes 0 jump ufw6-skip-to-policy-input
+		udp dport 547 counter packets 0 bytes 0 jump ufw6-skip-to-policy-input
+	}
+
+	chain ufw6-after-output {
+	}
+
+	chain ufw6-after-forward {
+	}
+
+	chain ufw6-after-logging-input {
+	}
+
+	chain ufw6-after-logging-output {
+	}
+
+	chain ufw6-after-logging-forward {
+	}
+
+	chain ufw6-reject-input {
+	}
+
+	chain ufw6-reject-output {
+	}
+
+	chain ufw6-reject-forward {
+	}
+
+	chain ufw6-track-input {
+	}
+
+	chain ufw6-track-output {
+		meta l4proto tcp xt match "conntrack" counter packets 146 bytes 11680 accept
+		meta l4proto udp xt match "conntrack" counter packets 562 bytes 534276 accept
+	}
+
+	chain ufw6-track-forward {
+	}
+
+	chain INPUT {
+		type filter hook input priority filter; policy drop;
+		counter packets 119169 bytes 155657979 jump ufw6-before-logging-input
+		counter packets 119169 bytes 155657979 jump ufw6-before-input
+		counter packets 13 bytes 11050 jump ufw6-after-input
+		counter packets 13 bytes 11050 jump ufw6-after-logging-input
+		counter packets 13 bytes 11050 jump ufw6-reject-input
+		counter packets 13 bytes 11050 jump ufw6-track-input
+	}
+
+	chain OUTPUT {
+		type filter hook output priority filter; policy accept;
+		counter packets 75260 bytes 13994433 jump ufw6-before-logging-output
+		counter packets 75260 bytes 13994433 jump ufw6-before-output
+		counter packets 718 bytes 546916 jump ufw6-after-output
+		counter packets 718 bytes 546916 jump ufw6-after-logging-output
+		counter packets 718 bytes 546916 jump ufw6-reject-output
+		counter packets 718 bytes 546916 jump ufw6-track-output
+	}
+
+	chain FORWARD {
+		type filter hook forward priority filter; policy drop;
+		counter packets 0 bytes 0 jump ufw6-before-logging-forward
+		counter packets 0 bytes 0 jump ufw6-before-forward
+		counter packets 0 bytes 0 jump ufw6-after-forward
+		counter packets 0 bytes 0 jump ufw6-after-logging-forward
+		counter packets 0 bytes 0 jump ufw6-reject-forward
+		counter packets 0 bytes 0 jump ufw6-track-forward
+	}
+
+	chain ufw6-logging-deny {
+	}
+
+	chain ufw6-logging-allow {
+	}
+
+	chain ufw6-skip-to-policy-input {
+		counter packets 0 bytes 0 drop
+	}
+
+	chain ufw6-skip-to-policy-output {
+		counter packets 0 bytes 0 accept
+	}
+
+	chain ufw6-skip-to-policy-forward {
+		counter packets 0 bytes 0 drop
+	}
+
+	chain ufw6-user-input {
+	}
+
+	chain ufw6-user-output {
+	}
+
+	chain ufw6-user-forward {
+	}
+
+	chain ufw6-user-logging-input {
+	}
+
+	chain ufw6-user-logging-output {
+	}
+
+	chain ufw6-user-logging-forward {
+	}
+
+	chain ufw6-user-limit {
+	}
+
+	chain ufw6-user-limit-accept {
+	}
+}
+[naveen@archlinux ~]$ sudo iptables -S
+-P INPUT DROP
+-P FORWARD DROP
+-P OUTPUT ACCEPT
+-N ufw-after-forward
+-N ufw-after-input
+-N ufw-after-logging-forward
+-N ufw-after-logging-input
+-N ufw-after-logging-output
+-N ufw-after-output
+-N ufw-before-forward
+-N ufw-before-input
+-N ufw-before-logging-forward
+-N ufw-before-logging-input
+-N ufw-before-logging-output
+-N ufw-before-output
+-N ufw-logging-allow
+-N ufw-logging-deny
+-N ufw-not-local
+-N ufw-reject-forward
+-N ufw-reject-input
+-N ufw-reject-output
+-N ufw-skip-to-policy-forward
+-N ufw-skip-to-policy-input
+-N ufw-skip-to-policy-output
+-N ufw-track-forward
+-N ufw-track-input
+-N ufw-track-output
+-N ufw-user-forward
+-N ufw-user-input
+-N ufw-user-limit
+-N ufw-user-limit-accept
+-N ufw-user-logging-forward
+-N ufw-user-logging-input
+-N ufw-user-logging-output
+-N ufw-user-output
+-A INPUT -j ufw-before-logging-input
+-A INPUT -j ufw-before-input
+-A INPUT -j ufw-after-input
+-A INPUT -j ufw-after-logging-input
+-A INPUT -j ufw-reject-input
+-A INPUT -j ufw-track-input
+-A FORWARD -j ufw-before-logging-forward
+-A FORWARD -j ufw-before-forward
+-A FORWARD -j ufw-after-forward
+-A FORWARD -j ufw-after-logging-forward
+-A FORWARD -j ufw-reject-forward
+-A FORWARD -j ufw-track-forward
+-A OUTPUT -j ufw-before-logging-output
+-A OUTPUT -j ufw-before-output
+-A OUTPUT -j ufw-after-output
+-A OUTPUT -j ufw-after-logging-output
+-A OUTPUT -j ufw-reject-output
+-A OUTPUT -j ufw-track-output
+-A ufw-after-input -p udp -m udp --dport 137 -j ufw-skip-to-policy-input
+-A ufw-after-input -p udp -m udp --dport 138 -j ufw-skip-to-policy-input
+-A ufw-after-input -p tcp -m tcp --dport 139 -j ufw-skip-to-policy-input
+-A ufw-after-input -p tcp -m tcp --dport 445 -j ufw-skip-to-policy-input
+-A ufw-after-input -p udp -m udp --dport 67 -j ufw-skip-to-policy-input
+-A ufw-after-input -p udp -m udp --dport 68 -j ufw-skip-to-policy-input
+-A ufw-after-input -m addrtype --dst-type BROADCAST -j ufw-skip-to-policy-input
+-A ufw-after-logging-forward -m limit --limit 3/min --limit-burst 10 -j LOG --log-prefix "[UFW BLOCK] "
+-A ufw-after-logging-input -m limit --limit 3/min --limit-burst 10 -j LOG --log-prefix "[UFW BLOCK] "
+-A ufw-before-forward -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A ufw-before-forward -p icmp -m icmp --icmp-type 3 -j ACCEPT
+-A ufw-before-forward -p icmp -m icmp --icmp-type 11 -j ACCEPT
+-A ufw-before-forward -p icmp -m icmp --icmp-type 12 -j ACCEPT
+-A ufw-before-forward -p icmp -m icmp --icmp-type 8 -j ACCEPT
+-A ufw-before-forward -j ufw-user-forward
+-A ufw-before-input -i lo -j ACCEPT
+-A ufw-before-input -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A ufw-before-input -m conntrack --ctstate INVALID -j ufw-logging-deny
+-A ufw-before-input -m conntrack --ctstate INVALID -j DROP
+-A ufw-before-input -p icmp -m icmp --icmp-type 3 -j ACCEPT
+-A ufw-before-input -p icmp -m icmp --icmp-type 11 -j ACCEPT
+-A ufw-before-input -p icmp -m icmp --icmp-type 12 -j ACCEPT
+-A ufw-before-input -p icmp -m icmp --icmp-type 8 -j ACCEPT
+-A ufw-before-input -p udp -m udp --sport 67 --dport 68 -j ACCEPT
+-A ufw-before-input -j ufw-not-local
+-A ufw-before-input -d 224.0.0.251/32 -p udp -m udp --dport 5353 -j ACCEPT
+-A ufw-before-input -d 239.255.255.250/32 -p udp -m udp --dport 1900 -j ACCEPT
+-A ufw-before-input -j ufw-user-input
+-A ufw-before-output -o lo -j ACCEPT
+-A ufw-before-output -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A ufw-before-output -j ufw-user-output
+-A ufw-logging-allow -m limit --limit 3/min --limit-burst 10 -j LOG --log-prefix "[UFW ALLOW] "
+-A ufw-logging-deny -m conntrack --ctstate INVALID -m limit --limit 3/min --limit-burst 10 -j RETURN
+-A ufw-logging-deny -m limit --limit 3/min --limit-burst 10 -j LOG --log-prefix "[UFW BLOCK] "
+-A ufw-not-local -m addrtype --dst-type LOCAL -j RETURN
+-A ufw-not-local -m addrtype --dst-type MULTICAST -j RETURN
+-A ufw-not-local -m addrtype --dst-type BROADCAST -j RETURN
+-A ufw-not-local -m limit --limit 3/min --limit-burst 10 -j ufw-logging-deny
+-A ufw-not-local -j DROP
+-A ufw-skip-to-policy-forward -j DROP
+-A ufw-skip-to-policy-input -j DROP
+-A ufw-skip-to-policy-output -j ACCEPT
+-A ufw-track-output -p tcp -m conntrack --ctstate NEW -j ACCEPT
+-A ufw-track-output -p udp -m conntrack --ctstate NEW -j ACCEPT
+-A ufw-user-input -s 172.31.76.25/32 -p tcp -m tcp --dport 22 -j ACCEPT
+-A ufw-user-input -s 172.31.111.173/32 -p tcp -m tcp --dport 22 -j ACCEPT
+-A ufw-user-limit -m limit --limit 3/min -j LOG --log-prefix "[UFW LIMIT BLOCK] "
+-A ufw-user-limit -j REJECT --reject-with icmp-port-unreachable
+-A ufw-user-limit-accept -j ACCEPT
+[naveen@archlinux ~]$ ssh om@10.87.234.88
+The authenticity of host '10.87.234.88 (10.87.234.88)' can't be established.
+ED25519 key fingerprint is: SHA256:lTEs5ZQ3qB2WdVYwENCsWfqiJ475S/FNTGvsjbH/u1A
+This host key is known by the following other names/addresses:
+    ~/.ssh/known_hosts:6: 172.31.76.25
+    ~/.ssh/known_hosts:10: dhandepatil
+    ~/.ssh/known_hosts:11: 10.87.234.87
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes 
+Warning: Permanently added '10.87.234.88' (ED25519) to the list of known hosts.
+om@10.87.234.88's password: 
+(base) [om@DHANDEPATIL ~]$ getent hosts archlinux
+getent hosts DHANDEPATIL
+172.31.118.145  archlinux
+172.31.76.25    DHANDEPATIL
+172.31.111.173  DHANDEPATIL
+(base) [om@DHANDEPATIL ~]$ exit
+logout
+Connection to 10.87.234.88 closed.
+[naveen@archlinux ~]$ cd ~/hadoop-2.9.1
+
+echo "===== HOSTNAME ====="
+hostname
+
+echo "===== JAVA VERSION ====="
+java -version
+
+echo "===== HADOOP VERSION ====="
+bin/hadoop version
+
+echo "===== HADOOP CONFIGURATION ====="
+for f in core-site.xml hdfs-site.xml mapred-site.xml yarn-site.xml hadoop-env.sh workers slaves; do
+    if [ -f "etc/hadoop/$f" ]; then
+        echo "===== $f ====="
+        cat "etc/hadoop/$f"
+    fi
+done
+
+echo "===== HDFS DATA DIRECTORIES ====="
+find ~/hadoop-2.9.1 -maxdepth 5 -type d \( -name current -o -name name -o -name data \) 2>/dev/null
+
+echo "===== HDFS CONFIGURED ADDRESS ====="
+bin/hdfs getconf -confKey fs.defaultFS
+===== HOSTNAME =====
+archlinux
+===== JAVA VERSION =====
+java version "1.8.0_45"
+Java(TM) SE Runtime Environment (build 1.8.0_45-b14)
+Java HotSpot(TM) 64-Bit Server VM (build 25.45-b02, mixed mode)
+===== HADOOP VERSION =====
+Hadoop 2.9.1
+Subversion https://github.com/apache/hadoop.git -r e30710aea4e6e55e69372929106cf119af06fd0e
+Compiled by root on 2018-04-16T09:33Z
+Compiled with protoc 2.5.0
+From source with checksum 7d6d2b655115c6cc336d662cc2b919bd
+This command was run using /home/naveen/hadoop-2.9.1/share/hadoop/common/hadoop-common-2.9.1.jar
+===== HADOOP CONFIGURATION =====
+===== core-site.xml =====
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+<property>
+<name>fs.default.name</name>
+<value>hdfs://localhost:50000</value>
+</property>
+</configuration>
+===== hdfs-site.xml =====
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+<property>
+<name>dfs.namenode.name.dir</name>
+<value>/home/naveen/hadoop2-dir/namenode-dir</value>
+</property>
+<property>
+<name>dfs.datanode.data.dir</name>
+<value>/home/naveen/hadoop2-dir/datanode-dir</value>
+</property>
+</configuration>
+===== mapred-site.xml =====
+<configuration>
+<property>
+<name>mapreduce.framework.name</name>
+<value>yarn</value>
+</property>
+</configuration>
+===== yarn-site.xml =====
+<?xml version="1.0"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+<configuration>
+<property>
+<name>yarn.nodemanager.aux-services</name> <value>mapreduce_shuffle</value>
+</property>
+<property>
+<name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name> <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+</property>
+<property>
+<description>The hostname of the RM.</description>
+<name>yarn.resourcemanager.hostname</name>
+<value>localhost</value>
+</property>
+<property>
+<description>The address of the applications manager interface in the RM.</description>
+<name>yarn.resourcemanager.address</name>
+<value>{yarn.resourcemanager.hostname}:8032</value>
+</property>
+</configuration>
+===== hadoop-env.sh =====
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+export JAVA_HOME=/home/naveen/jdk-8u45-linux-x64/jdk1.8.0_45
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Set Hadoop-specific environment variables here.
+
+# The only required environment variable is JAVA_HOME.  All others are
+# optional.  When running a distributed configuration it is best to
+# set JAVA_HOME in this file, so that it is correctly defined on
+# remote nodes.
+
+# The java implementation to use.
+export JAVA_HOME=${JAVA_HOME}
+
+# The jsvc implementation to use. Jsvc is required to run secure datanodes
+# that bind to privileged ports to provide authentication of data transfer
+# protocol.  Jsvc is not required if SASL is configured for authentication of
+# data transfer protocol using non-privileged ports.
+#export JSVC_HOME=${JSVC_HOME}
+
+export HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-"/etc/hadoop"}
+
+# Extra Java CLASSPATH elements.  Automatically insert capacity-scheduler.
+for f in $HADOOP_HOME/contrib/capacity-scheduler/*.jar; do
+  if [ "$HADOOP_CLASSPATH" ]; then
+    export HADOOP_CLASSPATH=$HADOOP_CLASSPATH:$f
+  else
+    export HADOOP_CLASSPATH=$f
+  fi
+done
+
+# The maximum amount of heap to use, in MB. Default is 1000.
+#export HADOOP_HEAPSIZE=
+#export HADOOP_NAMENODE_INIT_HEAPSIZE=""
+
+# Enable extra debugging of Hadoop's JAAS binding, used to set up
+# Kerberos security.
+# export HADOOP_JAAS_DEBUG=true
+
+# Extra Java runtime options.  Empty by default.
+# For Kerberos debugging, an extended option set logs more invormation
+# export HADOOP_OPTS="-Djava.net.preferIPv4Stack=true -Dsun.security.krb5.debug=true -Dsun.security.spnego.debug"
+export HADOOP_OPTS="$HADOOP_OPTS -Djava.net.preferIPv4Stack=true"
+
+# Command specific options appended to HADOOP_OPTS when specified
+export HADOOP_NAMENODE_OPTS="-Dhadoop.security.logger=${HADOOP_SECURITY_LOGGER:-INFO,RFAS} -Dhdfs.audit.logger=${HDFS_AUDIT_LOGGER:-INFO,NullAppender} $HADOOP_NAMENODE_OPTS"
+export HADOOP_DATANODE_OPTS="-Dhadoop.security.logger=ERROR,RFAS $HADOOP_DATANODE_OPTS"
+
+export HADOOP_SECONDARYNAMENODE_OPTS="-Dhadoop.security.logger=${HADOOP_SECURITY_LOGGER:-INFO,RFAS} -Dhdfs.audit.logger=${HDFS_AUDIT_LOGGER:-INFO,NullAppender} $HADOOP_SECONDARYNAMENODE_OPTS"
+
+export HADOOP_NFS3_OPTS="$HADOOP_NFS3_OPTS"
+export HADOOP_PORTMAP_OPTS="-Xmx512m $HADOOP_PORTMAP_OPTS"
+
+# The following applies to multiple commands (fs, dfs, fsck, distcp etc)
+export HADOOP_CLIENT_OPTS="$HADOOP_CLIENT_OPTS"
+# set heap args when HADOOP_HEAPSIZE is empty
+if [ "$HADOOP_HEAPSIZE" = "" ]; then
+  export HADOOP_CLIENT_OPTS="-Xmx512m $HADOOP_CLIENT_OPTS"
+fi
+#HADOOP_JAVA_PLATFORM_OPTS="-XX:-UsePerfData $HADOOP_JAVA_PLATFORM_OPTS"
+
+# On secure datanodes, user to run the datanode as after dropping privileges.
+# This **MUST** be uncommented to enable secure HDFS if using privileged ports
+# to provide authentication of data transfer protocol.  This **MUST NOT** be
+# defined if SASL is configured for authentication of data transfer protocol
+# using non-privileged ports.
+export HADOOP_SECURE_DN_USER=${HADOOP_SECURE_DN_USER}
+
+# Where log files are stored.  $HADOOP_HOME/logs by default.
+#export HADOOP_LOG_DIR=${HADOOP_LOG_DIR}/$USER
+
+# Where log files are stored in the secure data environment.
+#export HADOOP_SECURE_DN_LOG_DIR=${HADOOP_LOG_DIR}/${HADOOP_HDFS_USER}
+
+###
+# HDFS Mover specific parameters
+###
+# Specify the JVM options to be used when starting the HDFS Mover.
+# These options will be appended to the options specified as HADOOP_OPTS
+# and therefore may override any similar flags set in HADOOP_OPTS
+#
+# export HADOOP_MOVER_OPTS=""
+
+###
+# Router-based HDFS Federation specific parameters
+# Specify the JVM options to be used when starting the RBF Routers.
+# These options will be appended to the options specified as HADOOP_OPTS
+# and therefore may override any similar flags set in HADOOP_OPTS
+#
+# export HADOOP_DFSROUTER_OPTS=""
+###
+
+###
+# Advanced Users Only!
+###
+
+# The directory where pid files are stored. /tmp by default.
+# NOTE: this should be set to a directory that can only be written to by 
+#       the user that will run the hadoop daemons.  Otherwise there is the
+#       potential for a symlink attack.
+export HADOOP_PID_DIR=${HADOOP_PID_DIR}
+export HADOOP_SECURE_DN_PID_DIR=${HADOOP_PID_DIR}
+
+# A string representing this instance of hadoop. $USER by default.
+export HADOOP_IDENT_STRING=$USER
+===== slaves =====
+localhost
+===== HDFS DATA DIRECTORIES =====
+/home/naveen/hadoop-2.9.1/share/hadoop/tools/resourceestimator/data
+===== HDFS CONFIGURED ADDRESS =====
+hdfs://localhost:50000
+[naveen@archlinux hadoop-2.9.1]$ ^C
+[naveen@archlinux hadoop-2.9.1]$ hostname
+ip -4 -br addr
+
+ls -lah /home/naveen/hadoop2-dir/namenode-dir
+ls -lah /home/naveen/hadoop2-dir/datanode-dir
+
+find /home/naveen/hadoop2-dir/namenode-dir \
+  -name VERSION -o -name 'fsimage_*'
+
+jps
+archlinux
+lo               UNKNOWN        127.0.0.1/8 
+wlp2s0           UP             10.87.234.198/24 
+total 12K
+drwxr-xr-x 3 naveen naveen 4.0K Nov 12 00:00 .
+drwxr-xr-x 4 naveen naveen 4.0K Nov 11 02:52 ..
+drwxr-xr-x 2 naveen naveen 4.0K Nov 11 23:36 current
+total 12K
+drwx------ 3 naveen naveen 4.0K Nov 12 00:00 .
+drwxr-xr-x 4 naveen naveen 4.0K Nov 11 02:52 ..
+drwxr-xr-x 3 naveen naveen 4.0K Nov 11 22:35 current
+/home/naveen/hadoop2-dir/namenode-dir/current/VERSION
+/home/naveen/hadoop2-dir/namenode-dir/current/fsimage_0000000000000000004
+/home/naveen/hadoop2-dir/namenode-dir/current/fsimage_0000000000000000002.md5
+/home/naveen/hadoop2-dir/namenode-dir/current/fsimage_0000000000000000004.md5
+/home/naveen/hadoop2-dir/namenode-dir/current/fsimage_0000000000000000002
+21097 Jps
+[naveen@archlinux hadoop-2.9.1]$ ^C
+[naveen@archlinux hadoop-2.9.1]$ echo "===== NAMENODE VERSION ====="
+cat /home/naveen/hadoop2-dir/namenode-dir/current/VERSION
+
+echo "===== DATANODE VERSION ====="
+cat /home/naveen/hadoop2-dir/datanode-dir/current/VERSION
+===== NAMENODE VERSION =====
+#Wed Nov 11 22:34:10 IST 2026
+namespaceID=1112240913
+clusterID=CID-a36cb08a-817c-421c-b9ec-e9485046d5bb
+cTime=1794416650190
+storageType=NAME_NODE
+blockpoolID=BP-1383357140-10.87.234.198-1794416650190
+layoutVersion=-63
+===== DATANODE VERSION =====
+#Wed Nov 11 22:35:22 IST 2026
+storageID=DS-bbdbb2ad-d18e-4fd0-800b-4f1ab667bebf
+clusterID=CID-a36cb08a-817c-421c-b9ec-e9485046d5bb
+cTime=0
+datanodeUuid=6063523e-a8cf-4171-a32f-93e13e6ec74e
+storageType=DATA_NODE
+layoutVersion=-57
+[naveen@archlinux hadoop-2.9.1]$ cd ~/hadoop-2.9.1
+
+cp -r etc/hadoop etc/hadoop-backup-$(date +%F-%H%M%S)
+[naveen@archlinux hadoop-2.9.1]$ nano etc/hadoop/core-site.xml
+[naveen@archlinux hadoop-2.9.1]$ nano etc/hadoop/hdfs-site.xml
+[naveen@archlinux hadoop-2.9.1]$ nano etc/hadoop/mapred-site.xml
+[naveen@archlinux hadoop-2.9.1]$ nano etc/hadoop/yarn-site.xml
+[naveen@archlinux hadoop-2.9.1]$ echo -e "archlinux\nDHANDEPATIL" > etc/hadoop/slaves
+[naveen@archlinux hadoop-2.9.1]$ V
+bash: V: command not found
+[naveen@archlinux hadoop-2.9.1]$ grep JAVA_HOME etc/hadoop/hadoop-env.sh
+export JAVA_HOME=/home/naveen/jdk-8u45-linux-x64/jdk1.8.0_45
+# The only required environment variable is JAVA_HOME.  All others are
+# set JAVA_HOME in this file, so that it is correctly defined on
+export JAVA_HOME=${JAVA_HOME}
+[naveen@archlinux hadoop-2.9.1]$ cd ~/hadoop-2.9.1
+
+echo "===== CORE SITE ====="
+cat etc/hadoop/core-site.xml
+
+echo "===== HDFS SITE ====="
+cat etc/hadoop/hdfs-site.xml
+
+echo "===== YARN SITE ====="
+cat etc/hadoop/yarn-site.xml
+
+echo "===== WORKERS ====="
+cat etc/hadoop/slaves
+
+echo "===== HADOOP JAVA ====="
+grep JAVA_HOME etc/hadoop/hadoop-env.sh
+===== CORE SITE =====
+<?xml version="1.0"?>
+<configuration>
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://archlinux:9000</value>
+    </property>
+</configuration>
+===== HDFS SITE =====
+<?xml version="1.0"?>
+<configuration>
+    <property>
+        <name>dfs.replication</name>
+        <value>2</value>
+    </property>
+
+    <property>
+        <name>dfs.namenode.name.dir</name>
+        <value>file:///home/naveen/hadoop2-dir/namenode-dir</value>
+    </property>
+
+    <property>
+        <name>dfs.datanode.data.dir</name>
+        <value>file:///home/naveen/hadoop2-dir/datanode-dir</value>
+    </property>
+</configuration>
+===== YARN SITE =====
+<?xml version="1.0"?>
+<configuration>
+    <property>
+        <name>yarn.resourcemanager.hostname</name>
+        <value>archlinux</value>
+    </property>
+
+    <property>
+        <name>yarn.nodemanager.aux-services</name>
+        <value>mapreduce_shuffle</value>
+    </property>
+
+    <property>
+        <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+        <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+    </property>
+</configuration>
+===== WORKERS =====
+archlinux
+DHANDEPATIL
+===== HADOOP JAVA =====
+export JAVA_HOME=/home/naveen/jdk-8u45-linux-x64/jdk1.8.0_45
+# The only required environment variable is JAVA_HOME.  All others are
+# set JAVA_HOME in this file, so that it is correctly defined on
+export JAVA_HOME=${JAVA_HOME}
+[naveen@archlinux hadoop-2.9.1]$ V
+bash: V: command not found
+[naveen@archlinux hadoop-2.9.1]$ sudo cp /etc/hosts /etc/hosts.backup
+sudo nano /etc/hosts
+[sudo] password for naveen: 
+[naveen@archlinux hadoop-2.9.1]$ getent hosts archlinux
+getent hosts DHANDEPATIL
+2409:40d4:242b:85be:de0:2964:6baf:879a archlinux
+fe80::39ed:dd92:cb5d:2640 archlinux
+172.31.76.25    DHANDEPATIL
+172.31.111.173  DHANDEPATIL
+10.87.234.88    DHANDEPATIL
+[naveen@archlinux hadoop-2.9.1]$ 
+Display all 3018 possibilities? (y or n)
+[naveen@archlinux hadoop-2.9.1]$ sudo nano /etc/hosts
+[naveen@archlinux hadoop-2.9.1]$ getent ahostsv4 archlinux
+getent ahostsv4 DHANDEPATIL
+10.87.234.198   STREAM archlinux
+10.87.234.198   DGRAM  
+10.87.234.198   RAW    
+10.87.234.88    STREAM DHANDEPATIL
+10.87.234.88    DGRAM  
+10.87.234.88    RAW    
+[naveen@archlinux hadoop-2.9.1]$ ping -c 3 archlinux
+ping -c 3 DHANDEPATIL
+PING archlinux (10.87.234.198) 56(84) bytes of data.
+64 bytes from archlinux (10.87.234.198): icmp_seq=1 ttl=64 time=0.072 ms
+64 bytes from archlinux (10.87.234.198): icmp_seq=2 ttl=64 time=0.075 ms
+64 bytes from archlinux (10.87.234.198): icmp_seq=3 ttl=64 time=0.078 ms
+
+--- archlinux ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2056ms
+rtt min/avg/max/mdev = 0.072/0.075/0.078/0.002 ms
+PING DHANDEPATIL (10.87.234.88) 56(84) bytes of data.
+64 bytes from DHANDEPATIL (10.87.234.88): icmp_seq=1 ttl=64 time=222 ms
+64 bytes from DHANDEPATIL (10.87.234.88): icmp_seq=2 ttl=64 time=255 ms
+64 bytes from DHANDEPATIL (10.87.234.88): icmp_seq=3 ttl=64 time=27.8 ms
+
+--- DHANDEPATIL ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+rtt min/avg/max/mdev = 27.814/168.055/254.547/100.062 ms
+[naveen@archlinux hadoop-2.9.1]$ sudo systemctl enable --now sshd
+systemctl status sshd --no-pager
+● sshd.service - OpenSSH Daemon
+     Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; preset: disabled)
+     Active: active (running) since Sat 2026-11-14 20:52:36 IST; 1h 28min left
+ Invocation: 361cdf5aad5149e49cc765b8f263aba3
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+   Main PID: 731 (sshd)
+      Tasks: 1 (limit: 18285)
+     Memory: 1.8M (peak: 2.4M)
+        CPU: 10ms
+     CGroup: /system.slice/sshd.service
+             └─731 "sshd: /usr/bin/sshd -D [listener] 0 of 10-100 startups"
+
+Nov 14 20:52:35 archlinux systemd[1]: Starting OpenSSH Daemon...
+Nov 14 20:52:36 archlinux sshd[731]: Server listening on 0.0.0.0 port 22.
+Nov 14 20:52:36 archlinux sshd[731]: Server listening on :: port 22.
+Nov 14 20:52:36 archlinux systemd[1]: Started OpenSSH Daemon.
+[naveen@archlinux hadoop-2.9.1]$ sudo ufw status verbose
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing), disabled (routed)
+New profiles: skip
+
+To                         Action      From
+--                         ------      ----
+22/tcp                     ALLOW IN    172.31.76.25              
+22/tcp                     ALLOW IN    172.31.111.173            
+
+[naveen@archlinux hadoop-2.9.1]$ sudo ufw allow from 10.87.234.88 to any port 22 proto tcp
+Rule added
+[naveen@archlinux hadoop-2.9.1]$ mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+
+ssh-keygen -t ed25519 -N "" -f ~/.ssh/id_ed25519
+Generating public/private ed25519 key pair.
+/home/naveen/.ssh/id_ed25519 already exists.
+Overwrite (y/n)? n
+[naveen@archlinux hadoop-2.9.1]$ ssh-copy-id om@DHANDEPATIL
+/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: ssh-add -L
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 2 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+om@dhandepatil's password: 
+
+Number of key(s) added: 2
+
+Now try logging into the machine, with: "ssh 'om@DHANDEPATIL'"
+and check to make sure that only the key(s) you wanted were added.
+
+[naveen@archlinux hadoop-2.9.1]$ V
+bash: V: command not found
+[naveen@archlinux hadoop-2.9.1]$ ssh om@DHANDEPATIL
+(base) [om@DHANDEPATIL ~]$ hostname
+whoami
+DHANDEPATIL
+om
+(base) [om@DHANDEPATIL ~]$ exit
+logout
+Connection to dhandepatil closed.
+[naveen@archlinux hadoop-2.9.1]$ nano ~/.ssh/config
+[naveen@archlinux hadoop-2.9.1]$ chmod 600 ~/.ssh/config
+[naveen@archlinux hadoop-2.9.1]$ ssh DHANDEPATIL
+(base) [om@DHANDEPATIL ~]$ exit
+logout
+Connection to 10.87.234.88 closed.
+[naveen@archlinux hadoop-2.9.1]$ ssh naveen@archlinux
+The authenticity of host 'archlinux (10.87.234.198)' can't be established.
+ED25519 key fingerprint is: SHA256:jLNrmMJpSy3SIDZ80GFOS/Zq1HrPaQLwhQP9r7/m6x8
+This host key is known by the following other names/addresses:
+    ~/.ssh/known_hosts:1: localhost
+    ~/.ssh/known_hosts:5: 0.0.0.0
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'archlinux' (ED25519) to the list of known hosts.
+[naveen@archlinux ~]$ V
+-bash: V: command not found
+[naveen@archlinux ~]$ export HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-"/etc/hadoop"}
+[naveen@archlinux ~]$ cd ~/hadoop-2.9.1
+
+echo "JAVA:"
+java -version
+
+echo "HADOOP HOME:"
+echo $HADOOP_HOME
+
+echo "HADOOP CONF:"
+echo $HADOOP_CONF_DIR
+
+echo "HDFS ADDRESS:"
+bin/hdfs getconf -confKey fs.defaultFS
+
+echo "REPLICATION:"
+bin/hdfs getconf -confKey dfs.replication
+
+echo "NAMENODE DIRECTORY:"
+bin/hdfs getconf -confKey dfs.namenode.name.dir
+
+echo "DATANODE DIRECTORY:"
+bin/hdfs getconf -confKey dfs.datanode.data.dir
+JAVA:
+java version "1.8.0_45"
+Java(TM) SE Runtime Environment (build 1.8.0_45-b14)
+Java HotSpot(TM) 64-Bit Server VM (build 25.45-b02, mixed mode)
+HADOOP HOME:
+/home/naveen/hadoop-2.9.1
+HADOOP CONF:
+/etc/hadoop
+HDFS ADDRESS:
+file:///
+REPLICATION:
+3
+NAMENODE DIRECTORY:
+file:///tmp/hadoop-naveen/dfs/name
+DATANODE DIRECTORY:
+file:///tmp/hadoop-naveen/dfs/data
+[naveen@archlinux hadoop-2.9.1]$ V
+-bash: V: command not found
+[naveen@archlinux hadoop-2.9.1]$ cat ~/hadoop-2.9.1/etc/hadoop/mapred-site.xml
+<?xml version="1.0"?>
+<configuration>
+    <property>
+        <name>mapreduce.framework.name</name>
+        <value>yarn</value>
+    </property>
+</configuration>
+[naveen@archlinux hadoop-2.9.1]$ cd ~/hadoop-2.9.1
+
+echo "JAVA_HOME=$JAVA_HOME"
+echo "HADOOP_HOME=$HADOOP_HOME"
+echo "HADOOP_CONF_DIR=$HADOOP_CONF_DIR"
+
+java -version
+bin/hdfs getconf -confKey fs.defaultFS
+JAVA_HOME=/home/naveen/jdk-8u45-linux-x64/jdk1.8.0_45
+HADOOP_HOME=/home/naveen/hadoop-2.9.1
+HADOOP_CONF_DIR=/etc/hadoop
+java version "1.8.0_45"
+Java(TM) SE Runtime Environment (build 1.8.0_45-b14)
+Java HotSpot(TM) 64-Bit Server VM (build 25.45-b02, mixed mode)
+file:///
+[naveen@archlinux hadoop-2.9.1]$ nano ~/hadoop-2.9.1/etc/hadoop/hadoop-env.sh
+[naveen@archlinux hadoop-2.9.1]$ V
+-bash: V: command not found
+[naveen@archlinux hadoop-2.9.1]$ cat >> ~/.bashrc <<'EOF'
+
+export JAVA_HOME=/home/naveen/jdk-8u45-linux-x64/jdk1.8.0_45
+export HADOOP_HOME=/home/naveen/hadoop-2.9.1
+export HADOOP_CONF_DIR=/home/naveen/hadoop-2.9.1/etc/hadoop
+export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
+EOF
+
+source ~/.bashrc
+[naveen@archlinux hadoop-2.9.1]$ echo $HADOOP_CONF_DIR
+hdfs getconf -confKey fs.defaultFS
+hdfs getconf -confKey dfs.replication
+hdfs getconf -confKey dfs.namenode.name.dir
+hdfs getconf -confKey dfs.datanode.data.dir
+/home/naveen/hadoop-2.9.1/etc/hadoop
+hdfs://archlinux:9000
+2
+file:///home/naveen/hadoop2-dir/namenode-dir
+file:///home/naveen/hadoop2-dir/datanode-dir
+[naveen@archlinux hadoop-2.9.1]$ cd ~/hadoop-2.9.1/etc/hadoop
+
+echo "===== CORE SITE ====="
+cat core-site.xml
+
+echo "===== HDFS SITE ====="
+cat hdfs-site.xml
+
+echo "===== YARN SITE ====="
+cat yarn-site.xml
+
+echo "===== MAPRED SITE ====="
+cat mapred-site.xml
+===== CORE SITE =====
+<?xml version="1.0"?>
+<configuration>
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://archlinux:9000</value>
+    </property>
+</configuration>
+===== HDFS SITE =====
+<?xml version="1.0"?>
+<configuration>
+    <property>
+        <name>dfs.replication</name>
+        <value>2</value>
+    </property>
+
+    <property>
+        <name>dfs.namenode.name.dir</name>
+        <value>file:///home/naveen/hadoop2-dir/namenode-dir</value>
+    </property>
+
+    <property>
+        <name>dfs.datanode.data.dir</name>
+        <value>file:///home/naveen/hadoop2-dir/datanode-dir</value>
+    </property>
+</configuration>
+===== YARN SITE =====
+<?xml version="1.0"?>
+<configuration>
+    <property>
+        <name>yarn.resourcemanager.hostname</name>
+        <value>archlinux</value>
+    </property>
+
+    <property>
+        <name>yarn.nodemanager.aux-services</name>
+        <value>mapreduce_shuffle</value>
+    </property>
+
+    <property>
+        <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+        <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+    </property>
+</configuration>
+===== MAPRED SITE =====
+<?xml version="1.0"?>
+<configuration>
+    <property>
+        <name>mapreduce.framework.name</name>
+        <value>yarn</value>
+    </property>
+</configuration>
+[naveen@archlinux hadoop]$ sudo ufw allow from 10.87.234.88 to any port 9000 proto tcp
+sudo ufw allow from 10.87.234.88 to any port 50070 proto tcp
+sudo ufw allow from 10.87.234.88 to any port 50010 proto tcp
+sudo ufw allow from 10.87.234.88 to any port 50020 proto tcp
+sudo ufw allow from 10.87.234.88 to any port 50075 proto tcp
+
+sudo ufw allow from 10.87.234.88 to any port 8030:8033 proto tcp
+sudo ufw allow from 10.87.234.88 to any port 8040:8042 proto tcp
+sudo ufw allow from 10.87.234.88 to any port 8088 proto tcp
+sudo ufw allow from 10.87.234.88 to any port 13562 proto tcp
+[sudo] password for naveen: 
+Rule added
+Rule added
+Rule added
+Rule added
+Rule added
+Rule added
+Rule added
+Rule added
+Rule added
+[naveen@archlinux hadoop]$ ssh DHANDEPATIL 'echo "JAVA_HOME=$JAVA_HOME"; grep HADOOP_CONF_DIR ~/hadoop-2.9.1/etc/hadoop/hadoop-env.sh; cd ~/hadoop-2.9.1 && bin/hdfs getconf -confKey fs.defaultFS'
+JAVA_HOME=
+export HADOOP_CONF_DIR=/home/om/hadoop-2.9.1/etc/hadoop
+hdfs://archlinux:9000
+[naveen@archlinux hadoop]$ ssh naveen@archlinux 'hostname; whoami'
+archlinux
+naveen
+[naveen@archlinux hadoop]$ ls -lah /home/naveen/hadoop2-dir/namenode-dir/current/
+total 1.1M
+drwxr-xr-x 2 naveen naveen 4.0K Nov 11 23:36 .
+drwxr-xr-x 3 naveen naveen 4.0K Nov 12 00:00 ..
+-rw-r--r-- 1 naveen naveen   42 Nov 11 22:36 edits_0000000000000000001-0000000000000000002
+-rw-r--r-- 1 naveen naveen   42 Nov 11 23:36 edits_0000000000000000003-0000000000000000004
+-rw-r--r-- 1 naveen naveen 1.0M Nov 11 23:36 edits_inprogress_0000000000000000005
+-rw-r--r-- 1 naveen naveen  323 Nov 11 22:36 fsimage_0000000000000000002
+-rw-r--r-- 1 naveen naveen   62 Nov 11 22:36 fsimage_0000000000000000002.md5
+-rw-r--r-- 1 naveen naveen  323 Nov 11 23:36 fsimage_0000000000000000004
+-rw-r--r-- 1 naveen naveen   62 Nov 11 23:36 fsimage_0000000000000000004.md5
+-rw-r--r-- 1 naveen naveen    2 Nov 11 23:36 seen_txid
+-rw-r--r-- 1 naveen naveen  218 Nov 11 22:34 VERSION
+[naveen@archlinux hadoop]$ cd ~/hadoop-2.9.1
+source ~/.bashrc
+
+sbin/start-dfs.sh
+Starting namenodes on [archlinux]
+archlinux: starting namenode, logging to /home/naveen/hadoop-2.9.1/logs/hadoop-naveen-namenode-archlinux.out
+archlinux: starting datanode, logging to /home/naveen/hadoop-2.9.1/logs/hadoop-naveen-datanode-archlinux.out
+DHANDEPATIL: bash: line 1: cd: /home/naveen/hadoop-2.9.1: No such file or directory
+DHANDEPATIL: bash: line 1: /home/naveen/hadoop-2.9.1/sbin/hadoop-daemon.sh: No such file or directory
+Starting secondary namenodes [0.0.0.0]
+0.0.0.0: starting secondarynamenode, logging to /home/naveen/hadoop-2.9.1/logs/hadoop-naveen-secondarynamenode-archlinux.out
+[naveen@archlinux hadoop-2.9.1]$ jps
+24947 DataNode
+25156 SecondaryNameNode
+24808 NameNode
+25325 Jps
+[naveen@archlinux hadoop-2.9.1]$ ssh DHANDEPATIL 'jps'
+32054 Jps
+[naveen@archlinux hadoop-2.9.1]$ hdfs dfsadmin -report
+Configured Capacity: 62951051264 (58.63 GB)
+Present Capacity: 42118230016 (39.23 GB)
+DFS Remaining: 42118197248 (39.23 GB)
+DFS Used: 32768 (32 KB)
+DFS Used%: 0.00%
+Under replicated blocks: 0
+Blocks with corrupt replicas: 0
+Missing blocks: 0
+Missing blocks (with replication factor 1): 0
+Pending deletion blocks: 0
+
+-------------------------------------------------
+Live datanodes (1):
+
+Name: 10.87.234.198:50010 (archlinux)
+Hostname: archlinux
+Decommission Status : Normal
+Configured Capacity: 62951051264 (58.63 GB)
+DFS Used: 32768 (32 KB)
+Non DFS Used: 17601896448 (16.39 GB)
+DFS Remaining: 42118197248 (39.23 GB)
+DFS Used%: 0.00%
+DFS Remaining%: 66.91%
+Configured Cache Capacity: 0 (0 B)
+Cache Used: 0 (0 B)
+Cache Remaining: 0 (0 B)
+Cache Used%: 100.00%
+Cache Remaining%: 0.00%
+Xceivers: 1
+Last contact: Sat Nov 14 19:39:51 IST 2026
+Last Block Report: Sat Nov 14 19:38:48 IST 2026
+
+
+[naveen@archlinux hadoop-2.9.1]$ cd ~/hadoop-2.9.1
+source ~/.bashrc
+sbin/stop-dfs.sh
+Stopping namenodes on [archlinux]
+archlinux: stopping namenode
+jarchlinux: stopping datanode
+DHANDEPATIL: bash: line 1: cd: /home/naveen/hadoop-2.9.1: No such file or directory
+DHANDEPATIL: bash: line 1: /home/naveen/hadoop-2.9.1/sbin/hadoop-daemon.sh: No such file or directory
+Stopping secondary namenodes [0.0.0.0]
+0.0.0.0: stopping secondarynamenode
+[naveen@archlinux hadoop-2.9.1]$ jsp
+-bash: jsp: command not found
+[naveen@archlinux hadoop-2.9.1]$ jps
+25887 Jps
+[naveen@archlinux hadoop-2.9.1]$ V
+-bash: V: command not found
+[naveen@archlinux hadoop-2.9.1]$ sudo mkdir -p /opt
+sudo ln -s /home/naveen/hadoop-2.9.1 /opt/hadoop-2.9.1
+[naveen@archlinux hadoop-2.9.1]$ cat >> ~/.bashrc <<'EOF'
+
+export HADOOP_HOME=/opt/hadoop-2.9.1
+export HADOOP_CONF_DIR=/opt/hadoop-2.9.1/etc/hadoop
+export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
+EOF
+
+source ~/.bashrc
+[naveen@archlinux hadoop-2.9.1]$ V
+-bash: V: command not found
+[naveen@archlinux hadoop-2.9.1]$ nano /opt/hadoop-2.9.1/etc/hadoop/hadoop-env.sh
+[naveen@archlinux hadoop-2.9.1]$ echo $HADOOP_HOME
+echo $HADOOP_CONF_DIR
+hdfs getconf -confKey fs.defaultFS
+/opt/hadoop-2.9.1
+/opt/hadoop-2.9.1/etc/hadoop
+hdfs://archlinux:9000
+[naveen@archlinux hadoop-2.9.1]$ ssh DHANDEPATIL 'ls -ld /opt/hadoop-2.9.1'
+ssh DHANDEPATIL 'ls /opt/hadoop-2.9.1/sbin/hadoop-daemon.sh'
+ssh DHANDEPATIL 'cd /opt/hadoop-2.9.1 && bin/hdfs getconf -confKey fs.defaultFS'
+lrwxrwxrwx 1 root root 21 Nov 14 19:48 /opt/hadoop-2.9.1 -> /home/om/hadoop-2.9.1
+/opt/hadoop-2.9.1/sbin/hadoop-daemon.sh
+hdfs://archlinux:9000
+[naveen@archlinux hadoop-2.9.1]$ cd /opt/hadoop-2.9.1
+sbin/start-dfs.sh
+Starting namenodes on [archlinux]
+archlinux: starting namenode, logging to /home/naveen/hadoop-2.9.1/logs/hadoop-naveen-namenode-archlinux.out
+archlinux: starting datanode, logging to /home/naveen/hadoop-2.9.1/logs/hadoop-naveen-datanode-archlinux.out
+DHANDEPATIL: bash: line 1: cd: /home/naveen/hadoop-2.9.1: No such file or directory
+DHANDEPATIL: bash: line 1: /home/naveen/hadoop-2.9.1/sbin/hadoop-daemon.sh: No such file or directory
+Starting secondary namenodes [0.0.0.0]
+0.0.0.0: starting secondarynamenode, logging to /home/naveen/hadoop-2.9.1/logs/hadoop-naveen-secondarynamenode-archlinux.out
+[naveen@archlinux hadoop-2.9.1]$ jps
+ssh DHANDEPATIL 'jps'
+hdfs dfsadmin -report
+27044 Jps
+26679 DataNode
+26872 SecondaryNameNode
+26540 NameNode
+32755 Jps
+Configured Capacity: 62951051264 (58.63 GB)
+Present Capacity: 42115432448 (39.22 GB)
+DFS Remaining: 42115399680 (39.22 GB)
+DFS Used: 32768 (32 KB)
+DFS Used%: 0.00%
+Under replicated blocks: 0
+Blocks with corrupt replicas: 0
+Missing blocks: 0
+Missing blocks (with replication factor 1): 0
+Pending deletion blocks: 0
+
+-------------------------------------------------
+Live datanodes (1):
+
+Name: 10.87.234.198:50010 (archlinux)
+Hostname: archlinux
+Decommission Status : Normal
+Configured Capacity: 62951051264 (58.63 GB)
+DFS Used: 32768 (32 KB)
+Non DFS Used: 17604694016 (16.40 GB)
+DFS Remaining: 42115399680 (39.22 GB)
+DFS Used%: 0.00%
+DFS Remaining%: 66.90%
+Configured Cache Capacity: 0 (0 B)
+Cache Used: 0 (0 B)
+Cache Remaining: 0 (0 B)
+Cache Used%: 100.00%
+Cache Remaining%: 0.00%
+Xceivers: 1
+Last contact: Sat Nov 14 19:49:18 IST 2026
+Last Block Report: Sat Nov 14 19:49:09 IST 2026
+
+
+[naveen@archlinux hadoop-2.9.1]$ ^C
+[naveen@archlinux hadoop-2.9.1]$ hdfs dfsadmin -report
+Configured Capacity: 564814163968 (526.02 GB)
+Present Capacity: 449844981760 (418.95 GB)
+DFS Remaining: 449844924416 (418.95 GB)
+DFS Used: 57344 (56 KB)
+DFS Used%: 0.00%
+Under replicated blocks: 0
+Blocks with corrupt replicas: 0
+Missing blocks: 0
+Missing blocks (with replication factor 1): 0
+Pending deletion blocks: 0
+
+-------------------------------------------------
+Live datanodes (2):
+
+Name: 10.87.234.198:50010 (archlinux)
+Hostname: archlinux
+Decommission Status : Normal
+Configured Capacity: 62951051264 (58.63 GB)
+DFS Used: 32768 (32 KB)
+Non DFS Used: 17605255168 (16.40 GB)
+DFS Remaining: 42114838528 (39.22 GB)
+DFS Used%: 0.00%
+DFS Remaining%: 66.90%
+Configured Cache Capacity: 0 (0 B)
+Cache Used: 0 (0 B)
+Cache Remaining: 0 (0 B)
+Cache Used%: 100.00%
+Cache Remaining%: 0.00%
+Xceivers: 1
+Last contact: Sat Nov 14 19:51:06 IST 2026
+Last Block Report: Sat Nov 14 19:49:09 IST 2026
+
+
+Name: 10.87.234.88:50010 (DHANDEPATIL)
+Hostname: DHANDEPATIL
+Decommission Status : Normal
+Configured Capacity: 501863112704 (467.40 GB)
+DFS Used: 24576 (24 KB)
+Non DFS Used: 68564525056 (63.86 GB)
+DFS Remaining: 407730085888 (379.73 GB)
+DFS Used%: 0.00%
+DFS Remaining%: 81.24%
+Configured Cache Capacity: 0 (0 B)
+Cache Used: 0 (0 B)
+Cache Remaining: 0 (0 B)
+Cache Used%: 100.00%
+Cache Remaining%: 0.00%
+Xceivers: 1
+Last contact: Sat Nov 14 19:51:04 IST 2026
+Last Block Report: Sat Nov 14 19:50:49 IST 2026
+
+
+[naveen@archlinux hadoop-2.9.1]$ cd /home/naveen/hadoop-2.9.1
+
+export JAVA_HOME=/home/naveen/jdk-8u45-linux-x64/jdk1.8.0_45
+export HADOOP_HOME=/home/naveen/hadoop-2.9.1
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+
+sbin/start-yarn.sh
+starting yarn daemons
+starting resourcemanager, logging to /home/naveen/hadoop-2.9.1/logs/yarn-naveen-resourcemanager-archlinux.out
+archlinux: starting nodemanager, logging to /home/naveen/hadoop-2.9.1/logs/yarn-naveen-nodemanager-archlinux.out
+DHANDEPATIL: bash: line 1: cd: /home/naveen/hadoop-2.9.1: No such file or directory
+DHANDEPATIL: bash: line 1: /home/naveen/hadoop-2.9.1/sbin/yarn-daemon.sh: No such file or directory
+[naveen@archlinux hadoop-2.9.1]$ jps
+yarn node -list
+27536 NodeManager
+27894 Jps
+27431 ResourceManager
+26679 DataNode
+26872 SecondaryNameNode
+26540 NameNode
+26/11/14 19:51:27 INFO client.RMProxy: Connecting to ResourceManager at archlinux/10.87.234.198:8032
+Total Nodes:1
+         Node-Id	     Node-State	Node-Http-Address	Number-of-Running-Containers
+ archlinux:40585	        RUNNING	   archlinux:8042	                           0
+[naveen@archlinux hadoop-2.9.1]$ yarn node -list
+26/11/14 19:52:38 INFO client.RMProxy: Connecting to ResourceManager at archlinux/10.87.234.198:8032
+Total Nodes:2
+         Node-Id	     Node-State	Node-Http-Address	Number-of-Running-Containers
+ archlinux:40585	        RUNNING	   archlinux:8042	                           0
+DHANDEPATIL:39501	        RUNNING	 DHANDEPATIL:8042	                           0
+[naveen@archlinux hadoop-2.9.1]$ mkdir -p ~/hadoop-test
+
+echo "network intrusion detection using hadoop spark" > ~/hadoop-test/input.txt
+echo "hadoop stores data and spark processes data" >> ~/hadoop-test/input.txt
+[naveen@archlinux hadoop-2.9.1]$ hdfs dfs -mkdir -p /test/input
+hdfs dfs -put -f ~/hadoop-test/input.txt /test/input/
+[naveen@archlinux hadoop-2.9.1]$ hdfs dfs -mkdir -p /test/input
+hdfs dfs -put -f ~/hadoop-test/input.txt /test/input/
+[naveen@archlinux hadoop-2.9.1]$ hdfs dfs -ls /test/input
+Found 1 items
+-rw-r--r--   2 naveen supergroup         91 2026-11-14 19:53 /test/input/input.txt
+[naveen@archlinux hadoop-2.9.1]$ hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.9.1.jar \
+wordcount /test/input /test/output
+26/11/14 19:53:41 INFO client.RMProxy: Connecting to ResourceManager at archlinux/10.87.234.198:8032
+26/11/14 19:53:42 INFO input.FileInputFormat: Total input files to process : 1
+26/11/14 19:53:43 INFO mapreduce.JobSubmitter: number of splits:1
+26/11/14 19:53:43 INFO Configuration.deprecation: yarn.resourcemanager.system-metrics-publisher.enabled is deprecated. Instead, use yarn.system-metrics-publisher.enabled
+26/11/14 19:53:43 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1794666080258_0001
+26/11/14 19:53:44 INFO impl.YarnClientImpl: Submitted application application_1794666080258_0001
+26/11/14 19:53:44 INFO mapreduce.Job: The url to track the job: http://archlinux:8088/proxy/application_1794666080258_0001/
+26/11/14 19:53:44 INFO mapreduce.Job: Running job: job_1794666080258_0001
+
+Broadcast message from root@archlinux (Sat 2026-11-14 19:58:02 IST):
+
+The system will sleep now!
+
+26/11/14 20:12:29 INFO mapreduce.Job: Job job_1794666080258_0001 running in uber mode : false
+26/11/14 20:12:29 INFO mapreduce.Job:  map 0% reduce 0%
+26/11/14 20:12:29 INFO mapreduce.Job: Job job_1794666080258_0001 failed with state FAILED due to: Application application_1794666080258_0001 failed 2 times due to Error launching appattempt_1794666080258_0001_000002. Got exception: org.apache.hadoop.net.ConnectTimeoutException: Call From archlinux/10.87.234.198 to DHANDEPATIL:39501 failed on socket timeout exception: org.apache.hadoop.net.ConnectTimeoutException: 20000 millis timeout while waiting for channel to be ready for connect. ch : java.nio.channels.SocketChannel[connection-pending remote=DHANDEPATIL/10.87.234.88:39501]; For more details see:  http://wiki.apache.org/hadoop/SocketTimeout
+	at sun.reflect.GeneratedConstructorAccessor37.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:422)
+	at org.apache.hadoop.net.NetUtils.wrapWithMessage(NetUtils.java:824)
+	at org.apache.hadoop.net.NetUtils.wrapException(NetUtils.java:774)
+	at org.apache.hadoop.ipc.Client.getRpcResponse(Client.java:1497)
+	at org.apache.hadoop.ipc.Client.call(Client.java:1439)
+	at org.apache.hadoop.ipc.Client.call(Client.java:1349)
+	at org.apache.hadoop.ipc.ProtobufRpcEngine$Invoker.invoke(ProtobufRpcEngine.java:227)
+	at org.apache.hadoop.ipc.ProtobufRpcEngine$Invoker.invoke(ProtobufRpcEngine.java:116)
+	at com.sun.proxy.$Proxy82.startContainers(Unknown Source)
+	at org.apache.hadoop.yarn.api.impl.pb.client.ContainerManagementProtocolPBClientImpl.startContainers(ContainerManagementProtocolPBClientImpl.java:128)
+	at sun.reflect.GeneratedMethodAccessor14.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.apache.hadoop.io.retry.RetryInvocationHandler.invokeMethod(RetryInvocationHandler.java:422)
+	at org.apache.hadoop.io.retry.RetryInvocationHandler$Call.invokeMethod(RetryInvocationHandler.java:165)
+	at org.apache.hadoop.io.retry.RetryInvocationHandler$Call.invoke(RetryInvocationHandler.java:157)
+	at org.apache.hadoop.io.retry.RetryInvocationHandler$Call.invokeOnce(RetryInvocationHandler.java:95)
+	at org.apache.hadoop.io.retry.RetryInvocationHandler.invoke(RetryInvocationHandler.java:359)
+	at com.sun.proxy.$Proxy83.startContainers(Unknown Source)
+	at org.apache.hadoop.yarn.server.resourcemanager.amlauncher.AMLauncher.launch(AMLauncher.java:122)
+	at org.apache.hadoop.yarn.server.resourcemanager.amlauncher.AMLauncher.run(AMLauncher.java:307)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.apache.hadoop.net.ConnectTimeoutException: 20000 millis timeout while waiting for channel to be ready for connect. ch : java.nio.channels.SocketChannel[connection-pending remote=DHANDEPATIL/10.87.234.88:39501]
+	at org.apache.hadoop.net.NetUtils.connect(NetUtils.java:534)
+	at org.apache.hadoop.ipc.Client$Connection.setupConnection(Client.java:687)
+	at org.apache.hadoop.ipc.Client$Connection.setupIOstreams(Client.java:790)
+	at org.apache.hadoop.ipc.Client$Connection.access$3500(Client.java:411)
+	at org.apache.hadoop.ipc.Client.getConnection(Client.java:1554)
+	at org.apache.hadoop.ipc.Client.call(Client.java:1385)
+	... 19 more
+. Failing the application.
+26/11/14 20:12:29 INFO mapreduce.Job: Counters: 0
+[naveen@archlinux hadoop-2.9.1]$ 
